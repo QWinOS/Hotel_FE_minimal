@@ -11,7 +11,7 @@ const Amenities = async (amenities: any) => {
   thumbnail_img = URL + thumbnail_img;
   return (
     <>
-      <div className="flex flex-row items-center">
+      <div className="flex sm:flex-row flex-col items-center">
         <div
           className="m-2"
           style={{ position: "relative", height: "50px", width: "50px" }}
@@ -31,4 +31,32 @@ const Amenities = async (amenities: any) => {
     </>
   );
 };
-export default Amenities;
+const AmenitiesMobile = async (amenities: any) => {
+  console.log(amenities);
+  let title = amenities.props.Title;
+  let description = amenities.props.Description;
+  let thumbnail_img = amenities.props.Thumbnail.url;
+  thumbnail_img = URL + thumbnail_img;
+  return (
+    <>
+      <div className="flex flex-col items-center">
+        <div
+          className="m-2"
+          style={{ position: "relative", height: "50px", width: "50px" }}
+        >
+          <Image
+            src={thumbnail_img}
+            fill
+            alt={title}
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+        <div className="flex flex-col items-center ">
+          <div className="font-bold">{title}</div>
+          <div className="">{description}</div>
+        </div>
+      </div>
+    </>
+  );
+};
+export { Amenities, AmenitiesMobile };
