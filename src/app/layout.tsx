@@ -7,6 +7,7 @@ import "./globals.css";
 // import { Session } from "inspector/promises";
 // import { SessionProvider } from "next-auth/react";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 // ("@/lib/apollo");
 
 const geistSans = Geist({
@@ -48,6 +49,7 @@ export default function RootLayout({
         {/* </SessionProvider> */}
 
         {/* </ApolloProvider> */}
+        <Footer />
       </body>
     </html>
   );

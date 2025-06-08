@@ -8,8 +8,10 @@ export default function DateRangePickerWithInlineButtons(
   props: DateRangePickerWithInlineButtonsProps
 ) {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [selectedStartDate, setSelectedStartDate] = useState<string | null>(
+    null
+  );
+  const [selectedEndDate, setSelectedEndDate] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<{
     from: string | null;
     to: string | null;
@@ -33,11 +35,21 @@ export default function DateRangePickerWithInlineButtons(
       daysArray.push(<div key={`empty-${i}`}></div>);
     }
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Remove time for accurate comparison
+
     for (let i = 1; i <= daysInMonth; i++) {
       const day = new Date(year, month, i);
+      day.setHours(0, 0, 0, 0); // Remove time for accurate comparison
       const dayString = day.toLocaleDateString("en-GB");
       let className =
         "flex items-center justify-center cursor-pointer w-[46px] h-[46px] rounded-full text-dark-3 dark:text-dark-6 hover:bg-primary hover:text-white";
+
+      // Disable backdated days
+      const isPast = day < today;
+      if (isPast) {
+        className += " opacity-40 cursor-not-allowed pointer-events-none";
+      }
 
       if (selectedStartDate && dayString === selectedStartDate) {
         className += " bg-primary text-white dark:text-white rounded-r-none";
@@ -59,7 +71,9 @@ export default function DateRangePickerWithInlineButtons(
           key={i}
           className={className}
           data-date={dayString}
-          onClick={() => handleDayClick(day)}
+          onClick={() => {
+            if (!isPast) handleDayClick(day);
+          }}
         >
           {i}
         </div>
@@ -69,18 +83,31 @@ export default function DateRangePickerWithInlineButtons(
     return daysArray;
   };
 
-  const handleDayClick = (selectedDay: any) => {
+  const handleDayClick = (selectedDay: Date) => {
     const dayString = selectedDay.toLocaleDateString("en-GB");
 
+    // If no start date or both dates are set, start a new range
     if (!selectedStartDate || (selectedStartDate && selectedEndDate)) {
       setSelectedStartDate(dayString);
       setSelectedEndDate(null);
+      setSelectedDate({ from: dayString, to: "" });
     } else {
-      if (new Date(selectedDay) < new Date(selectedStartDate)) {
-        setSelectedEndDate(selectedStartDate);
+      // Convert selectedStartDate (string) to Date for comparison
+      const [startDay, startMonth, startYear] = selectedStartDate
+        .split("/")
+        .map(Number);
+      const start = new Date(startYear, startMonth - 1, startDay);
+      start.setHours(0, 0, 0, 0);
+      selectedDay.setHours(0, 0, 0, 0);
+
+      if (selectedDay < start) {
+        // If end date is before start, reverse them
         setSelectedStartDate(dayString);
+        setSelectedEndDate(selectedStartDate);
+        setSelectedDate({ from: dayString, to: selectedStartDate });
       } else {
         setSelectedEndDate(dayString);
+        setSelectedDate({ from: selectedStartDate, to: dayString });
       }
     }
   };
@@ -131,7 +158,7 @@ export default function DateRangePickerWithInlineButtons(
   }, [selectedStartDate, selectedEndDate]);
 
   return (
-    <section className="bg-white  dark:bg-dark">
+    <section className="bg-dark">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
           <div className="w-full px-4">
