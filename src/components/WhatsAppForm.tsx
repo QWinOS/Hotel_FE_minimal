@@ -1,7 +1,7 @@
 // app/components/WhatsAppForm.tsx
 "use client";
 
-import { date, z } from "zod";
+import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -15,13 +15,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { DatePickerWithRange } from "./ui/Date_Picker_Old";
 import { useState } from "react";
-import { DateRange } from "react-day-picker";
-// import { addDays } from "date-fns";
-import { DatePickerForm } from "./ui/Date_Picker";
 import DateRangePickerWithInlineButtons from "./ui/Date_Picker_Clean";
-import { se } from "date-fns/locale";
 
 // 🔍 Validation schema
 // console log this zod schema to see the structure
@@ -43,13 +38,6 @@ const formSchema = z.object({
 });
 
 export function WhatsAppForm() {
-  // const [currentDate, setCurrentDate] = useState(new Date());
-  // const [selectedStartDate, setSelectedStartDate] = useState<Date | undefined>(
-  //   undefined
-  // );
-  // const [selectedEndDate, setSelectedEndDate] = useState<Date | undefined>(
-  //   undefined
-  // );
   const [selectedDate, setSelectedDate] = useState<{
     from: string | undefined;
     to: string | undefined;
@@ -81,7 +69,6 @@ export function WhatsAppForm() {
       "Selected Date WhatsAppForm : FROM -> " + selectedDate.from,
       "TO-> " + selectedDate.to
     );
-    // console.log(selectedDate.from, selectedDate.to);
     let dateString = "";
     if (selectedDate.from && selectedDate.to) {
       dateString = `\n *Date:* ${selectedDate.from} - ${selectedDate.to}`;

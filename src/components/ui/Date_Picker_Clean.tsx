@@ -131,10 +131,10 @@ export default function DateRangePickerWithInlineButtons(
   }, [selectedStartDate, selectedEndDate]);
 
   return (
-    <section className="bg-white lg:py-[120px] dark:bg-dark">
+    <section className="bg-white  dark:bg-dark">
       <div className="container">
         <div className="-mx-4 flex flex-wrap">
-          <div className="w-full px-4 md:w-1/2 lg:w-1/3">
+          <div className="w-full px-4">
             <div className="">
               {/* <label className="mb-[10px] block text-base font-medium text-dark dark:text-white">
                 Date range picker

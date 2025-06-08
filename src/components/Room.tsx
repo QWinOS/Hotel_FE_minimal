@@ -15,14 +15,11 @@ import {
 } from "@strapi/blocks-react-renderer";
 
 // import { addDays, format } from "date-fns";
-import { DateRange } from "react-day-picker";
-import { DatePickerWithRange } from "./ui/Date_Picker_Old";
 import { signIn } from "@/auth";
 import { SignIn } from "./sign_in_button";
 // import {SignInButton} from "./sign_in_button";
 // import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { Individual_Room_Slider } from "./slider";
-import { useState } from "react";
 // import { error } from "console";
 import { Button } from "@/components/ui/button";
 import ContactForm from "./contact_form";
@@ -58,7 +55,7 @@ const Individual_Room = (res: any) => {
   // if (!data1.room) return <p>No rooms to show</p>;
 
   // const response = use(getGraphQLOutput("getRoomByDocId", data));
-  console.log({ res });
+  // console.log({ res });
   return (
     <>
       <div className="">
@@ -106,8 +103,6 @@ const Individual_Room = (res: any) => {
           </div>
         </div>
         <div className="sm:ml-10">
-          {/* <DatePickerWithRange /> */}
-          {/* <ContactForm /> */}
           <WhatsAppForm />
         </div>
       </div>
