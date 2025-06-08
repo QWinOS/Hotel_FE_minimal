@@ -1,5 +1,12 @@
 "use client";
-import { Keyboard, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import {
+  Autoplay,
+  EffectCreative,
+  Keyboard,
+  Navigation,
+  Pagination,
+  Scrollbar,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/scrollbar";
@@ -7,7 +14,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image from "next/image";
 import { use, useEffect } from "react";
-import getGraphQLOutput from "./GraphQL";
+import { getGraphQLOutput } from "./GraphQL";
+import Individual_Room from "./Room";
+import Room from "@/app/room/[slug]/page";
+import Link from "next/link";
 
 const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
 const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
@@ -38,45 +48,78 @@ const Slider = (rooms: any) => {
       spaceBetween={30}
       className="mySwiper"
     >
+      {/* <Swiper
+      modules={[Navigation, Pagination, EffectCreative]}
+      effect={"creative"}
+      creativeEffect={{
+        prev: {
+          shadow: true,
+          translate: ["-20%", 0, -1],
+        },
+        next: {
+          translate: ["100%", 0, 0],
+        },
+      }}
+      navigation={{
+        nextEl: ".wiper-button-nexst",
+        prevEl: ".swiper-button-prev",
+      }}
+      pagination={{
+        clickable: true,
+        el: ".swiper-pagination",
+        renderBullet: (index, className) => {
+          return `<span class="${className} custom-bullet"></span>`;
+        },
+      }}
+      loop={true}
+      speed={600}
+      className="expo-swiper"
+    > */}
       {Object.keys(rooms.props).map((room: unknown, id: number) => {
         let room_Type = rooms.props[id].Room_Type;
         let description = rooms.props[id].Description[0].children[0].text;
         let room_img = rooms.props[id].Room_Images[0].url;
         let price = rooms.props[id].Price;
+        let docId = rooms.props[id].documentId;
 
         room_img = URL + room_img;
         // console.log(rooms.props[id] + " " + id);
         return (
           <SwiperSlide key={id}>
-            <div className="flex flex-col" key={id}>
-              <div
-                style={{
-                  position: "relative",
-                  // height: "300px",
-                  width: "100%",
-                  aspectRatio: "4/3",
-                }}
-                // className="mx-5"
-              >
-                <Image
-                  src={room_img}
-                  fill
-                  alt={room_Type}
-                  sizes="100vw"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
-              <div className="border-x border-b border-gray-300 ">
-                <div className="m-2">
-                  <div className="font-medium line-clamp-1">
-                    <p className="">{room_Type}</p>
-                  </div>
-                  <div className="font-bold">
-                    <p>From &#8377;{price} per night</p>
+            <Link
+              className="flex flex-col w-full bg-transparent border-none p-0 hover:scale-105 transition-transform"
+              href={"/room/" + docId}
+            >
+              <div className="" key={id}>
+                <div
+                  style={{
+                    position: "relative",
+                    // height: "300px",
+                    width: "100%",
+                    aspectRatio: "4/3",
+                  }}
+                  // className="mx-5"
+                >
+                  <Image
+                    src={room_img}
+                    fill
+                    alt={room_Type}
+                    sizes="100vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <div className="border-x border-b border-gray-300 dark:border-white ">
+                  <div className="m-2">
+                    <div className="font-medium line-clamp-1">
+                      <p className="">{room_Type}</p>
+                    </div>
+                    <div className="font-bold">
+                      <p>From &#8377;{price} per night</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         );
       })}
@@ -102,7 +145,8 @@ const SliderMobile = (rooms: any) => {
       scrollbar={false}
       navigation={true}
       pagination={{
-        clickable: false,
+        // clickable: false,
+        dynamicBullets: true,
       }}
       modules={[Keyboard, Scrollbar, Navigation]}
       spaceBetween={5}
@@ -118,39 +162,176 @@ const SliderMobile = (rooms: any) => {
         // console.log(rooms.props[id] + " " + id);
         return (
           <SwiperSlide key={id}>
-            <div className="flex flex-col" key={id}>
-              <div
-                style={{
-                  position: "relative",
-                  // height: "300px",
-                  width: "100%",
-                  aspectRatio: "4/3",
-                }}
-              >
-                <Image
-                  src={room_img}
-                  fill
-                  alt={room_Type}
-                  sizes="100vw"
-                  style={{ objectFit: "cover" }}
-                  className="rounded-t-xl"
-                />
-              </div>
-              <div className=" flex border border-gray-300 rounded-b-xl justify-center">
-                <div className="flex flex-col mt-3 mb-3">
-                  <div className="font-medium line-clamp-1">
-                    <p className="">{room_Type}</p>
-                  </div>
-                  <div className="font-bold text-center">
-                    <p>From &#8377;{price} per night</p>
+            <Link
+              href={"/room/" + rooms.props[id].documentId}
+              className="flex flex-col w-full bg-transparent border-none p-0 hover:scale-105 transition-transform"
+              type="button"
+              // onClick={() => {
+              //   console.log("HIT");
+              // }}
+            >
+              <div className="" key={id}>
+                <div
+                  style={{
+                    position: "relative",
+                    // height: "300px",
+                    width: "100%",
+                    aspectRatio: "4/3",
+                  }}
+                >
+                  <Image
+                    src={room_img}
+                    fill
+                    alt={room_Type}
+                    sizes="100vw"
+                    style={{ objectFit: "cover" }}
+                    className="rounded-t-xl"
+                  />
+                </div>
+                <div className=" flex border-2 border-gray-300 dark:border-white rounded-b-xl justify-center">
+                  <div className="flex flex-col mt-3 mb-3">
+                    <div className="font-medium line-clamp-1">
+                      <p className="">{room_Type}</p>
+                    </div>
+                    <div className="font-bold text-center">
+                      <p>From &#8377;{price} per night</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         );
       })}
     </Swiper>
   );
 };
-export { Slider, SliderMobile };
+const Individual_Room_Slider = (data: any) => {
+  console.log(data);
+  return (
+    <Swiper
+      modules={[Navigation, Pagination, EffectCreative, Autoplay]}
+      effect="creative"
+      creativeEffect={{
+        prev: {
+          shadow: true,
+          translate: ["-120%", 0, -500],
+          rotate: [0, 0, -15],
+        },
+        next: {
+          shadow: true,
+          translate: ["120%", 0, -500],
+          rotate: [0, 0, 15],
+        },
+      }}
+      navigation={{
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      }}
+      pagination={{
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true,
+        renderBullet: (index, className) =>
+          `<span class="${className} custom-bullet"></span>`,
+      }}
+      loop={true}
+      speed={600}
+      centeredSlides={true}
+      slidesPerView={1}
+      spaceBetween={30}
+      autoplay={{
+        delay: 3000, // 3 seconds between slides
+        disableOnInteraction: false, // keeps autoplay after user interaction
+      }}
+      // breakpoints={{
+      //   640: {
+      //     spaceBetween: 15,
+      //   },
+      //   480: {
+      //     spaceBetween: 10,
+      //   },
+      // }}
+      className="custom-carousel"
+    >
+      {data.props.room.Room_Images.map((value: any, key: number) => (
+        <SwiperSlide key={key} className="slide-card">
+          <div className="relative h-[300px] sm:h-[600px] max-w-full ">
+            <Image
+              src={URL + value.url} // Your dynamic image URL
+              alt={`Slide ${key}`}
+              fill
+              className="object-cover rounded-lg shadow-lg"
+              sizes="100vh, 80vw"
+              priority={key === 0}
+            />
+          </div>
+        </SwiperSlide>
+      ))}
+
+      {/* Custom Navigation */}
+      <div className="swiper-button-prev custom-nav"></div>
+      <div className="swiper-button-next custom-nav"></div>
+
+      {/* Custom Pagination */}
+      <div className="swiper-pagination"></div>
+    </Swiper>
+
+    // <Swiper
+    //   modules={[Navigation, Pagination, EffectCreative, Autoplay]}
+    //   effect={"creative"}
+    //   creativeEffect={{
+    //     prev: {
+    //       shadow: true,
+    //       translate: ["-20%", 0, -1],
+    //     },
+    //     next: {
+    //       translate: ["100%", 0, 0],
+    //     },
+    //   }}
+    //   navigation={{
+    //     nextEl: ".swiper-button-next",
+    //     prevEl: ".swiper-button-prev",
+    //   }}
+    //   pagination={{
+    //     clickable: true,
+    //     el: ".swiper-pagination",
+    //     renderBullet: (index, className) => {
+    //       return `<span class="${className} custom-bullet"></span>`;
+    //     },
+    //   }}
+    //   loop={true}
+    //   speed={600}
+    //   autoplay={{
+    //     delay: 3000,
+    //     disableOnInteraction: false,
+    //   }}
+    //   className="expo-swiper"
+    // >
+    //   {/* {data1.room.Room_Images[0]["url"]} */}
+
+    //   {data.props.room.Room_Images.map((value: string, key: number) => (
+    //     <SwiperSlide key={key}>
+    //       <div className="relative h-[600px]">
+    //         <Image
+    //           src={URL + value.url}
+    //           alt={key.toString()}
+    //           fill
+    //           className="object-cover"
+    //           sizes="(max-width: 768px) 100vw, 80vw"
+    //           priority={key === 0}
+    //         />
+    //       </div>
+    //     </SwiperSlide>
+    //   ))}
+
+    //   {/* Custom Navigation */}
+    //   <div className="swiper-button-prev custom-nav"></div>
+    //   <div className="swiper-button-next custom-nav"></div>
+
+    //   {/* Custom Pagination */}
+    //   <div className="swiper-pagination"></div>
+    // </Swiper>
+  );
+};
+export { Slider, SliderMobile, Individual_Room_Slider };

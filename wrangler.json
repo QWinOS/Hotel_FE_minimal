@@ -1,0 +1,23 @@
+{
+    "main": ".open-next/worker.js",
+    "name": "hotel_fe",
+    "compatibility_date": "2025-03-25",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    "assets": {
+        "directory": ".open-next/assets",
+        "binding": "ASSETS"
+    },
+    "vars": {
+        "NEXT_PUBLIC_STRAPI_API_URL": "https://willing-garden-1d5d00c914.strapiapp.com",
+        "NEXT_PUBLIC_STRAPI_API_HOST": "https://willing-garden-1d5d00c914.strapiapp.com",
+        "NEXT_PUBLIC_STRAPI_API_PORT": "443",
+        "GOOGLE_CLIENT_ID": "998655984383-ga67slli32l53ctmfpdd4522077er23v.apps.googleusercontent.com",
+        "GOOGLE_CLIENT_SECRET": "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",
+        "NEXTAUTH_URL": "http://localhost:3000",
+        "AUTH_SECRET": "3zX4GjjfxJOTMAO0TyvrYseLEDsdTr0+jOHD+ijVPDg=",
+        "AUTH_GOOGLE_ID": "998655984383-ga67slli32l53ctmfpdd4522077er23v.apps.googleusercontent.com",
+        "AUTH_GOOGLE_SECRET": "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"
+    }
+}

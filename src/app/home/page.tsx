@@ -1,4 +1,4 @@
-import getGraphQLOutput from "@/components/GraphQL";
+import { getGraphQLOutput } from "@/components/GraphQL";
 import Image from "next/image";
 import { use } from "react";
 import Room_card from "@/components/Featured_room_card";
@@ -24,12 +24,18 @@ export default function Home2() {
   return (
     <>
       {/* Top Banner */}
-      <div className="flex-row justify-around items-center hidden sm:flex mb-5">
+      <div className="flex-row justify-around items-center hidden sm:flex mb-5 ">
         <div className="flex-col justify-around">
           <div className="font-bold text-2xl">{leader}</div>
           <div className="text-xl">{description}</div>
         </div>
-        <Image src={imgURL} height={500} width={500} alt="Hotel" />
+        <Image
+          src={imgURL}
+          height={500}
+          width={500}
+          alt="Hotel"
+          className="m-5"
+        />
       </div>
       {/* Top Banner Mobile */}
       <div className="flex flex-col sm:hidden m-10">

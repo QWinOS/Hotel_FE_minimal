@@ -51,3 +51,50 @@
     transform: translateX(-55%);
   }
 }
+
+.custom-carousel {
+  padding: 40px 0;
+}
+
+.slide-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.slide-card.swiper-slide-active {
+  transform: scale(1);
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.custom-nav {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.custom-bullet {
+  background: #888;
+  opacity: 1;
+  margin: 0 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.custom-bullet.swiper-pagination-bullet-active {
+  background: #000;
+}

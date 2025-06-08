@@ -61,18 +61,62 @@ const getQuery = (params: string, queryTerm: string) => {
                   }`,
         }),
       };
+    case "roomsDocId":
+      return {
+        method: "POST",
+        next: {
+          revalidate: 1,
+          cache: "no-store",
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `{
+                   rooms {
+                      documentId
+                    }
+                  }`,
+        }),
+      };
+    case "getRoomByDocId":
+      return {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `{
+                   room(documentId: "${queryTerm}") {
+                      Room_Type
+                      Room_Images {
+                        url
+                      }
+                      Description
+                      Availability
+                      Price
+                    }
+                  }`,
+        }),
+      };
     default:
       return {};
   }
 };
 
-export default async function getGraphQLOutput(
+async function fetchPosts(params: string, queryTerm: string): Promise<any> {
+  const res = await fetch(`${URL}/graphql`, getQuery(params, queryTerm));
+  return res.json();
+}
+
+async function getGraphQLOutput(
   params: string,
   queryTerm: string
 ): Promise<any> {
   try {
     const res = await fetch(`${URL}/graphql`, getQuery(params, queryTerm));
     const { data } = await res.json();
+    // fetchPosts(params, queryTerm);
     return {
       props: data,
       fallback: false,
@@ -81,3 +125,4 @@ export default async function getGraphQLOutput(
     console.error(error);
   }
 }
+export { fetchPosts, getGraphQLOutput };
