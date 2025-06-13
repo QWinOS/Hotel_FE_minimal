@@ -16,7 +16,7 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 769px) {
+/* @media only screen and (min-width: 769px) {
   .swiper-slide:first-child {
     transition: transform 100ms;
   }
@@ -50,7 +50,7 @@
   .swiper[dir="rtl"] .swiper-slide.swiper-slide-next:nth-child(2) {
     transform: translateX(-55%);
   }
-}
+} */
 
 .custom-carousel {
   padding: 40px 0;
@@ -97,4 +97,20 @@
 
 .custom-bullet.swiper-pagination-bullet-active {
   background: #000;
+}
+/* You can put this in your global CSS file */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #ff0000; /* Arrow color */
+  /* background: #0008; Semi-transparent background */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
 }

@@ -1,0 +1,25 @@
+query about {
+  about {
+    About_Title
+    Title_Background {
+      url
+      alternativeText
+      caption
+    }
+    Our_Story_Title
+    Our_Strory
+    Center_Images {
+      url
+      caption
+      alternativeText
+    }
+    Second_Paragraph_Title
+    Second_Paragraph_Body
+    Meet_Our_Team_Title
+    Meet_Our_Team_Pictures {
+      url
+      caption
+      alternativeText
+    }
+  }
+}

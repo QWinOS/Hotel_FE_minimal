@@ -1,54 +1,6 @@
 {
   "version": 4,
   "routes": {
-    "/home": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/home",
-      "dataRoute": "/home.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
-    "/": {
-      "experimentalBypassFor": [
-        {
-          "type": "header",
-          "key": "Next-Action"
-        },
-        {
-          "type": "header",
-          "key": "content-type",
-          "value": "multipart/form-data;.*"
-        }
-      ],
-      "initialRevalidateSeconds": false,
-      "srcRoute": "/",
-      "dataRoute": "/index.rsc",
-      "allowHeader": [
-        "host",
-        "x-matched-path",
-        "x-prerender-revalidate",
-        "x-prerender-revalidate-if-generated",
-        "x-next-revalidated-tags",
-        "x-next-revalidate-tag-token"
-      ]
-    },
     "/favicon.ico": {
       "initialHeaders": {
         "cache-control": "public, max-age=0, must-revalidate",
@@ -102,6 +54,54 @@
         "x-next-revalidate-tag-token"
       ]
     },
+    "/": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/",
+      "dataRoute": "/index.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/home": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/home",
+      "dataRoute": "/home.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
     "/room/a8nv59ugrjyccrqzlo09tuqi": {
       "experimentalBypassFor": [
         {
@@ -117,6 +117,30 @@
       "initialRevalidateSeconds": false,
       "srcRoute": "/room/[slug]",
       "dataRoute": "/room/a8nv59ugrjyccrqzlo09tuqi.rsc",
+      "allowHeader": [
+        "host",
+        "x-matched-path",
+        "x-prerender-revalidate",
+        "x-prerender-revalidate-if-generated",
+        "x-next-revalidated-tags",
+        "x-next-revalidate-tag-token"
+      ]
+    },
+    "/room/eqcbkdprgqf8heva85rupy7c": {
+      "experimentalBypassFor": [
+        {
+          "type": "header",
+          "key": "Next-Action"
+        },
+        {
+          "type": "header",
+          "key": "content-type",
+          "value": "multipart/form-data;.*"
+        }
+      ],
+      "initialRevalidateSeconds": false,
+      "srcRoute": "/room/[slug]",
+      "dataRoute": "/room/eqcbkdprgqf8heva85rupy7c.rsc",
       "allowHeader": [
         "host",
         "x-matched-path",
@@ -300,8 +324,8 @@
   },
   "notFoundRoutes": [],
   "preview": {
-    "previewModeId": "aa107688c9b8ab0e0857a8186181e3b8",
-    "previewModeSigningKey": "374ff2626cf27ad4019f56ee5448a63a13449a8e9bd02fb96d8c210d12c80a02",
-    "previewModeEncryptionKey": "7d3eac5a3f84933dc5145e39c58eded41b00b01bb6facd844fec2b0eb306bcc8"
+    "previewModeId": "2651ebc6e05653619fe18295d6adfc94",
+    "previewModeSigningKey": "6487baff7efa2dc2b2bff1aafc3fd696262704c62e68a21a7f47a3a55eb798fc",
+    "previewModeEncryptionKey": "58729dd95fd81aabddfbe27825ccc14755bc97014cc9bffdf2ca4fa184e9dbeb"
   }
 }

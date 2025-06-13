@@ -1,59 +1,59 @@
 {
   "pages": {
     "/_not-found/page": [
-      "static/chunks/webpack-61b17a1ea50aecdb.js",
-      "static/chunks/4bd1b696-771917a9ef2cf210.js",
-      "static/chunks/684-94d9350c67e675cc.js",
+      "static/chunks/webpack-ae116b72d8771ecf.js",
+      "static/chunks/4bd1b696-0a7c4e4928a3af26.js",
+      "static/chunks/684-6b29f794f17f2edf.js",
       "static/chunks/main-app-59c144a0b8bfa307.js",
-      "static/chunks/app/_not-found/page-933b4f0fd8a6edff.js"
+      "static/chunks/app/_not-found/page-f4bd83826830957f.js"
     ],
     "/layout": [
-      "static/chunks/webpack-61b17a1ea50aecdb.js",
-      "static/chunks/4bd1b696-771917a9ef2cf210.js",
-      "static/chunks/684-94d9350c67e675cc.js",
+      "static/chunks/webpack-ae116b72d8771ecf.js",
+      "static/chunks/4bd1b696-0a7c4e4928a3af26.js",
+      "static/chunks/684-6b29f794f17f2edf.js",
       "static/chunks/main-app-59c144a0b8bfa307.js",
-      "static/css/e5307275466af5bf.css",
-      "static/chunks/874-d8455d9f1dde2870.js",
-      "static/chunks/app/layout-648dec23dac5c71a.js"
-    ],
-    "/page": [
-      "static/chunks/webpack-61b17a1ea50aecdb.js",
-      "static/chunks/4bd1b696-771917a9ef2cf210.js",
-      "static/chunks/684-94d9350c67e675cc.js",
-      "static/chunks/main-app-59c144a0b8bfa307.js",
-      "static/css/de635badd4ac0d01.css",
-      "static/chunks/874-d8455d9f1dde2870.js",
-      "static/chunks/921-6cdcfd74d85e685f.js",
-      "static/chunks/app/page-753d9a81ad071e3e.js"
+      "static/css/b1f23eee54d7a489.css",
+      "static/chunks/874-e7af802f10513717.js",
+      "static/chunks/app/layout-4190f7616f0a7073.js"
     ],
     "/home/page": [
-      "static/chunks/webpack-61b17a1ea50aecdb.js",
-      "static/chunks/4bd1b696-771917a9ef2cf210.js",
-      "static/chunks/684-94d9350c67e675cc.js",
+      "static/chunks/webpack-ae116b72d8771ecf.js",
+      "static/chunks/4bd1b696-0a7c4e4928a3af26.js",
+      "static/chunks/684-6b29f794f17f2edf.js",
       "static/chunks/main-app-59c144a0b8bfa307.js",
       "static/css/de635badd4ac0d01.css",
-      "static/chunks/874-d8455d9f1dde2870.js",
-      "static/chunks/921-6cdcfd74d85e685f.js",
-      "static/chunks/app/home/page-6f309666649726f5.js"
+      "static/chunks/874-e7af802f10513717.js",
+      "static/chunks/431-dcaf83adceb99f36.js",
+      "static/chunks/app/home/page-f61a4846e3f6c63a.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-ae116b72d8771ecf.js",
+      "static/chunks/4bd1b696-0a7c4e4928a3af26.js",
+      "static/chunks/684-6b29f794f17f2edf.js",
+      "static/chunks/main-app-59c144a0b8bfa307.js",
+      "static/css/de635badd4ac0d01.css",
+      "static/chunks/874-e7af802f10513717.js",
+      "static/chunks/431-dcaf83adceb99f36.js",
+      "static/chunks/app/page-1d870c1a2916764c.js"
     ],
     "/profile/page": [
-      "static/chunks/webpack-61b17a1ea50aecdb.js",
-      "static/chunks/4bd1b696-771917a9ef2cf210.js",
-      "static/chunks/684-94d9350c67e675cc.js",
+      "static/chunks/webpack-ae116b72d8771ecf.js",
+      "static/chunks/4bd1b696-0a7c4e4928a3af26.js",
+      "static/chunks/684-6b29f794f17f2edf.js",
       "static/chunks/main-app-59c144a0b8bfa307.js",
       "static/chunks/app/profile/page-562e0f008e7187ad.js"
     ],
     "/room/[slug]/page": [
-      "static/chunks/webpack-61b17a1ea50aecdb.js",
-      "static/chunks/4bd1b696-771917a9ef2cf210.js",
-      "static/chunks/684-94d9350c67e675cc.js",
+      "static/chunks/webpack-ae116b72d8771ecf.js",
+      "static/chunks/4bd1b696-0a7c4e4928a3af26.js",
+      "static/chunks/684-6b29f794f17f2edf.js",
       "static/chunks/main-app-59c144a0b8bfa307.js",
       "static/css/de635badd4ac0d01.css",
       "static/css/ecdfc97c33854f51.css",
-      "static/chunks/874-d8455d9f1dde2870.js",
-      "static/chunks/921-6cdcfd74d85e685f.js",
-      "static/chunks/897-e37ca6b5e04c55b6.js",
-      "static/chunks/app/room/[slug]/page-243c96972911485f.js"
+      "static/chunks/874-e7af802f10513717.js",
+      "static/chunks/431-dcaf83adceb99f36.js",
+      "static/chunks/525-a90bd8a38990be9f.js",
+      "static/chunks/app/room/[slug]/page-4d6f6bdcf6747922.js"
     ]
   }
 }

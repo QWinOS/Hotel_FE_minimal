@@ -71,7 +71,7 @@
           "search": ""
         }
       ],
-      "unoptimized": false
+      "unoptimized": true
     },
     "devIndicators": {
       "position": "bottom-left"
@@ -168,7 +168,7 @@
       "middlewarePrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 15,
+      "cpus": 23,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,

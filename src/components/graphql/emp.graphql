@@ -1,0 +1,29 @@
+query fetch_EmpDetails_ByEmail($email: String!) {
+  emps(
+    filters: { Basic_Details: { employee_info: { Email: { eq: $email } } } }
+  ) {
+    Basic_Details {
+      employee_info {
+        Name
+        Email
+        Date_of_Birth
+        Designation
+        Phone_No
+        Employed
+      }
+    }
+    Salary {
+      Salary_Month
+      Salary_Date
+      Salary_Amount
+    }
+    Advance_Taken {
+      Advance_Taken_Month
+      Advance_Taken_Date
+      Advance_Amount
+    }
+    Leaves {
+      leaves_taken
+    }
+  }
+}

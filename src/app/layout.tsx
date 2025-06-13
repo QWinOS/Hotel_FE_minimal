@@ -6,8 +6,9 @@ import "./globals.css";
 // import QueryProvider from "@/components/QueryProvider";
 // import { Session } from "inspector/promises";
 // import { SessionProvider } from "next-auth/react";
-import Navbar from "@/components/navbar";
+
 import Footer from "@/components/footer";
+import Navbar from "@/components/Navbar";
 // ("@/lib/apollo");
 
 const geistSans = Geist({
@@ -40,6 +41,7 @@ export default function RootLayout({
       >
         {/* <ApolloProvider client={getClient}> */}
         {/* <SessionProvider> */}
+        {/* <Navbar /> */}
         <Navbar />
         <div className="mt-20"></div>
         {/* <QueryProvider> */}

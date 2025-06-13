@@ -63,7 +63,7 @@ export default function Home2() {
           })}
         </div> */}
         <div className="flex flex-row justify-around m-5">
-          <Slider props={rooms} />
+          <Slider className="m-20" props={rooms} />
         </div>
       </div>
       {/* Featured Rooms Mobile */}

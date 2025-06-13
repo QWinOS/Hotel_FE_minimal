@@ -2,6 +2,9 @@
 
 # dependencies
 .firebase/
+.wrangle/
+.dev.vars
+.open-next/
 /node_modules
 /.pnp
 .pnp.*
