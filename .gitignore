@@ -2,7 +2,7 @@
 
 # dependencies
 .firebase/
-.wrangle/
+.wrangler/
 .dev.vars
 .open-next/
 /node_modules
