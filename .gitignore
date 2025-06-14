@@ -2,6 +2,7 @@
 
 # dependencies
 .firebase/
+.continue/
 .wrangler/
 .dev.vars
 .open-next/

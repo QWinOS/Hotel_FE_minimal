@@ -1,5 +1,6 @@
 "use client";
 import {
+  A11y,
   Autoplay,
   EffectCreative,
   Keyboard,
@@ -29,6 +30,12 @@ import {
 const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
 const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
 const URL = host + ":" + port;
+
+interface ProfileImage {
+  url: string;
+  caption: string;
+  alternativeText: string;
+}
 const Slider = (rooms: any) => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
@@ -590,6 +597,10 @@ var initPhotoSwipeFromDOM = function (gallerySelector: string): void {
 };
 //  how to integrate
 export const Individual_Room_Slider = ({ props }: { props: any }) => {
+  console.log(props);
+  const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
+  const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
+  const swiperRef = useRef<any>(null);
   const galleryId = "room-photoswipe-gallery";
 
   useEffect(() => {
@@ -611,16 +622,22 @@ export const Individual_Room_Slider = ({ props }: { props: any }) => {
           prev: { shadow: true, translate: ["-20%", 0, -1] },
           next: { translate: ["100%", 0, 0] },
         }}
-        navigation
-        // navigation={{
-        //   nextEl: ".swiper-button-next",
-        //   prevEl: ".swiper-button-prev",
-        // }}
-        pagination={{ clickable: true }}
+        // navigation
+        navigation={{
+          prevEl,
+          nextEl,
+          disabledClass: "opacity-30 cursor-default", // Style for disabled state
+        }}
+        pagination={{
+          dynamicBullets: true,
+          renderBullet: (index, className) => {
+            return `<span class="${className} custom-bullet w-2 h-2 rounded-full bg-gray-400"></span>`;
+          },
+        }}
         loop
         speed={1000}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
-        className="expo-swiper sm:rounded-2xl"
+        className="sm:rounded-2xl mySwiper"
       >
         {props.map((img: any, idx: number) => (
           <SwiperSlide key={idx}>
@@ -642,9 +659,86 @@ export const Individual_Room_Slider = ({ props }: { props: any }) => {
               </div>
             </a>
           </SwiperSlide>
-        ))}
+        ))}{" "}
+        <button
+          ref={(node) => setPrevEl(node)}
+          className="absolute top-1/2 ml-10 -left-4 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-2 shadow-md hover:bg-opacity-100 transition-all duration-300"
+          aria-label="Previous slide"
+        >
+          <FaArrowAltCircleLeft className="text-gray-800 text-4xl" />
+        </button>
+        <button
+          ref={(node) => setNextEl(node)}
+          className="absolute top-1/2 mr-10 -right-4 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-2 shadow-md hover:bg-opacity-100 transition-all duration-300"
+          aria-label="Next slide"
+        >
+          <FaArrowAltCircleRight className="text-gray-800 text-4xl" />
+        </button>
       </Swiper>
     </div>
+  );
+};
+
+export const About_Our_Team_Slider = ({ props }: { props: any }) => {
+  console.log(props);
+  return (
+    <>
+      <div className="w-full max-w-6xl mx-auto px-4">
+        <Swiper
+          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          spaceBetween={30}
+          slidesPerView={1.5} // Show 1 full and a bit of the next/prev
+          centeredSlides={true}
+          loop={true}
+          navigation
+          pagination={{ clickable: true }}
+          scrollbar={{ draggable: true, hide: true }}
+          breakpoints={{
+            // when window width is >= 640px
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            // when window width is >= 1024px
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+              centeredSlides: false,
+            },
+          }}
+          autoplay
+          className="myTeamSwiper py-8" // Added padding for pagination/navigation
+        >
+          {props.map((picture: ProfileImage, index: number) => (
+            <SwiperSlide
+              key={index}
+              className="flex flex-col items-center text-center"
+            >
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg mb-4">
+                <Image
+                  src={URL + picture.url}
+                  alt={picture.alternativeText || `Team member ${index + 1}`}
+                  fill
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              {picture.caption && (
+                <p className="font-semibold text-lg w-48 sm:w-56 md:w-64">
+                  {picture.caption}
+                  <br />
+                  {picture.alternativeText}
+                </p>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </>
   );
 };
 export { Slider, SliderMobile };
