@@ -77,7 +77,7 @@ export default function About() {
         <Individual_Room_Slider props={about?.Center_Images} />
       </div>
       {/* Second_Paragraph */}
-      <div className="flex flex-col mt-5 items-center sm:items-baseline md:mx-20">
+      <div className="flex flex-col mt-5 items-center sm:items-baseline md:mx-60">
         <p className="text-3xl font-bold mb-5">
           {about?.Second_Paragraph_Title}
         </p>
@@ -87,7 +87,7 @@ export default function About() {
       </div>
       {/* Meet Our Team */}
       <div className="flex flex-col mt-5 items-center sm:items-baseline md:mx-20">
-        <p className="text-3xl font-bold mb-5 sm:ml-10">
+        <p className="text-3xl font-bold mb-5 sm:ml-50">
           {about?.Meet_Our_Team_Title}
         </p>
         <About_Our_Team_Slider props={about?.Meet_Our_Team_Pictures} />

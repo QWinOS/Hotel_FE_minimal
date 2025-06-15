@@ -691,6 +691,8 @@ export const About_Our_Team_Slider = ({ props }: { props: any }) => {
           centeredSlides={true}
           loop={true}
           navigation
+          slidesOffsetAfter={20}
+          slidesOffsetBefore={20}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true, hide: true }}
           breakpoints={{
@@ -711,8 +713,8 @@ export const About_Our_Team_Slider = ({ props }: { props: any }) => {
               centeredSlides: false,
             },
           }}
-          autoplay
-          className="myTeamSwiper py-8" // Added padding for pagination/navigation
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          className="myTeamSwiper " // Added padding for pagination/navigation
         >
           {props.map((picture: ProfileImage, index: number) => (
             <SwiperSlide
