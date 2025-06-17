@@ -1,0 +1,45 @@
+// app/gallery/page.tsx
+import React, { Suspense } from "react";
+import { BlurImage } from "./ImageCard";
+import { Load } from "@/components/Framer";
+import PaginationControls from "@/components/PaginationControls";
+import GalleryContent from "./GalleryContent"; // Dynamic part
+
+// Enable PPR for this route
+// export const experimental_ppr = true;
+
+export default function Gallery({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>;
+}) {
+  return (
+    <>
+      {/* Static Shell - Rendered immediately */}
+      <Load index={1}>
+        <h1 className="mx-5 mb-0 text-center text-4xl font-bold uppercase leading-loose tracking-wide text-[#4B3221] dark:text-[#D6D6D8] sm:pb-6 sm:pt-24 sm:text-6xl">
+          showcase
+        </h1>
+      </Load>
+
+      {/* Dynamic Hole - Will stream separately */}
+      <Suspense fallback={<GalleryLoading />}>
+        <GalleryContent searchParams={searchParams} />
+      </Suspense>
+    </>
+  );
+}
+
+// Loading fallback for Suspense
+function GalleryLoading() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+      {[...Array(8)].map((_, i) => (
+        <div
+          key={i}
+          className="h-40 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"
+        ></div>
+      ))}
+    </div>
+  );
+}

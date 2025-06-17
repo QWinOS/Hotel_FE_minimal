@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   // output: "export",
   crossOrigin: "anonymous",
-  trailingSlash: true,
+  trailingSlash: false,
   images: {
     domains: ["127.0.0.1", "141.148.215.119", "155.248.254.64"],
     remotePatterns: [

@@ -34,7 +34,7 @@ export function BlurImage({ props }: any) {
               ? "scale-110 blur-2xl grayscale"
               : "scale-100 blur-0 grayscale-0"
           )}
-          onLoadingComplete={() => setLoading(false)}
+          onLoad={() => setLoading(false)}
         />
       </div>
       <h3 className="mt-4 text-sm text-gray-700">{image.name}</h3>

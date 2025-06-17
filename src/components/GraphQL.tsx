@@ -135,6 +135,54 @@ const getQuery = (params: string, queryTerm: string) => {
           }`,
         }),
       };
+    case "gallery_meta":
+      return {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `
+          {
+            galleries_connection(
+              pagination: { page: 1, pageSize: 8 }
+              sort: "updatedAt"
+            ) {
+              pageInfo {
+                pageCount
+                page
+                pageSize
+              }
+            }
+          }
+          `,
+        }),
+      };
+    case "galleries_connection":
+      return {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `
+           {
+            galleries_connection(
+              pagination: { page: ${queryTerm}, pageSize: 8 }
+              sort: "updatedAt"
+            ) {
+              nodes {
+                image {
+                  url
+                  caption
+                  alternativeText
+                }
+              }
+            }
+          }
+        `,
+        }),
+      };
     case "employee":
       // Only add Authorization header if the token is defined
       const empToken = process.env.Emp_Read_only;
