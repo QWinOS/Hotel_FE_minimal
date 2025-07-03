@@ -2,7 +2,8 @@
 
 import { FC } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
+// import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from "react-icons/ai";
+import { GrCaretNext, GrCaretPrevious } from "react-icons/gr";
 
 interface PaginationControlsProps {
   // hasNextPage: boolean;
@@ -19,7 +20,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const page = searchParams.get("page") ?? "1";
+  let page = searchParams.get("page") ?? "1";
 
   const goToPreviousPage = () => {
     const prevPage = Math.max(1, currentPage - 1);
@@ -28,6 +29,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
 
   const goToNextPage = () => {
     const nextPage = Math.min(totalPage, currentPage + 1);
+    page = nextPage.toString();
     router.replace(`/gallery/${nextPage}`);
   };
 
@@ -45,9 +47,11 @@ const PaginationControls: FC<PaginationControlsProps> = ({
         onClick={goToPreviousPage}
         disabled={currentPage === 1}
       >
-        <AiOutlineDoubleLeft />
+        <GrCaretPrevious size={40} className="text-black cursor-pointer" />
       </button>
-      <div className="text-xl">{page}</div>
+      <div className="text-2xl flex justify-center items-center">
+        Page - {currentPage}
+      </div>
       <button
         className="p-1 text-white disabled:opacity-0"
         onClick={goToNextPage}
@@ -57,7 +61,7 @@ const PaginationControls: FC<PaginationControlsProps> = ({
         //   router.push(`${pathname}?page=${Number(page) + 1}`);
         // }}
       >
-        <AiOutlineDoubleRight />
+        <GrCaretNext size={40} className="text-black cursor-pointer" />
       </button>
     </div>
   );

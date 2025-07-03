@@ -36,6 +36,31 @@ interface ProfileImage {
   caption: string;
   alternativeText: string;
 }
+interface PhotoSwipeItem {
+  src: string;
+  w: number;
+  h: number;
+  title?: string;
+  msrc?: string;
+  el: Element;
+  pid?: number;
+}
+
+interface PhotoSwipeOptions {
+  galleryUID?: string | number;
+  getThumbBoundsFn?: (index: number) => { x: number; y: number; w: number };
+  galleryPIDs?: boolean;
+  index?: number;
+  showAnimationDuration?: number;
+}
+
+interface HashParams {
+  [key: string]: string | number | undefined;
+  gid?: number;
+  pid?: string;
+}
+declare var PhotoSwipe: any;
+declare var PhotoSwipeUI_Default: any;
 const Slider = (rooms: any) => {
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
@@ -53,18 +78,7 @@ const Slider = (rooms: any) => {
       keyboard={{
         enabled: true,
       }}
-      // breakpoints={{
-      //   769: {
-      //     slidesPerView: 3,
-      //     slidesPerGroup: 3,
-      //   },
-      // }}
       scrollbar={false}
-      // navigation={true}
-      // navigation={{
-      //   nextEl: ".swiper-button-next",
-      //   prevEl: ".swiper-button-prev",
-      // }}
       navigation={{
         prevEl,
         nextEl,
@@ -83,33 +97,6 @@ const Slider = (rooms: any) => {
       }}
       className="mySwiper"
     >
-      {/* <Swiper
-      modules={[Navigation, Pagination, EffectCreative]}
-      effect={"creative"}
-      creativeEffect={{
-        prev: {
-          shadow: true,
-          translate: ["-20%", 0, -1],
-        },
-        next: {
-          translate: ["100%", 0, 0],
-        },
-      }}
-      navigation={{
-        nextEl: ".wiper-button-nexst",
-        prevEl: ".swiper-button-prev",
-      }}
-      pagination={{
-        clickable: true,
-        el: ".swiper-pagination",
-        renderBullet: (index, className) => {
-          return `<span class="${className} custom-bullet"></span>`;
-        },
-      }}
-      loop={true}
-      speed={600}
-      className="expo-swiper"
-    > */}
       {Object.keys(rooms.props).map((room: unknown, id: number) => {
         let room_Type = rooms.props[id].Room_Type;
         let description = rooms.props[id].Description[0].children[0].text;
@@ -120,42 +107,6 @@ const Slider = (rooms: any) => {
         room_img = URL + room_img;
         // console.log(rooms.props[id] + " " + id);
         return (
-          // <SwiperSlide key={id}>
-          //   <Link
-          //     className="flex flex-col w-full bg-transparent border-none p-0 hover:scale-105 transition-transform"
-          //     href={"/room/" + docId}
-          //   >
-          //     <div className="" key={id}>
-          //       <div
-          //         style={{
-          //           position: "relative",
-          //           // height: "300px",
-          //           width: "100%",
-          //           aspectRatio: "4/3",
-          //         }}
-          //         // className="mx-5"
-          //       >
-          //         <Image
-          //           src={room_img}
-          //           fill
-          //           alt={room_Type}
-          //           sizes="100vw"
-          //           style={{ objectFit: "cover" }}
-          //         />
-          //       </div>
-          //       <div className="border-x border-b border-gray-300 dark:border-white ">
-          //         <div className="m-2">
-          //           <div className="font-medium line-clamp-1">
-          //             <p className="">{room_Type}</p>
-          //           </div>
-          //           <div className="font-bold">
-          //             <p>From &#8377;{price} per night</p>
-          //           </div>
-          //         </div>
-          //       </div>
-          //     </div>
-          //   </Link>
-          // </SwiperSlide>
           <SwiperSlide key={id}>
             <Link
               href={"/room/" + docId}
@@ -189,23 +140,6 @@ const Slider = (rooms: any) => {
           </SwiperSlide>
         );
       })}
-
-      {/* <button
-        ref={(node) => setPrevEl(node)}
-        
-        className="absolute top-1/2 ml-2 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-2 shadow-md hover:bg-opacity-100 transition-all duration-300"
-        aria-label="Previous slide"
-      >
-        <FaChevronLeft className="text-gray-800 text-4xl" />
-      </button>
-
-      <button
-        ref={(node) => setNextEl(node)}
-        className="absolute top-1/2 mr-2 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-3 shadow-md hover:bg-opacity-100 transition-all duration-300"
-        aria-label="Next slide"
-      >
-        <FaChevronRight className="text-gray-800 text-2xl" />
-      </button> */}
 
       <button
         ref={(node) => setPrevEl(node)}
@@ -278,323 +212,215 @@ const SliderMobile = (rooms: any) => {
   );
 };
 
-// const SliderMobile = (rooms: any) => {
-//   return (
-//     <Swiper
-//       slidesPerView={1}
-//       // centeredSlides={true}
-//       // slidesPerGroupSkip={1}
-//       grabCursor={true}
-//       keyboard={{
-//         enabled: true,
-//       }}
-//       breakpoints={{
-//         769: {
-//           slidesPerView: 1,
-//           slidesPerGroup: 1,
-//         },
-//       }}
-//       scrollbar={false}
-//       navigation={true}
-//       pagination={{
-//         // clickable: false,
-//         dynamicBullets: true,
-//       }}
-//       modules={[Keyboard, Scrollbar, Navigation]}
-//       spaceBetween={5}
-//       className="mySwiper"
-//     >
-//       {Object.keys(rooms.props).map((room: unknown, id: number) => {
-//         let room_Type = rooms.props[id].Room_Type;
-//         let description = rooms.props[id].Description[0].children[0].text;
-//         let room_img = rooms.props[id].Room_Images[0].url;
-//         let price = rooms.props[id].Price;
+// var initPhotoSwipeFromDOM = function (gallerySelector: string): void {
+//   // parse slide data (url, title, size ...) from DOM elements
+//   // (children of gallerySelector)
+//   var parseThumbnailElements = function (el: Element): PhotoSwipeItem[] {
+//     var thumbElements = el.childNodes,
+//       numNodes = thumbElements.length,
+//       items: PhotoSwipeItem[] = [],
+//       figureEl: ChildNode,
+//       linkEl: Element,
+//       size: string[],
+//       item: PhotoSwipeItem;
 
-//         room_img = URL + room_img;
-//         // console.log(rooms.props[id] + " " + id);
-//         return (
-//           <SwiperSlide key={id}>
-//             <Link
-//               href={"/room/" + rooms.props[id].documentId}
-//               className="flex flex-col w-full bg-transparent border-none p-0 hover:scale-105 transition-transform"
-//               type="button"
-//               // onClick={() => {
-//               //   console.log("HIT");
-//               // }}
-//             >
-//               <div className="" key={id}>
-//                 <div
-//                   style={{
-//                     position: "relative",
-//                     // height: "300px",
-//                     width: "100%",
-//                     aspectRatio: "4/3",
-//                   }}
-//                 >
-//                   <Image
-//                     src={room_img}
-//                     fill
-//                     alt={room_Type}
-//                     sizes="100vw"
-//                     style={{ objectFit: "cover" }}
-//                     className="rounded-t-xl"
-//                   />
-//                 </div>
-//                 <div className=" flex border-2 border-gray-300 dark:border-white rounded-b-xl justify-center">
-//                   <div className="flex flex-col mt-3 mb-3">
-//                     <div className="font-medium line-clamp-1">
-//                       <p className="">{room_Type}</p>
-//                     </div>
-//                     <div className="font-bold text-center">
-//                       <p>From &#8377;{price} per night</p>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//             </Link>
-//           </SwiperSlide>
-//         );
-//       })}
-//     </Swiper>
-//   );
+//     for (var i = 0; i < numNodes; i++) {
+//       figureEl = thumbElements[i]; // <figure> element
+
+//       // include only element nodes
+//       if (figureEl.nodeType !== 1) {
+//         continue;
+//       }
+
+//       linkEl = (figureEl as Element).children[0]; // <a> element
+
+//       size = linkEl.getAttribute("data-size")!.split("x");
+
+//       // create slide object
+//       item = {
+//         src: linkEl.getAttribute("href")!,
+//         w: parseInt(size[0], 10),
+//         h: parseInt(size[1], 10),
+//         el: figureEl as Element,
+//       };
+
+//       if ((figureEl as Element).children.length > 1) {
+//         // <figcaption> content
+//         item.title = (figureEl as Element).children[1].innerHTML;
+//       }
+
+//       if (linkEl.children.length > 0) {
+//         // <img> thumbnail element, retrieving thumbnail url
+//         item.msrc = linkEl.children[0].getAttribute("src")!;
+//       }
+
+//       item.el = figureEl as Element; // save link to element for getThumbBoundsFn
+//       items.push(item);
+//     }
+
+//     return items;
+//   };
+
+//   // find nearest parent element
+//   var closest = function closest(
+//     el: Element | null,
+//     fn: (el: Element) => boolean
+//   ): Element | null {
+//     return el && (fn(el) ? el : closest(el.parentElement, fn));
+//   };
+
+//   // triggers when user clicks on thumbnail
+//   var onThumbnailsClick = function (e: MouseEvent): boolean | void {
+//     e = e || window.event;
+//     if (e.preventDefault) e.preventDefault();
+//     else (e as any).returnValue = false;
+
+//     var eTarget = e.target as Element;
+
+//     // find root element of slide
+//     var clickedListItem = closest(eTarget, function (el: Element) {
+//       return !!el.tagName && el.tagName.toUpperCase() === "FIGURE";
+//     });
+
+//     if (!clickedListItem) {
+//       return;
+//     }
+
+//     // find index of clicked item by looping through all child nodes
+//     // alternatively, you may define index via data- attribute
+//     var clickedGallery = clickedListItem.parentNode as Element,
+//       childNodes = clickedListItem.parentNode!.childNodes,
+//       numChildNodes = childNodes.length,
+//       nodeIndex = 0,
+//       index: number | undefined;
+
+//     for (var i = 0; i < numChildNodes; i++) {
+//       if (childNodes[i].nodeType !== 1) {
+//         continue;
+//       }
+
+//       if (childNodes[i] === clickedListItem) {
+//         index = nodeIndex;
+//         break;
+//       }
+//       nodeIndex++;
+//     }
+
+//     if (index !== undefined && index >= 0) {
+//       // open PhotoSwipe if valid index found
+//       openPhotoSwipe(index, clickedGallery);
+//     }
+//     return false;
+//   };
+
+//   // parse picture index and gallery index from URL (#&pid=1&gid=2)
+//   var photoswipeParseHash = function (): HashParams {
+//     var hash = window.location.hash.substring(1),
+//       params: HashParams = {};
+
+//     if (hash.length < 5) {
+//       return params;
+//     }
+
+//     var vars = hash.split("&");
+//     for (var i = 0; i < vars.length; i++) {
+//       if (!vars[i]) {
+//         continue;
+//       }
+//       var pair = vars[i].split("=");
+//       if (pair.length < 2) {
+//         continue;
+//       }
+//       params[pair[0]] = pair[1];
+//     }
+
+//     if (params.gid && typeof params.gid === "string") {
+//       params.gid = parseInt(params.gid, 10);
+//     }
+
+//     return params;
+//   };
+
+//   var openPhotoSwipe = function (
+//     index: number,
+//     galleryElement: Element,
+//     disableAnimation?: boolean,
+//     fromURL?: boolean
+//   ): void {
+//     var pswpElement = document.querySelectorAll(".pswp")[0] as Element,
+//       gallery: any,
+//       options: PhotoSwipeOptions,
+//       items: PhotoSwipeItem[];
+
+//     items = parseThumbnailElements(galleryElement);
+
+//     // define options (if needed)
+//     options = {
+//       // define gallery index (for URL)
+//       galleryUID: galleryElement.getAttribute("data-pswp-uid")!,
+//       getThumbBoundsFn: function (index: number) {
+//         // See Options -> getThumbBoundsFn section of documentation for more info
+//         var thumbnail = items[index].el.getElementsByTagName("img")[0], // find thumbnail
+//           pageYScroll =
+//             window.pageYOffset || document.documentElement.scrollTop,
+//           rect = thumbnail.getBoundingClientRect();
+
+//         return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
+//       },
+//     };
+
+//     // PhotoSwipe opened from URL
+//     if (fromURL) {
+//       if (options.galleryPIDs) {
+//         // parse real index when custom PIDs are used
+//         // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+//         for (var j = 0; j < items.length; j++) {
+//           if (items[j].pid === index) {
+//             options.index = j;
+//             break;
+//           }
+//         }
+//       } else {
+//         // in URL indexes start from 1
+//         options.index = parseInt(index as any, 10) - 1;
+//       }
+//     } else {
+//       options.index = parseInt(index as any, 10);
+//     }
+
+//     // exit if index not found
+//     if (isNaN(options.index as number)) {
+//       return;
+//     }
+
+//     if (disableAnimation) {
+//       options.showAnimationDuration = 0;
+//     }
+
+//     // Pass data to PhotoSwipe and initialize it
+//     gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+//     gallery.init();
+//   };
+
+//   // loop through all gallery elements and bind events
+//   var galleryElements = document.querySelectorAll(gallerySelector);
+
+//   for (var i = 0, l = galleryElements.length; i < l; i++) {
+//     galleryElements[i].setAttribute("data-pswp-uid", (i + 1).toString());
+//     (galleryElements[i] as HTMLElement).onclick = onThumbnailsClick as any;
+//   }
+
+//   // Parse URL and open gallery if it contains #&pid=3&gid=1
+//   var hashData = photoswipeParseHash();
+//   if (hashData.pid && hashData.gid) {
+//     openPhotoSwipe(
+//       hashData.pid as any,
+//       galleryElements[hashData.gid - 1],
+//       true,
+//       true
+//     );
+//   }
 // };
-
-interface PhotoSwipeItem {
-  src: string;
-  w: number;
-  h: number;
-  title?: string;
-  msrc?: string;
-  el: Element;
-  pid?: number;
-}
-
-interface PhotoSwipeOptions {
-  galleryUID?: string | number;
-  getThumbBoundsFn?: (index: number) => { x: number; y: number; w: number };
-  galleryPIDs?: boolean;
-  index?: number;
-  showAnimationDuration?: number;
-}
-
-interface HashParams {
-  [key: string]: string | number | undefined;
-  gid?: number;
-  pid?: string;
-}
-
-declare var PhotoSwipe: any;
-declare var PhotoSwipeUI_Default: any;
-
-var initPhotoSwipeFromDOM = function (gallerySelector: string): void {
-  // parse slide data (url, title, size ...) from DOM elements
-  // (children of gallerySelector)
-  var parseThumbnailElements = function (el: Element): PhotoSwipeItem[] {
-    var thumbElements = el.childNodes,
-      numNodes = thumbElements.length,
-      items: PhotoSwipeItem[] = [],
-      figureEl: ChildNode,
-      linkEl: Element,
-      size: string[],
-      item: PhotoSwipeItem;
-
-    for (var i = 0; i < numNodes; i++) {
-      figureEl = thumbElements[i]; // <figure> element
-
-      // include only element nodes
-      if (figureEl.nodeType !== 1) {
-        continue;
-      }
-
-      linkEl = (figureEl as Element).children[0]; // <a> element
-
-      size = linkEl.getAttribute("data-size")!.split("x");
-
-      // create slide object
-      item = {
-        src: linkEl.getAttribute("href")!,
-        w: parseInt(size[0], 10),
-        h: parseInt(size[1], 10),
-        el: figureEl as Element,
-      };
-
-      if ((figureEl as Element).children.length > 1) {
-        // <figcaption> content
-        item.title = (figureEl as Element).children[1].innerHTML;
-      }
-
-      if (linkEl.children.length > 0) {
-        // <img> thumbnail element, retrieving thumbnail url
-        item.msrc = linkEl.children[0].getAttribute("src")!;
-      }
-
-      item.el = figureEl as Element; // save link to element for getThumbBoundsFn
-      items.push(item);
-    }
-
-    return items;
-  };
-
-  // find nearest parent element
-  var closest = function closest(
-    el: Element | null,
-    fn: (el: Element) => boolean
-  ): Element | null {
-    return el && (fn(el) ? el : closest(el.parentElement, fn));
-  };
-
-  // triggers when user clicks on thumbnail
-  var onThumbnailsClick = function (e: MouseEvent): boolean | void {
-    e = e || window.event;
-    if (e.preventDefault) e.preventDefault();
-    else (e as any).returnValue = false;
-
-    var eTarget = e.target as Element;
-
-    // find root element of slide
-    var clickedListItem = closest(eTarget, function (el: Element) {
-      return !!el.tagName && el.tagName.toUpperCase() === "FIGURE";
-    });
-
-    if (!clickedListItem) {
-      return;
-    }
-
-    // find index of clicked item by looping through all child nodes
-    // alternatively, you may define index via data- attribute
-    var clickedGallery = clickedListItem.parentNode as Element,
-      childNodes = clickedListItem.parentNode!.childNodes,
-      numChildNodes = childNodes.length,
-      nodeIndex = 0,
-      index: number | undefined;
-
-    for (var i = 0; i < numChildNodes; i++) {
-      if (childNodes[i].nodeType !== 1) {
-        continue;
-      }
-
-      if (childNodes[i] === clickedListItem) {
-        index = nodeIndex;
-        break;
-      }
-      nodeIndex++;
-    }
-
-    if (index !== undefined && index >= 0) {
-      // open PhotoSwipe if valid index found
-      openPhotoSwipe(index, clickedGallery);
-    }
-    return false;
-  };
-
-  // parse picture index and gallery index from URL (#&pid=1&gid=2)
-  var photoswipeParseHash = function (): HashParams {
-    var hash = window.location.hash.substring(1),
-      params: HashParams = {};
-
-    if (hash.length < 5) {
-      return params;
-    }
-
-    var vars = hash.split("&");
-    for (var i = 0; i < vars.length; i++) {
-      if (!vars[i]) {
-        continue;
-      }
-      var pair = vars[i].split("=");
-      if (pair.length < 2) {
-        continue;
-      }
-      params[pair[0]] = pair[1];
-    }
-
-    if (params.gid && typeof params.gid === "string") {
-      params.gid = parseInt(params.gid, 10);
-    }
-
-    return params;
-  };
-
-  var openPhotoSwipe = function (
-    index: number,
-    galleryElement: Element,
-    disableAnimation?: boolean,
-    fromURL?: boolean
-  ): void {
-    var pswpElement = document.querySelectorAll(".pswp")[0] as Element,
-      gallery: any,
-      options: PhotoSwipeOptions,
-      items: PhotoSwipeItem[];
-
-    items = parseThumbnailElements(galleryElement);
-
-    // define options (if needed)
-    options = {
-      // define gallery index (for URL)
-      galleryUID: galleryElement.getAttribute("data-pswp-uid")!,
-      getThumbBoundsFn: function (index: number) {
-        // See Options -> getThumbBoundsFn section of documentation for more info
-        var thumbnail = items[index].el.getElementsByTagName("img")[0], // find thumbnail
-          pageYScroll =
-            window.pageYOffset || document.documentElement.scrollTop,
-          rect = thumbnail.getBoundingClientRect();
-
-        return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
-      },
-    };
-
-    // PhotoSwipe opened from URL
-    if (fromURL) {
-      if (options.galleryPIDs) {
-        // parse real index when custom PIDs are used
-        // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
-        for (var j = 0; j < items.length; j++) {
-          if (items[j].pid === index) {
-            options.index = j;
-            break;
-          }
-        }
-      } else {
-        // in URL indexes start from 1
-        options.index = parseInt(index as any, 10) - 1;
-      }
-    } else {
-      options.index = parseInt(index as any, 10);
-    }
-
-    // exit if index not found
-    if (isNaN(options.index as number)) {
-      return;
-    }
-
-    if (disableAnimation) {
-      options.showAnimationDuration = 0;
-    }
-
-    // Pass data to PhotoSwipe and initialize it
-    gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
-    gallery.init();
-  };
-
-  // loop through all gallery elements and bind events
-  var galleryElements = document.querySelectorAll(gallerySelector);
-
-  for (var i = 0, l = galleryElements.length; i < l; i++) {
-    galleryElements[i].setAttribute("data-pswp-uid", (i + 1).toString());
-    (galleryElements[i] as HTMLElement).onclick = onThumbnailsClick as any;
-  }
-
-  // Parse URL and open gallery if it contains #&pid=3&gid=1
-  var hashData = photoswipeParseHash();
-  if (hashData.pid && hashData.gid) {
-    openPhotoSwipe(
-      hashData.pid as any,
-      galleryElements[hashData.gid - 1],
-      true,
-      true
-    );
-  }
-};
 //  how to integrate
 export const Individual_Room_Slider = ({ props }: { props: any }) => {
   console.log(props);
