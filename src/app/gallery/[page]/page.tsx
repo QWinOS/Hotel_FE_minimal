@@ -19,7 +19,7 @@ async function getImageListFromStrapi(page: number | Number) {
         query: `
            {
             galleries_connection(
-              pagination: { page: ${p}, pageSize: 8 }
+              pagination: { page: ${p}, pageSize: 6 }
               sort: "updatedAt"
             ) {
               pageInfo {
@@ -115,8 +115,8 @@ export default async function Gallery({
           showcase
         </h1>
       </Load>
-      <div className="mx-auto max-w-2xl px-4 py-2 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+      <div className="px-2 sm:px-10">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 py-2">
           {Object.values(blogDataArray).map((blog: any, i: number) => {
             var attributes = blog;
             return (

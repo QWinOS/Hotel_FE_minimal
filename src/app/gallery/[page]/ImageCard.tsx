@@ -15,7 +15,8 @@ function cn(...classes: string[]) {
 export function BlurImage({ props }: any) {
   const [isLoading, setLoading] = useState(true);
   var { image } = props;
-  var imgURL = image.url;
+  var imgURL = image?.url || props?.url;
+  // var imgURL = props.url;
   imgURL = URL + imgURL;
   const galleryId = "room-photoswipe-gallery";
   useEffect(() => {
@@ -45,9 +46,9 @@ export function BlurImage({ props }: any) {
             )}
             onLoad={() => setLoading(false)}
           />
-          <h3 className="mt-4 text-sm text-gray-700">{image.name}</h3>
+          <h3 className="mt-4 text-sm text-gray-700">{image?.name}</h3>
           <p className="mt-1 text-lg font-medium text-gray-900">
-            {image.username}
+            {image?.username}
           </p>
         </div>
       </a>

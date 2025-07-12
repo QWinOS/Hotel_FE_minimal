@@ -73,7 +73,8 @@ export default function About() {
         </div>
       </div>
       {/* Center Image */}
-      <div className="max-w-6xl mx-auto relative">
+      {/* <div className="max-w-6xl mx-auto relative"> */}
+      <div className="sm:mx-60 max-w-6xl relative">
         <Individual_Room_Slider props={about?.Center_Images} />
       </div>
       {/* Second_Paragraph */}

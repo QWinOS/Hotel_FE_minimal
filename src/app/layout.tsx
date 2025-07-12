@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${quickSand.variable} ${quickSand.variable} antialiased bg-[#E0E0E0] dark:bg-[#FAF9F6] text-black dark:text-white`}
+        className={`${quickSand.variable} ${quickSand.variable} antialiased bg-[#E0E0E0] dark:bg-[#FAF9F6] text-black dark:text-white min-h-screen flex flex-col`}
       >
         {/* <ApolloProvider client={getClient}> */}
         {/* <SessionProvider> */}
@@ -45,8 +45,7 @@ export default function RootLayout({
         <Navbar />
         <div className="mt-20"></div>
         {/* <QueryProvider> */}
-        {children}
-
+        <main className="flex-1 flex flex-col">{children}</main>
         {/* </QueryProvider> */}
         {/* </SessionProvider> */}
 

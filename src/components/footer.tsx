@@ -3,7 +3,11 @@ import Link from "next/link";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
-    <footer className="flex items-center justify-center bg-gray-800 text-white py-6">
+    <footer
+      className="
+        flex items-center justify-center bg-gray-800 text-white py-6
+    "
+    >
       <div className="">
         <p className="">
           &copy; {new Date().getFullYear()} Your Company Name. All rights
