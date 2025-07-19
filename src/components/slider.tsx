@@ -423,7 +423,7 @@ const SliderMobile = (rooms: any) => {
 // };
 //  how to integrate
 export const Individual_Room_Slider = ({ props }: { props: any }) => {
-  console.log(props);
+  // console.log(props);
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
   const swiperRef = useRef<any>(null);
@@ -506,7 +506,7 @@ export const Individual_Room_Slider = ({ props }: { props: any }) => {
 };
 
 export const About_Our_Team_Slider = ({ props }: { props: any }) => {
-  console.log(props);
+  // console.log(props);
   return (
     <>
       <div className="w-full max-w-6xl mx-auto px-4">

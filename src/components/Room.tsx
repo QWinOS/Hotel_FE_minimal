@@ -55,7 +55,7 @@ const Individual_Room = (res: any) => {
   // if (!data1.room) return <p>No rooms to show</p>;
 
   // const response = use(getGraphQLOutput("getRoomByDocId", data));
-  console.log({ res });
+  // console.log({ res });
   return (
     <>
       <div className="">
@@ -63,7 +63,7 @@ const Individual_Room = (res: any) => {
           {res.data.props.room.Room_Type}
         </p>
       </div>
-      <div className="max-w-6xl mx-auto relative">
+      <div className="max-w-6xl sm:mx-auto sm:w-full relative ">
         <Individual_Room_Slider props={res.data.props.room.Room_Images} />
         {/* <Individual_Room_Slider
           props={{ Room_Images: res.data.props.room.Room_Images }}

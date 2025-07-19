@@ -4,7 +4,7 @@ const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
 const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
 const URL = host + ":" + port;
 const Amenities = async (amenities: any) => {
-  console.log(amenities);
+  // console.log(amenities);
   let title = amenities.props.Title;
   let description = amenities.props.Description;
   let thumbnail_img = amenities.props.Thumbnail.url;
@@ -32,7 +32,7 @@ const Amenities = async (amenities: any) => {
   );
 };
 const AmenitiesMobile = async (amenities: any) => {
-  console.log(amenities);
+  // console.log(amenities);
   let title = amenities.props.Title;
   let description = amenities.props.Description;
   let thumbnail_img = amenities.props.Thumbnail.url;

@@ -6,7 +6,12 @@ const nextConfig: NextConfig = {
   crossOrigin: "anonymous",
   trailingSlash: false,
   images: {
-    domains: ["127.0.0.1", "141.148.215.119", "155.248.254.64"],
+    domains: [
+      "127.0.0.1",
+      "141.148.215.119",
+      "155.248.254.64",
+      "192.168.1.198",
+    ],
     remotePatterns: [
       {
         protocol: "http",
@@ -16,7 +21,7 @@ const nextConfig: NextConfig = {
         search: "",
       },
     ],
-    unoptimized: true,
+    // unoptimized: true,
   },
 };
 

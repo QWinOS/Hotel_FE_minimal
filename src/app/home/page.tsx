@@ -95,7 +95,7 @@ export default function Home2() {
           {/* <div>Hotel Amenities</div> */}
           <div className="grid grid-cols-2 gap-4 justify-around">
             {Object.values(amenities).map((amenitie: any, id: number) => {
-              console.log(amenitie);
+              // console.log(amenitie);
               return <Amenities props={amenitie} key={id} />;
             })}
           </div>
@@ -115,7 +115,7 @@ export default function Home2() {
           {/* <div>Hotel Amenities</div> */}
           <div className="grid grid-cols-2 gap-4 justify-around">
             {Object.values(amenities).map((amenitie: any, id: number) => {
-              console.log(amenitie);
+              // console.log(amenitie);
               return <AmenitiesMobile props={amenitie} key={id} />;
             })}
           </div>

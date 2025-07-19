@@ -15,7 +15,7 @@ const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
 const URL = host + ":" + port;
 export default function About() {
   const about = use(getGraphQLOutput("about", "")).props?.about;
-  console.log(about);
+  // console.log(about);
 
   return (
     <>
@@ -74,7 +74,8 @@ export default function About() {
       </div>
       {/* Center Image */}
       {/* <div className="max-w-6xl mx-auto relative"> */}
-      <div className="sm:mx-60 max-w-6xl relative">
+      {/* <div className="sm:mx-60 w-full max-w-6xl relative"> */}
+      <div className="sm:px-70">
         <Individual_Room_Slider props={about?.Center_Images} />
       </div>
       {/* Second_Paragraph */}
