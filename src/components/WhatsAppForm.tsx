@@ -94,8 +94,8 @@ export function WhatsAppForm() {
   }
 
   return (
-    <div className="w-full max-w-lg mx-auto p-6 sm:p-8 bg-gradient-to-br from-[#f8fafc] to-[#e3e7ed] backdrop-blur-xl rounded-2xl shadow-2xl border border-[#e3e7ed]">
-      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-[#232946] font-serif tracking-tight">
+    <div className="w-full max-w-lg mx-auto p-6 sm:p-8 bg-gradient-to-br from-[#FFB703] to-[#FB8500] backdrop-blur-xl rounded-2xl shadow-2xl border border-[#219EBC]">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-[#023047] font-serif tracking-tight">
         Book Now Instantly
       </h2>
       <Form {...form}>

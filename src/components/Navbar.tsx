@@ -27,7 +27,6 @@ const menuVars = {
     opacity: 1,
     transition: {
       duration: 0.5,
-      ease: "easeInOut",
     },
   },
   exit: {
@@ -35,7 +34,6 @@ const menuVars = {
     opacity: 0,
     transition: {
       duration: 0.5,
-      ease: "easeInOut",
     },
   },
 };
@@ -139,19 +137,23 @@ export default function Navbar() {
   };
   const MobileNavLink = ({ title, href }: any) => {
     return (
-      <motion.div
-        // variants={mobileLinkVars}
-        className="text-5xl uppercase"
-        onClick={handleNav}
-      >
-        <Link href={href}>{title}</Link>
+      <motion.div className="w-full text-center my-2" onClick={handleNav}>
+        <Link
+          className="navbar-link font-bold text-3xl py-3 px-6 rounded-xl block bg-white/80 shadow hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-secondary)] transition-all duration-200"
+          href={href}
+        >
+          {title}
+        </Link>
       </motion.div>
     );
   };
   const DesktopNav = ({ title, href }: any) => {
     return (
-      <motion.div className="m-4 text-2xl uppercase">
-        <Link className="nav" href={href}>
+      <motion.div className="m-2 px-3 py-1 rounded-lg transition-all duration-200 hover:bg-[color:var(--color-accent)] hover:shadow-md">
+        <Link
+          className="nav navbar-link font-semibold tracking-wide text-lg"
+          href={href}
+        >
           {title}
         </Link>
       </motion.div>
@@ -159,30 +161,21 @@ export default function Navbar() {
   };
 
   return (
-    <div className="bg-white fixed top-0 z-20 h-16 w-full shadow-xl sm:h-20">
+    <div className="bg-white/95 fixed top-0 z-20 h-20 w-full shadow-xl border-b border-[color:var(--color-border)] backdrop-blur-xl">
       {/* Tab Desktop Navbar */}
-      <div className="z-20 flex h-16 w-full items-center justify-between px-4 sm:h-full 2xl:px-16">
+      <div className="z-20 flex w-full items-center justify-between px-4 sm:h-full 2xl:px-16">
         <Link href={"/"}>
           <div className="wrapper">
             <Image
               className="cursor-pointer"
               src={favicon}
-              // height={50}
-              // width={50}
               fill
               alt="Logo"
-              sizes="(max-width: 640) 640w,
-                  (max-width: 750) 750w,
-                  (max-width: 828) 828w,
-                  (max-width: 1080) 1080w,
-                  (max-width: 1200) 1200w,
-                  (max-width: 1920) 1920w,
-                  (max-width: 2048) 2048w,
-                  (max-width: 3840) 3840w"
+              sizes="(max-width: 640) 640w, (max-width: 750) 750w, (max-width: 828) 828w, (max-width: 1080) 1080w, (max-width: 1200) 1200w, (max-width: 1920) 1920w, (max-width: 2048) 2048w, (max-width: 3840) 3840w"
             />
           </div>
         </Link>
-        <div className="hidden sm:flex">
+        <div className="hidden sm:flex items-center gap-2">
           {navLinks.map((link, index) => {
             return (
               <DesktopNav key={index} title={link.title} href={link.href} />
@@ -192,7 +185,10 @@ export default function Navbar() {
             {/* <ThemeModeToggler /> */}
           </div>
         </div>
-        <div onClick={handleNav} className="cursor-pointer pl-24 sm:hidden">
+        <div
+          onClick={handleNav}
+          className="cursor-pointer pl-24 sm:hidden text-[color:var(--color-primary)]"
+        >
           <MdOutlineMenu size={25} />
         </div>
       </div>
@@ -205,7 +201,7 @@ export default function Navbar() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top bg-[#E5EDF1] p-10 dark:bg-[#002349]"
+              className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top bg-gradient-to-br from-[#8ECAE6] via-[#219EBC] to-[#FB8500] p-10 border-b-4 border-[color:var(--color-primary)] backdrop-blur-2xl"
             >
               <div className="flex h-full flex-col">
                 <div className="flex w-full ">
@@ -222,7 +218,7 @@ export default function Navbar() {
                     >
                       {/* <ThemeModeToggler /> */}
                       <div
-                        className="text-md cursor-pointer "
+                        className="text-md cursor-pointer text-[color:var(--color-primary)]"
                         onClick={handleNav}
                       >
                         <MdClose size={25} />
@@ -249,21 +245,21 @@ export default function Navbar() {
                       </div>
                     );
                   })}
-                  <div className="overflow-hidden">
-                    <motion.div
-                      //   variants={mobileLinkIcon}
-                      className="flex gap-x-8"
-                    >
+                  <div className="overflow-hidden mt-8">
+                    <motion.div className="flex gap-x-8 justify-center">
                       <MdFacebook
-                        className="text-[#0165E1]"
-                        size={50}
+                        className="text-[#219EBC] hover:text-[#FB8500] transition-colors duration-200 drop-shadow-lg"
+                        size={40}
                         title="FB"
                       />
                       <AiOutlineInstagram
-                        className="text-[#C13584]"
-                        size={50}
+                        className="text-[#FB8500] hover:text-[#219EBC] transition-colors duration-200 drop-shadow-lg"
+                        size={40}
                       />
-                      <AiOutlineTwitter className="text-[#1D9BF0]" size={50} />
+                      <AiOutlineTwitter
+                        className="text-[#219EBC] hover:text-[#FB8500] transition-colors duration-200 drop-shadow-lg"
+                        size={40}
+                      />
                     </motion.div>
                   </div>
                 </motion.div>
