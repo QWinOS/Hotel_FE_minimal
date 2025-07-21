@@ -139,17 +139,17 @@ const Individual_Room = (res: any) => {
             />
           </div>
           <div
-            className="w-full max-w-sm flex-shrink-0 mb-8 md:mb-0"
+            className="w-full max-w-xl flex-shrink-0 mb-4 md:mb-0 px-1 sm:px-0"
             style={{ overflow: "visible" }}
           >
             <div
-              className="bg-gradient-to-br from-[#f8fafc] to-[#e3e7ed] rounded-2xl p-5 sm:p-8 md:p-10 shadow-2xl border border-[#d1d5db] flex flex-col items-center backdrop-blur-xl"
+              className="bg-gradient-to-br from-[#f8fafc] to-[#e3e7ed] rounded-2xl p-2 sm:p-7 md:p-10 shadow-2xl border border-[#d1d5db] flex flex-col items-center backdrop-blur-xl w-full"
               style={{
                 overflow: "visible",
                 boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.14)",
               }}
             >
-              <h3 className="text-lg sm:text-xl font-bold text-[#232946] mb-4 tracking-wide font-serif text-center">
+              <h3 className="text-base sm:text-xl md:text-2xl font-bold text-[#232946] mb-2 sm:mb-6 tracking-wide font-serif text-center">
                 Contact &amp; Book Instantly
               </h3>
               <WhatsAppForm />

@@ -94,24 +94,24 @@ export function WhatsAppForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto p-4 sm:p-6 md:p-8 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-[#e3e7ed]">
-      <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center text-[#232946] font-serif tracking-tight">
+    <div className="w-full max-w-lg mx-auto p-6 sm:p-8 bg-gradient-to-br from-[#f8fafc] to-[#e3e7ed] backdrop-blur-xl rounded-2xl shadow-2xl border border-[#e3e7ed]">
+      <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-center text-[#232946] font-serif tracking-tight">
         Book Now Instantly
       </h2>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#4B3221] font-medium">
+                <FormLabel className="text-[#4B3221] font-semibold text-base">
                   Name
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="John Doe"
-                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/95 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
                     {...field}
                   />
                 </FormControl>
@@ -124,13 +124,13 @@ export function WhatsAppForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#4B3221] font-medium">
+                <FormLabel className="text-[#4B3221] font-semibold text-base">
                   Email
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="john@example.com"
-                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/95 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
                     {...field}
                   />
                 </FormControl>
@@ -143,13 +143,13 @@ export function WhatsAppForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#4B3221] font-medium">
+                <FormLabel className="text-[#4B3221] font-semibold text-base">
                   Phone
                 </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="+91-12345678"
-                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/95 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
                     {...field}
                   />
                 </FormControl>
@@ -162,11 +162,11 @@ export function WhatsAppForm() {
             name="selectedDate"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#4B3221] font-medium">
+                <FormLabel className="text-[#4B3221] font-semibold text-base">
                   Date
                 </FormLabel>
                 <FormControl>
-                  <div className="rounded-lg bg-white/90 border border-[#e3e7ed] p-2">
+                  <div className="rounded-lg bg-white/95 border border-[#e3e7ed] p-2">
                     <DateRangePickerWithInlineButtons
                       value={field.value}
                       onChange={(value) => {
@@ -188,13 +188,13 @@ export function WhatsAppForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#4B3221] font-medium">
+                <FormLabel className="text-[#4B3221] font-semibold text-base">
                   Message
                 </FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Your message..."
-                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946] min-h-[80px]"
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/95 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946] min-h-[80px]"
                     {...field}
                   />
                 </FormControl>
@@ -204,7 +204,7 @@ export function WhatsAppForm() {
           />
           <Button
             type="submit"
-            className="w-full bg-[#4B3221] hover:bg-[#232946] text-white font-semibold py-2 rounded-lg shadow transition-all duration-200 text-lg tracking-wide"
+            className="w-full bg-gradient-to-r from-[#4B3221] to-[#232946] hover:from-[#232946] hover:to-[#4B3221] text-white font-semibold py-2 rounded-lg shadow transition-all duration-200 text-lg tracking-wide"
           >
             Send via WhatsApp
           </Button>
