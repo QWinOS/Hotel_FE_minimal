@@ -94,8 +94,10 @@ export function WhatsAppForm() {
   }
 
   return (
-    <div className="max-w-md mx-auto p-4 bg-white rounded-2xl">
-      <h1 className="text-2xl font-bold mb-4">Book Now !!!</h1>
+    <div className="w-full max-w-md mx-auto p-4 sm:p-6 md:p-8 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl border border-[#e3e7ed]">
+      <h2 className="text-xl sm:text-2xl font-bold mb-4 text-center text-[#232946] font-serif tracking-tight">
+        Book Now Instantly
+      </h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField
@@ -103,11 +105,13 @@ export function WhatsAppForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel className="text-[#4B3221] font-medium">
+                  Name
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder="John Doe"
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
                     {...field}
                   />
                 </FormControl>
@@ -115,15 +119,20 @@ export function WhatsAppForm() {
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="text-[#4B3221] font-medium">
+                  Email
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="john@example.com" {...field} />
+                  <Input
+                    placeholder="john@example.com"
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -134,9 +143,15 @@ export function WhatsAppForm() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Phone</FormLabel>
+                <FormLabel className="text-[#4B3221] font-medium">
+                  Phone
+                </FormLabel>
                 <FormControl>
-                  <Input placeholder="+91-12345678" {...field} />
+                  <Input
+                    placeholder="+91-12345678"
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946]"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -147,26 +162,22 @@ export function WhatsAppForm() {
             name="selectedDate"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Date</FormLabel>
+                <FormLabel className="text-[#4B3221] font-medium">
+                  Date
+                </FormLabel>
                 <FormControl>
-                  {/* <DateRangePickerWithInlineButtons /> */}
-                  <DateRangePickerWithInlineButtons
-                    value={field.value}
-                    onChange={(value) => {
-                      field.onChange(value);
-                      setSelectedDate({
-                        from: value.from ?? undefined,
-                        to: value.to ?? undefined,
-                      }); // optional, if you want local state too
-                    }}
-                  />
-                  {/* <DatePickerWithRange
-                    date={field.value}
-                    onChange={(value: any) => {
-                      field.onChange(value);
-                      setSelectedDate(value);
-                    }}
-                  /> */}
+                  <div className="rounded-lg bg-white/90 border border-[#e3e7ed] p-2">
+                    <DateRangePickerWithInlineButtons
+                      value={field.value}
+                      onChange={(value) => {
+                        field.onChange(value);
+                        setSelectedDate({
+                          from: value.from ?? undefined,
+                          to: value.to ?? undefined,
+                        });
+                      }}
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -177,16 +188,24 @@ export function WhatsAppForm() {
             name="message"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Message</FormLabel>
+                <FormLabel className="text-[#4B3221] font-medium">
+                  Message
+                </FormLabel>
                 <FormControl>
-                  <Textarea placeholder="Your message..." {...field} />
+                  <Textarea
+                    placeholder="Your message..."
+                    className="w-full px-4 py-2 rounded-lg border border-[#e3e7ed] bg-white/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4B3221]/30 focus:border-[#4B3221] transition-all duration-200 text-[#232946] min-h-[80px]"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-
-          <Button type="submit" className="w-full">
+          <Button
+            type="submit"
+            className="w-full bg-[#4B3221] hover:bg-[#232946] text-white font-semibold py-2 rounded-lg shadow transition-all duration-200 text-lg tracking-wide"
+          >
             Send via WhatsApp
           </Button>
         </form>

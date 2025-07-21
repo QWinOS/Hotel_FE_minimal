@@ -58,12 +58,12 @@ const Individual_Room = (res: any) => {
   // console.log({ res });
   return (
     <div
-      className="bg-gradient-to-br from-[#f5f7fa] to-[#c3cfe2] min-h-screen py-12 px-2 sm:px-8 relative"
+      className="bg-gradient-to-br from-[#e9eafc] via-[#f5f7fa] to-[#c3cfe2] min-h-screen py-8 px-2 sm:px-6 md:px-12 lg:px-24 xl:px-40 relative font-sans"
       style={{ overflow: "visible" }}
     >
       {/* Subtle geometric SVG background for a professional touch */}
       <svg
-        className="absolute top-0 left-0 w-full h-40 opacity-10 pointer-events-none z-0"
+        className="absolute top-0 left-0 w-full h-32 md:h-40 opacity-10 pointer-events-none z-0"
         viewBox="0 0 1440 320"
       >
         <path
@@ -73,24 +73,27 @@ const Individual_Room = (res: any) => {
         ></path>
       </svg>
       <div
-        className="relative z-10 max-w-5xl mx-auto mb-10 p-10 rounded-3xl shadow-2xl bg-white/95 backdrop-blur-md border border-[#e3e7ed]"
-        style={{ overflow: "visible" }}
+        className="relative z-10 max-w-6xl mx-auto mb-10 p-4 sm:p-8 md:p-12 lg:p-16 rounded-3xl shadow-2xl bg-white/80 backdrop-blur-2xl border border-[#e3e7ed]"
+        style={{
+          overflow: "visible",
+          boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.14)",
+        }}
       >
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-center text-[#2d2d2d] mb-3 leading-tight drop-shadow-sm">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-center text-[#232946] mb-2 leading-tight drop-shadow-sm font-serif">
           {res.data.props.room.Room_Type}
         </h1>
         <div className="flex justify-center mb-8">
-          <span className="inline-block w-28 h-1 bg-gradient-to-r from-[#4B3221] to-[#c3cfe2] rounded-full"></span>
+          <span className="inline-block w-20 sm:w-28 h-1 rounded-full bg-gradient-to-r from-[#4B3221] via-[#a3aed6] to-[#c3cfe2] animate-pulse"></span>
         </div>
-        <div className="max-w-3xl mx-auto mb-10 rounded-2xl overflow-visible shadow-lg transition-transform duration-300 hover:scale-[1.01] bg-[#f8fafc] border border-[#e3e7ed]">
+        <div className="max-w-2xl md:max-w-3xl mx-auto mb-10 rounded-2xl overflow-visible shadow-xl transition-transform duration-300 hover:scale-[1.01] bg-[#f8fafc]/90 border border-[#e3e7ed]">
           <Individual_Room_Slider props={res.data.props.room.Room_Images} />
         </div>
         <div
-          className="flex flex-col items-center sm:flex-row sm:items-start gap-12 mt-8"
+          className="flex flex-col-reverse md:flex-row items-center md:items-start gap-10 md:gap-14 mt-8"
           style={{ overflow: "visible" }}
         >
           <div
-            className="prose max-w-lg text-[#2d2d2d] dark:text-[#D6D6D8] bg-white rounded-2xl p-8 shadow-md border border-[#e3e7ed] transition-shadow duration-300 hover:shadow-xl"
+            className="prose w-full max-w-lg text-[#232946] dark:text-[#D6D6D8] bg-white/95 rounded-2xl p-5 sm:p-8 md:p-10 shadow-md border border-[#e3e7ed] transition-shadow duration-300 hover:shadow-2xl"
             style={{ overflow: "visible" }}
           >
             <BlocksRenderer
@@ -100,25 +103,25 @@ const Individual_Room = (res: any) => {
                   switch (level) {
                     case 1:
                       return (
-                        <h2 className="text-2xl font-bold mb-2 text-[#4B3221]">
+                        <h2 className="text-xl sm:text-2xl font-bold mb-2 text-[#4B3221] font-serif tracking-tight">
                           {children}
                         </h2>
                       );
                     case 2:
                       return (
-                        <h3 className="text-xl font-semibold mb-2 text-[#4B3221]">
+                        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-[#4B3221] font-serif">
                           {children}
                         </h3>
                       );
                     case 3:
                       return (
-                        <h4 className="text-lg font-medium mb-2 text-[#4B3221]">
+                        <h4 className="text-base sm:text-lg font-medium mb-2 text-[#4B3221] font-serif">
                           {children}
                         </h4>
                       );
                     default:
                       return (
-                        <p className="text-base mb-2 text-[#2d2d2d]">
+                        <p className="text-base mb-2 text-[#232946]">
                           {children}
                         </p>
                       );
@@ -131,14 +134,17 @@ const Individual_Room = (res: any) => {
             />
           </div>
           <div
-            className="sm:ml-10 w-full max-w-sm flex-shrink-0"
+            className="w-full max-w-sm flex-shrink-0 mb-8 md:mb-0"
             style={{ overflow: "visible" }}
           >
             <div
-              className="bg-gradient-to-br from-[#f8fafc] to-[#e3e7ed] rounded-2xl p-8 shadow-lg border border-[#d1d5db] flex flex-col items-center"
-              style={{ overflow: "visible" }}
+              className="bg-gradient-to-br from-[#f8fafc] to-[#e3e7ed] rounded-2xl p-5 sm:p-8 md:p-10 shadow-2xl border border-[#d1d5db] flex flex-col items-center backdrop-blur-xl"
+              style={{
+                overflow: "visible",
+                boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.14)",
+              }}
             >
-              <h3 className="text-xl font-bold text-[#2d2d2d] mb-4 tracking-wide">
+              <h3 className="text-lg sm:text-xl font-bold text-[#232946] mb-4 tracking-wide font-serif text-center">
                 Contact &amp; Book Instantly
               </h3>
               <WhatsAppForm />
@@ -146,7 +152,7 @@ const Individual_Room = (res: any) => {
           </div>
         </div>
       </div>
-      <div style={{ height: "80px" }} />
+      <div className="h-20 md:h-24" />
       <style jsx>{`
         .animate-fade-in {
           animation: fadeIn 1s ease;
