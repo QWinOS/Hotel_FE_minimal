@@ -43,15 +43,12 @@ async function getMenuImageListFromStrapi() {
 
 export default async function Menu() {
   const menuList = await getMenuImageListFromStrapi();
-  console.log({ menuList });
-  menuList.props?.dinning?.menu;
-  // return <>Menu</>;
-
   return (
-    <>
-      <Load index={1}>
-        <h1
-          className="mx-5 mb-0 justify-items-center
+    <div className="min-h-screen py-8 px-2 sm:px-6 md:px-12 lg:px-24 xl:px-40 font-sans bg-gradient-to-br from-[#F8FAFC] via-[#E5EDF1] to-[#8ECAE6]">
+      <div className="relative z-10">
+        <Load index={1}>
+          <h1
+            className="mx-5 mb-0 justify-items-center
         text-center
         text-4xl
         font-bold
@@ -65,34 +62,35 @@ export default async function Menu() {
         sm:pt-24
         sm:text-6xl
         "
-        >
-          menu
-        </h1>
-      </Load>
-      <div className="px-2 sm:px-10">
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 py-2">
-          {Object.values(menuList.props?.dinning?.menu).map(
-            (blog: any, i: number) => {
-              var attributes = blog;
-              return (
-                <Load index={i} key={i}>
-                  <BlurImage props={attributes} key={i} />
-                </Load>
-              );
-            }
-          )}
-        </div>
-        <div>
-          <div className="opacity-0">
-            <PaginationControls
-              currentPage={1}
-              totalPage={1}
-              // hasNextPage={Number(page) < totalPage}
-              // hasPrevPage={Number(page) > 1}
-            />
+          >
+            menu
+          </h1>
+        </Load>
+        <div className="px-2 sm:px-10">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 py-2">
+            {Object.values(menuList.props?.dinning?.menu).map(
+              (blog: any, i: number) => {
+                var attributes = blog;
+                return (
+                  <Load index={i} key={i}>
+                    <BlurImage props={attributes} key={i} />
+                  </Load>
+                );
+              }
+            )}
+          </div>
+          <div>
+            <div className="opacity-0">
+              <PaginationControls
+                currentPage={1}
+                totalPage={1}
+                // hasNextPage={Number(page) < totalPage}
+                // hasPrevPage={Number(page) > 1}
+              />
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
