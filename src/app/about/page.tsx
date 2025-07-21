@@ -18,7 +18,7 @@ export default function About() {
   // console.log(about);
 
   return (
-    <div className="font-sans bg-gradient-to-br from-[#F8FAFC] via-[#E5EDF1] to-[#8ECAE6]">
+    <>
       <div className="flex flex-col items-center sm:mx-10 md:mx-40">
         {/* Title_Background for Desktop View */}
         <div
@@ -94,6 +94,6 @@ export default function About() {
         </p>
         <About_Our_Team_Slider props={about?.Meet_Our_Team_Pictures} />
       </div>
-    </div>
+    </>
   );
 }

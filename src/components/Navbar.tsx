@@ -139,7 +139,7 @@ export default function Navbar() {
     return (
       <motion.div className="w-full text-center my-2" onClick={handleNav}>
         <Link
-          className="navbar-link font-bold text-3xl py-3 px-6 rounded-xl block bg-white/80 shadow hover:bg-[color:var(--color-accent)] hover:text-[color:var(--color-secondary)] transition-all duration-200"
+          className="navbar-link font-bold text-xl py-3 px-4 rounded-lg block bg-white/90 shadow-md border border-[#219EBC] hover:bg-[#219EBC] hover:text-white transition-all duration-200 mx-auto max-w-xs tracking-wide"
           href={href}
         >
           {title}
@@ -161,9 +161,9 @@ export default function Navbar() {
   };
 
   return (
-    <div className="bg-white/95 fixed top-0 z-20 h-20 w-full shadow-xl border-b border-[color:var(--color-border)] backdrop-blur-xl">
+    <div className="bg-white fixed top-0 z-20 h-16 sm:h-20 w-full shadow-xl border-b border-[color:var(--color-border)] backdrop-blur-xl">
       {/* Tab Desktop Navbar */}
-      <div className="z-20 flex w-full items-center justify-between px-4 sm:h-full 2xl:px-16">
+      <div className="z-20 flex w-full h-16 items-center justify-between px-4 sm:h-full 2xl:px-16">
         <Link href={"/"}>
           <div className="wrapper">
             <Image
@@ -187,9 +187,9 @@ export default function Navbar() {
         </div>
         <div
           onClick={handleNav}
-          className="cursor-pointer pl-24 sm:hidden text-[color:var(--color-primary)]"
+          className="cursor-pointer pl-4 pr-2 sm:hidden text-[color:var(--color-primary)]"
         >
-          <MdOutlineMenu size={25} />
+          <MdOutlineMenu size={28} />
         </div>
       </div>
       {/* Mobile Navbar */}
@@ -201,68 +201,60 @@ export default function Navbar() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top bg-gradient-to-br from-[#8ECAE6] via-[#219EBC] to-[#FB8500] p-10 border-b-4 border-[color:var(--color-primary)] backdrop-blur-2xl"
+              className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top bg-white p-0 pt-0 border-b-4 border-[color:var(--color-primary)] backdrop-blur-xl flex flex-col"
+              style={{
+                background:
+                  "linear-gradient(135deg, #F8FAFC 0%, #8ECAE6 60%, #219EBC 100%)",
+                boxShadow:
+                  "0 8px 32px 0 rgba(2, 48, 71, 0.10), 0 1.5px 8px 0 rgba(251, 133, 0, 0.08)",
+              }}
             >
-              <div className="flex h-full flex-col">
-                <div className="flex w-full ">
-                  <motion.div
-                    variants={containerVars}
-                    initial="initial"
-                    animate="open"
-                    exit="initial"
-                    className="font-lora flex w-full flex-col gap-4 overflow-hidden"
-                  >
-                    <motion.div
-                      variants={{ mobileNavIcon }}
-                      className="flex justify-end"
-                    >
-                      {/* <ThemeModeToggler /> */}
-                      <div
-                        className="text-md cursor-pointer text-[color:var(--color-primary)]"
-                        onClick={handleNav}
-                      >
-                        <MdClose size={25} />
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                </div>
-                <motion.div
-                  variants={containerVars}
-                  initial="initial"
-                  animate="open"
-                  exit="initial"
-                  className="font-lora flex h-full flex-col items-center justify-center gap-4 "
+              <div className="flex w-full justify-end mb-6 mt-4">
+                <div
+                  className="text-md cursor-pointer text-[color:var(--color-primary)] bg-white/90 rounded-full p-2 shadow-md border border-[#219EBC] mr-6"
+                  onClick={handleNav}
                 >
-                  {navLinks.map((link, index) => {
-                    return (
-                      <div className="overflow-hidden" key={index}>
-                        <MobileNavLink
-                          key={index}
-                          title={link.title}
-                          href={link.href}
-                          onClick={handleNav}
-                        />
-                      </div>
-                    );
-                  })}
-                  <div className="overflow-hidden mt-8">
-                    <motion.div className="flex gap-x-8 justify-center">
-                      <MdFacebook
-                        className="text-[#219EBC] hover:text-[#FB8500] transition-colors duration-200 drop-shadow-lg"
-                        size={40}
-                        title="FB"
-                      />
-                      <AiOutlineInstagram
-                        className="text-[#FB8500] hover:text-[#219EBC] transition-colors duration-200 drop-shadow-lg"
-                        size={40}
-                      />
-                      <AiOutlineTwitter
-                        className="text-[#219EBC] hover:text-[#FB8500] transition-colors duration-200 drop-shadow-lg"
-                        size={40}
-                      />
-                    </motion.div>
-                  </div>
-                </motion.div>
+                  <MdClose size={28} />
+                </div>
+              </div>
+              <div className="flex flex-col items-center gap-3 flex-1 justify-center">
+                {navLinks.map((link, index) => (
+                  <MobileNavLink
+                    key={index}
+                    title={link.title}
+                    href={link.href}
+                    onClick={handleNav}
+                  />
+                ))}
+              </div>
+              <div className="flex justify-center gap-6 mt-8 mb-2">
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="rounded-full bg-[#219EBC] hover:bg-[#FB8500] p-2 transition-colors duration-200 shadow-md flex items-center justify-center border-2 border-[#023047]"
+                >
+                  <MdFacebook className="text-white" size={22} />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="rounded-full bg-[#FB8500] hover:bg-[#219EBC] p-2 transition-colors duration-200 shadow-md flex items-center justify-center border-2 border-[#023047]"
+                >
+                  <AiOutlineInstagram className="text-white" size={22} />
+                </a>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Twitter"
+                  className="rounded-full bg-[#219EBC] hover:bg-[#FB8500] p-2 transition-colors duration-200 shadow-md flex items-center justify-center border-2 border-[#023047]"
+                >
+                  <AiOutlineTwitter className="text-white" size={22} />
+                </a>
               </div>
             </motion.div>
           )}

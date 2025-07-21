@@ -22,105 +22,83 @@ export default function Home2() {
   // console.log(hotel_amenities);
   imgURL = URL + imgURL;
   return (
-    <>
-      {/* Top Banner */}
-      <div className="flex-row justify-around items-center hidden sm:flex mb-5 ">
-        <div className="flex-col justify-around">
-          <div className="font-bold text-2xl">{leader}</div>
-          <div className="text-xl">{description}</div>
+    <div className="min-h-screen font-sans bg-gradient-to-br from-[#F8FAFC] via-[#E5EDF1] to-[#8ECAE6] pb-10 pt-1 sm:pt-10">
+      {/* Top Banner Desktop */}
+      <div className="hidden sm:flex items-center justify-between max-w-6xl mx-auto  mb-12 bg-white/95 rounded-3xl shadow-2xl border border-[#219EBC] p-8 gap-10">
+        <div className="flex flex-col gap-4 max-w-lg">
+          <h1 className="font-extrabold text-3xl md:text-4xl text-[#023047] mb-2 font-serif tracking-tight leading-tight">
+            {leader}
+          </h1>
+          <p className="text-lg md:text-xl text-[#023047] font-medium">
+            {description}
+          </p>
         </div>
-        <Image
-          src={imgURL}
-          height={500}
-          width={500}
-          alt="Hotel"
-          className="m-5"
-        />
+        <div className="flex-shrink-0">
+          <Image
+            src={imgURL}
+            height={320}
+            width={320}
+            alt="Hotel"
+            className="rounded-2xl shadow-lg border border-[#8ECAE6] object-cover"
+          />
+        </div>
       </div>
       {/* Top Banner Mobile */}
-      <div className="flex flex-col sm:hidden m-10">
+      <div className="flex flex-col sm:hidden m-4 mt-8 bg-white/95 rounded-2xl shadow-xl border border-[#219EBC] p-4 items-center">
         <Image
           src={imgURL}
-          height={500}
-          width={500}
+          height={220}
+          width={340}
           alt="Hotel"
-          className="rounded-lg"
+          className="rounded-xl object-cover shadow-md border border-[#8ECAE6]"
         />
-        <div className="flex flex-col justify-around items-center mt-5">
-          <div className="font-bold text-2xl">{leader}</div>
-          <div className="text-xl">{description}</div>
+        <div className="flex flex-col justify-around items-center mt-4 gap-2">
+          <h1 className="font-extrabold text-2xl text-[#023047] text-center font-serif tracking-tight">
+            {leader}
+          </h1>
+          <p className="text-base text-[#023047] text-center font-medium">
+            {description}
+          </p>
         </div>
       </div>
       {/* Featured Rooms */}
-      <div className="hidden sm:flex flex-col">
-        <div className="flex justify-center font-bold text-2xl">
+      <div className="max-w-6xl mx-auto mt-12">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#023047] text-center mb-6 font-serif tracking-tight">
           Featured Rooms
-        </div>
+        </h2>
         {/* <div className="flex flex-row justify-around">
           {Object.values(rooms).map((room: any, id: number) => {
             console.log(room + " " + id);
             return <Room_card props={room} key={id} />;
           })}
         </div> */}
-        <div className="flex flex-row justify-around m-5">
-          <Slider className="m-20" props={rooms} />
+        <div className="hidden sm:flex flex-row justify-center">
+          <Slider className="w-full" props={rooms} />
         </div>
-      </div>
-      {/* Featured Rooms Mobile */}
-      <div className="flex sm:hidden flex-col">
-        <div className="flex justify-center font-bold text-2xl">
-          Featured Rooms
-        </div>
-        {/* <div className="flex flex-row justify-around">
-          {Object.values(rooms).map((room: any, id: number) => {
-            console.log(room + " " + id);
-            return <Room_card props={room} key={id} />;
-          })}
-        </div> */}
-        <div className="flex flex-row justify-around m-5">
+        <div className="flex sm:hidden flex-row justify-center">
           <SliderMobile props={rooms} />
         </div>
       </div>
       {/* Hotel Amenities */}
-      <div className="hidden sm:flex flex-row justify-center">
-        <div className="flex flex-col justify-center m-5">
-          <p className="font-bold text-2xl">
-            Why Choose Hotel Sweet Home International ?
-          </p>
-          <p className="text-lg">
-            Discover the unique features that make our hotels stand out.
-          </p>
+      <div className="max-w-6xl mx-auto mt-16">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#023047] text-center mb-6 font-serif tracking-tight">
+          Why Choose Hotel Sweet Home International?
+        </h2>
+        <p className="text-lg text-[#023047] text-center mb-8">
+          Discover the unique features that make our hotels stand out.
+        </p>
+        {/* <div>Hotel Amenities</div> */}
+        <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+          {Object.values(amenities).map((amenitie: any, id: number) => (
+            <Amenities props={amenitie} key={id} />
+          ))}
         </div>
-        <div className="grid justify-center">
-          {/* <div>Hotel Amenities</div> */}
-          <div className="grid grid-cols-2 gap-4 justify-around">
-            {Object.values(amenities).map((amenitie: any, id: number) => {
-              // console.log(amenitie);
-              return <Amenities props={amenitie} key={id} />;
-            })}
-          </div>
-        </div>
-      </div>
-      {/* Hotel Amenities Mobile */}
-      <div className="sm:hidden flex flex-col">
-        <div className="flex flex-col justify-center m-5">
-          <p className="font-bold text-2xl">
-            Why Choose Hotel Sweet Home International ?
-          </p>
-          <p className="text-lg">
-            Discover the unique features that make our hotels stand out.
-          </p>
-        </div>
-        <div className="grid m-5 justify-center">
-          {/* <div>Hotel Amenities</div> */}
-          <div className="grid grid-cols-2 gap-4 justify-around">
-            {Object.values(amenities).map((amenitie: any, id: number) => {
-              // console.log(amenitie);
-              return <AmenitiesMobile props={amenitie} key={id} />;
-            })}
-          </div>
+        <div className="sm:hidden grid grid-cols-2 gap-4 justify-center">
+          {Object.values(amenities).map((amenitie: any, id: number) => (
+            <AmenitiesMobile props={amenitie} key={id} />
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

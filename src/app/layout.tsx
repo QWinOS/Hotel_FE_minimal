@@ -43,9 +43,10 @@ export default function RootLayout({
         {/* <SessionProvider> */}
         {/* <Navbar /> */}
         <Navbar />
-        <div className="mt-20"></div>
-        {/* <QueryProvider> */}
-        <main className="flex-1 flex flex-col">{children}</main>
+        <div className="mt-16 sm:mt-20">
+          {/* <QueryProvider> */}
+          <main className="flex-1 flex flex-col">{children}</main>
+        </div>
         {/* </QueryProvider> */}
         {/* </SessionProvider> */}
 
