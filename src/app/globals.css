@@ -216,3 +216,37 @@ body {
   aspect-ratio: 1/1;
   margin: 2rem auto;
 }
+
+/* Room slider image styles - scoped to avoid overlap with other components */
+.room-slider-img,
+.room-slider-img img,
+.room-slider-img > span > img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+  background: #000 !important;
+}
+.room-slider-img {
+  background: #000 !important;
+  max-width: 100vw;
+  min-height: 220px;
+  border-radius: 1rem;
+}
+@media (min-width: 768px) {
+  .room-slider-img {
+    min-height: 340px;
+  }
+}
+.swiper.room-slider,
+.room-slider-img .swiper,
+.room-slider-img .swiper-slide,
+.room-slider-img .swiper-slide > div {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  align-items: center !important;
+  justify-content: center !important;
+  background: transparent !important;
+}

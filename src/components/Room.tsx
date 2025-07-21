@@ -85,8 +85,13 @@ const Individual_Room = (res: any) => {
         <div className="flex justify-center mb-8">
           <span className="inline-block w-20 sm:w-28 h-1 rounded-full bg-gradient-to-r from-[#4B3221] via-[#a3aed6] to-[#c3cfe2] animate-pulse"></span>
         </div>
-        <div className="max-w-2xl md:max-w-3xl mx-auto mb-10 rounded-2xl overflow-visible shadow-xl transition-transform duration-300 hover:scale-[1.01] bg-[#f8fafc]/90 border border-[#e3e7ed]">
-          <Individual_Room_Slider props={res.data.props.room.Room_Images} />
+        {/* Responsive, visually balanced slider container - ensure image always visible and no stacking */}
+        <div className="w-full flex justify-center mb-10">
+          <div className="room-slider-img w-full max-w-2xl md:max-w-3xl min-h-[220px] md:min-h-[340px] bg-black border border-[#bfc8e6] rounded-2xl shadow-2xl overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-[1.01]">
+            <div className="w-full h-full flex items-center justify-center">
+              <Individual_Room_Slider props={res.data.props.room.Room_Images} />
+            </div>
+          </div>
         </div>
         <div
           className="flex flex-col-reverse md:flex-row items-center md:items-start gap-10 md:gap-14 mt-8"
