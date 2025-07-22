@@ -201,60 +201,84 @@ export default function Navbar() {
               initial="initial"
               animate="animate"
               exit="exit"
-              className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top bg-white p-0 pt-0 border-b-4 border-[color:var(--color-primary)] backdrop-blur-xl flex flex-col"
+              className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top flex flex-col p-0 pt-0 border-b-4 border-[color:var(--color-primary)]"
               style={{
                 background:
-                  "linear-gradient(135deg, #F8FAFC 0%, #8ECAE6 60%, #219EBC 100%)",
+                  "linear-gradient(120deg, rgba(2,48,71,0.92) 0%, rgba(33,158,188,0.92) 60%, rgba(251,133,0,0.92) 100%)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
                 boxShadow:
                   "0 8px 32px 0 rgba(2, 48, 71, 0.10), 0 1.5px 8px 0 rgba(251, 133, 0, 0.08)",
               }}
             >
-              <div className="flex w-full justify-end mb-6 mt-4">
-                <div
-                  className="text-md cursor-pointer text-[color:var(--color-primary)] bg-white/90 rounded-full p-2 shadow-md border border-[#219EBC] mr-6"
-                  onClick={handleNav}
-                >
-                  <MdClose size={28} />
-                </div>
-              </div>
-              <div className="flex flex-col items-center gap-3 flex-1 justify-center">
-                {navLinks.map((link, index) => (
-                  <MobileNavLink
-                    key={index}
-                    title={link.title}
-                    href={link.href}
+              <div className="flex flex-col items-center w-full pt-8 px-4">
+                <div className="flex w-full justify-center mb-8">
+                  <div
+                    className="text-md cursor-pointer text-[color:var(--color-primary)] bg-white/80 rounded-full p-2 shadow-md border border-[#219EBC] hover:bg-[#219EBC] hover:text-white transition-colors duration-200"
                     onClick={handleNav}
-                  />
-                ))}
-              </div>
-              <div className="flex justify-center gap-6 mt-8 mb-2">
-                <a
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="rounded-full bg-[#219EBC] hover:bg-[#FB8500] p-2 transition-colors duration-200 shadow-md flex items-center justify-center border-2 border-[#023047]"
-                >
-                  <MdFacebook className="text-white" size={22} />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="rounded-full bg-[#FB8500] hover:bg-[#219EBC] p-2 transition-colors duration-200 shadow-md flex items-center justify-center border-2 border-[#023047]"
-                >
-                  <AiOutlineInstagram className="text-white" size={22} />
-                </a>
-                <a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Twitter"
-                  className="rounded-full bg-[#219EBC] hover:bg-[#FB8500] p-2 transition-colors duration-200 shadow-md flex items-center justify-center border-2 border-[#023047]"
-                >
-                  <AiOutlineTwitter className="text-white" size={22} />
-                </a>
+                  >
+                    <MdClose size={28} />
+                  </div>
+                </div>
+                <nav className="w-full flex flex-col gap-6 items-center mt-2 mb-10">
+                  {navLinks.map((link, index) => (
+                    <Link
+                      key={index}
+                      href={link.href}
+                      onClick={handleNav}
+                      className="w-full max-w-xs py-4 px-8 rounded-3xl bg-white/90 border-2 border-[#219EBC] shadow-2xl text-xl font-bold text-[#023047] text-center tracking-wide transition-all duration-200 hover:bg-[#219EBC] hover:text-white focus:bg-[#219EBC] focus:text-white focus:outline-none flex items-center justify-center gap-3 group relative overflow-hidden"
+                    >
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-[#FB8500] via-[#FFB703] to-[#219EBC] animate-pulse shadow-md"></span>
+                      <span className="z-10">{link.title}</span>
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-[#219EBC] via-[#8ECAE6] to-[#FB8500] animate-pulse shadow-md"></span>
+                    </Link>
+                  ))}
+                </nav>
+                <div className="flex justify-center gap-8 mt-2 mb-4 w-full">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Facebook"
+                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#8ECAE6] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
+                  >
+                    <MdFacebook
+                      className="text-white group-hover:text-[#FB8500] transition-colors duration-200"
+                      size={28}
+                    />
+                  </a>
+                  <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    className="rounded-full bg-gradient-to-br from-[#FB8500] to-[#FFB703] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
+                  >
+                    <AiOutlineInstagram
+                      className="text-white group-hover:text-[#219EBC] transition-colors duration-200"
+                      size={28}
+                    />
+                  </a>
+                  <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Twitter"
+                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#023047] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
+                  >
+                    <AiOutlineTwitter
+                      className="text-white group-hover:text-[#FB8500] transition-colors duration-200"
+                      size={28}
+                    />
+                  </a>
+                </div>
+                <div className="w-full flex justify-center mt-8">
+                  <span className="block w-20 h-1 rounded-full bg-gradient-to-r from-[#FB8500] via-[#FFB703] to-[#219EBC] opacity-80 animate-pulse"></span>
+                </div>
+                <div className="w-full text-center text-xs text-[#F8FAFC] mt-6 opacity-80 font-semibold tracking-wide">
+                  &copy; {new Date().getFullYear()} Hotel Sweet Home
+                  International
+                </div>
               </div>
             </motion.div>
           )}
