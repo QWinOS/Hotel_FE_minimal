@@ -165,13 +165,23 @@ export default function Navbar() {
       {/* Tab Desktop Navbar */}
       <div className="z-20 flex w-full h-16 items-center justify-between px-4 sm:h-full 2xl:px-16">
         <Link href={"/"}>
-          <div className="wrapper">
+          <div
+            className="wrapper flex items-center justify-center bg-white rounded-full border-2 border-[#219EBC] shadow-lg"
+            style={{
+              width: 56,
+              height: 56,
+              position: "relative",
+              minWidth: 56,
+              minHeight: 56,
+            }}
+          >
             <Image
               className="cursor-pointer"
               src={favicon}
-              fill
               alt="Logo"
-              sizes="(max-width: 640) 640w, (max-width: 750) 750w, (max-width: 828) 828w, (max-width: 1080) 1080w, (max-width: 1200) 1200w, (max-width: 1920) 1920w, (max-width: 2048) 2048w, (max-width: 3840) 3840w"
+              fill
+              sizes="56px"
+              style={{ objectFit: "contain", padding: 8 }}
             />
           </div>
         </Link>
