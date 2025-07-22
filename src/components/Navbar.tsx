@@ -204,17 +204,17 @@ export default function Navbar() {
               className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top flex flex-col p-0 pt-0 border-b-4 border-[color:var(--color-primary)]"
               style={{
                 background:
-                  "linear-gradient(120deg, rgba(2,48,71,0.92) 0%, rgba(33,158,188,0.92) 60%, rgba(251,133,0,0.92) 100%)",
+                  "linear-gradient(120deg, rgba(33,158,188,0.96) 0%, rgba(251,133,0,0.96) 100%)",
                 backdropFilter: "blur(16px)",
                 WebkitBackdropFilter: "blur(16px)",
                 boxShadow:
-                  "0 8px 32px 0 rgba(2, 48, 71, 0.10), 0 1.5px 8px 0 rgba(251, 133, 0, 0.08)",
+                  "0 8px 32px 0 rgba(33,158,188,0.10), 0 1.5px 8px 0 rgba(251,133,0,0.08)",
               }}
             >
               <div className="flex flex-col items-center w-full pt-8 px-4">
                 <div className="flex w-full justify-center mb-8">
                   <div
-                    className="text-md cursor-pointer text-[color:var(--color-primary)] bg-white/80 rounded-full p-2 shadow-md border border-[#219EBC] hover:bg-[#219EBC] hover:text-white transition-colors duration-200"
+                    className="text-md cursor-pointer text-[#219EBC] bg-white/80 rounded-full p-2 shadow-md border border-[#219EBC] hover:bg-[#219EBC] hover:text-white transition-colors duration-200"
                     onClick={handleNav}
                   >
                     <MdClose size={28} />
@@ -240,7 +240,7 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Facebook"
-                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#8ECAE6] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
+                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#FB8500] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
                   >
                     <MdFacebook
                       className="text-white group-hover:text-[#FB8500] transition-colors duration-200"
@@ -252,7 +252,7 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Instagram"
-                    className="rounded-full bg-gradient-to-br from-[#FB8500] to-[#FFB703] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
+                    className="rounded-full bg-gradient-to-br from-[#FB8500] to-[#219EBC] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
                   >
                     <AiOutlineInstagram
                       className="text-white group-hover:text-[#219EBC] transition-colors duration-200"
@@ -264,7 +264,7 @@ export default function Navbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Twitter"
-                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#023047] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
+                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#FB8500] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
                   >
                     <AiOutlineTwitter
                       className="text-white group-hover:text-[#FB8500] transition-colors duration-200"
@@ -273,9 +273,9 @@ export default function Navbar() {
                   </a>
                 </div>
                 <div className="w-full flex justify-center mt-8">
-                  <span className="block w-20 h-1 rounded-full bg-gradient-to-r from-[#FB8500] via-[#FFB703] to-[#219EBC] opacity-80 animate-pulse"></span>
+                  <span className="block w-20 h-1 rounded-full bg-gradient-to-r from-[#FB8500] via-[#219EBC] to-[#FB8500] opacity-80 animate-pulse"></span>
                 </div>
-                <div className="w-full text-center text-xs text-[#F8FAFC] mt-6 opacity-80 font-semibold tracking-wide">
+                <div className="w-full text-center text-xs text-white mt-6 opacity-90 font-semibold tracking-wide">
                   &copy; {new Date().getFullYear()} Hotel Sweet Home
                   International
                 </div>
