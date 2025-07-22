@@ -22,14 +22,14 @@ export default function Home2() {
   // console.log(hotel_amenities);
   imgURL = URL + imgURL;
   return (
-    <div className="min-h-screen font-sans bg-gradient-to-br from-[#F8FAFC] via-[#E5EDF1] to-[#8ECAE6] pb-10 pt-1 sm:pt-10">
+    <div className="min-h-screen font-sans bg-[#F8FAFC] pb-10 pt-1 sm:pt-10">
       {/* Top Banner Desktop */}
-      <div className="hidden sm:flex items-center justify-between max-w-6xl mx-auto  mb-12 bg-white/95 rounded-3xl shadow-2xl border border-[#219EBC] p-8 gap-10">
+      <div className="hidden sm:flex items-center justify-between max-w-6xl mx-auto mb-12 bg-white rounded-3xl shadow-2xl border border-[#219EBC] p-8 gap-10">
         <div className="flex flex-col gap-4 max-w-lg">
-          <h1 className="font-extrabold text-3xl md:text-4xl text-[#023047] mb-2 font-serif tracking-tight leading-tight">
+          <h1 className="font-extrabold text-3xl md:text-4xl text-[#102a43] mb-2 font-serif tracking-tight leading-tight">
             {leader}
           </h1>
-          <p className="text-lg md:text-xl text-[#023047] font-medium">
+          <p className="text-lg md:text-xl text-[#222] font-medium">
             {description}
           </p>
         </div>
@@ -39,33 +39,36 @@ export default function Home2() {
             height={320}
             width={320}
             alt="Hotel"
-            className="rounded-2xl shadow-lg border border-[#8ECAE6] object-cover"
+            className="rounded-2xl shadow-lg border border-[#219EBC] object-cover"
           />
         </div>
       </div>
       {/* Top Banner Mobile */}
-      <div className="flex flex-col sm:hidden m-4 mt-8 bg-white/95 rounded-2xl shadow-xl border border-[#219EBC] p-4 items-center">
+      <div className="flex flex-col sm:hidden m-4 mt-8 bg-white rounded-2xl shadow-xl border border-[#219EBC] p-4 items-center">
         <Image
           src={imgURL}
           height={220}
           width={340}
           alt="Hotel"
-          className="rounded-xl object-cover shadow-md border border-[#8ECAE6]"
+          className="rounded-xl object-cover shadow-md border border-[#219EBC]"
         />
         <div className="flex flex-col justify-around items-center mt-4 gap-2">
-          <h1 className="font-extrabold text-2xl text-[#023047] text-center font-serif tracking-tight">
+          <h1 className="font-extrabold text-2xl text-[#102a43] text-center font-serif tracking-tight">
             {leader}
           </h1>
-          <p className="text-base text-[#023047] text-center font-medium">
+          <p className="text-base text-[#222] text-center font-medium">
             {description}
           </p>
         </div>
       </div>
       {/* Featured Rooms */}
       <div className="max-w-6xl mx-auto mt-12">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#023047] text-center mb-6 font-serif tracking-tight">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#102a43] text-center mb-2 font-serif tracking-tight">
           Featured Rooms
         </h2>
+        <h3 className="text-lg text-[#FB8500] text-center mb-4 font-semibold tracking-wide">
+          Experience comfort and style
+        </h3>
         {/* <div className="flex flex-row justify-around">
           {Object.values(rooms).map((room: any, id: number) => {
             console.log(room + " " + id);
@@ -81,12 +84,12 @@ export default function Home2() {
       </div>
       {/* Hotel Amenities */}
       <div className="max-w-6xl mx-auto mt-16">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#023047] text-center mb-6 font-serif tracking-tight">
+        <h2 className="text-2xl md:text-3xl font-bold text-[#102a43] text-center mb-2 font-serif tracking-tight">
           Why Choose Hotel Sweet Home International?
         </h2>
-        <p className="text-lg text-[#023047] text-center mb-8">
+        <h3 className="text-lg text-[#219EBC] text-center mb-4 font-semibold tracking-wide">
           Discover the unique features that make our hotels stand out.
-        </p>
+        </h3>
         {/* <div>Hotel Amenities</div> */}
         <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-6 justify-center">
           {Object.values(amenities).map((amenitie: any, id: number) => (
