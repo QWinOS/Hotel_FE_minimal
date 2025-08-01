@@ -12,14 +12,17 @@ function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function BlurImage({ props }: any) {
+export function BlurImage({ data }: { data: any }) {
   const [isLoading, setLoading] = useState(true);
-  var { image } = props;
-  var imgURL = image?.url || props?.url;
-  // var imgURL = props.url;
-  imgURL = URL + imgURL;
-  const galleryId = "room-photoswipe-gallery";
+  const image = data.image || data;
+
+  const imgURL = image?.url ? `${URL}${image.url}` : "";
+  const galleryId = `gallery-${
+    image?.id || Math.random().toString(36).substr(2, 9)
+  }`;
+
   useEffect(() => {
+    if (!imgURL) return;
     const lightbox = new PhotoSwipeLightbox({
       gallery: `#${galleryId}`,
       children: "a",
@@ -27,29 +30,44 @@ export function BlurImage({ props }: any) {
     });
     lightbox.init();
     return () => lightbox.destroy();
-  }, []);
+  }, [galleryId, imgURL]);
+
+  if (!imgURL) {
+    return null;
+  }
+
   return (
-    <div id={galleryId} className="w-full">
-      <a href={imgURL} data-pswp-width={1200} data-pswp-height={800}>
-        <div className="relative h-[300px] sm:h-[600px]">
+    <div id={galleryId} className="w-full group">
+      <a
+        href={imgURL}
+        data-pswp-width={image.width || 1200}
+        data-pswp-height={image.height || 800}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div className="relative h-80 w-full overflow-hidden rounded-lg shadow-lg transition-transform duration-300 ease-in-out group-hover:scale-105">
           <Image
-            alt=""
-            loading="lazy"
+            alt={image.alternativeText || "Gallery image"}
             src={imgURL}
             fill
-            sizes="100vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className={cn(
-              "object-cover duration-700 ease-in-out group-hover:opacity-75",
+              "object-cover duration-700 ease-in-out",
               isLoading
                 ? "scale-110 blur-2xl grayscale"
                 : "scale-100 blur-0 grayscale-0"
             )}
-            onLoad={() => setLoading(false)}
+            onLoadingComplete={() => setLoading(false)}
           />
-          <h3 className="mt-4 text-sm text-gray-700">{image?.name}</h3>
-          <p className="mt-1 text-lg font-medium text-gray-900">
-            {image?.username}
-          </p>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-4">
+            <h3 className="text-lg font-bold text-white drop-shadow-md">
+              {image.name || "Untitled"}
+            </h3>
+            <p className="text-sm text-white/80 drop-shadow-md">
+              {image.caption || ""}
+            </p>
+          </div>
         </div>
       </a>
     </div>

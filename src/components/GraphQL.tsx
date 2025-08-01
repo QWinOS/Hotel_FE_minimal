@@ -45,6 +45,27 @@ const getQuery = (params: string, queryTerm: string) => {
                   }`,
         }),
       };
+    case "all_rooms":
+      return {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          query: `{
+                   rooms {
+                      Room_Type
+                      documentId
+                      Description
+                      Price
+                      Availability
+                      Room_Images {
+                        url
+                      }
+                    }
+                  }`,
+        }),
+      };
     case "amenitie":
       return {
         method: "POST",

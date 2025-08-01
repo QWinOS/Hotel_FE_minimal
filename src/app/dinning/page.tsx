@@ -73,7 +73,7 @@ export default async function Menu() {
                 var attributes = blog;
                 return (
                   <Load index={i} key={i}>
-                    <BlurImage props={attributes} key={i} />
+                    <BlurImage data={attributes} key={i} />
                   </Load>
                 );
               }
