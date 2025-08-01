@@ -1,30 +1,17 @@
 "use client";
-// import { use, useEffect, useRef, useState } from "react";
-import { getGraphQLOutput } from "./GraphQL";
+import { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCreative, Navigation, Pagination } from "swiper/modules";
+import { BlocksRenderer } from "@strapi/blocks-react-renderer";
+
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-creative";
-// import Image from "next/image";
-import {
-  BlocksRenderer,
-  type BlocksContent,
-} from "@strapi/blocks-react-renderer";
 
-// import { addDays, format } from "date-fns";
-import { signIn } from "@/auth";
-import { SignIn } from "./sign_in_button";
-// import {SignInButton} from "./sign_in_button";
-// import type { InferGetServerSidePropsType, GetServerSideProps } from "next";
 import { Individual_Room_Slider } from "./slider";
-// import { error } from "console";
-import { Button } from "@/components/ui/button";
-import ContactForm from "./contact_form";
 import { WhatsAppForm } from "./WhatsAppForm";
-import { useRef, useEffect } from "react";
 
 const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
 const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
@@ -50,35 +37,9 @@ const Individual_Room = (res: any) => {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // const [data1, setData1] = useState(null);
-  // const [isLoading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   const fetchData = async (data1: string) => {
-  //     try {
-  //       const res = await getGraphQLOutput("getRoomByDocId", data1);
-  //       // if (!res.ok) {
-  //       //   throw new Error(`HTTP error! status: ${res.status}`);
-  //       // }
-  //       console.log(res.props.room);
-  //       setData1(res.props);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching room data:", error);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   // const data1 = data;
-  //   fetchData(data);
-  // }, []);
-
-  // if (isLoading) return <p>Loading...</p>;
-  // if (!data1.room) return <p>No rooms to show</p>;
-
-  // const response = use(getGraphQLOutput("getRoomByDocId", data));
-  // console.log({ res });
   return (
     <div
-      className="relative min-h-screen py-8 px-2 sm:px-6 md:px-12 lg:px-24 xl:px-40 font-sans bg-gradient-to-br from-[#F8FAFC] via-[#E5EDF1] to-[#8ECAE6]"
+      className="relative min-h-screen py-8 px-2 sm:px-6 md:px-12 lg:px-24 xl:px-40 font-sans bg-gradient-to-br from-slate-50 via-slate-100 to-sky-200"
       style={{ overflow: "visible" }}
     >
       {/* Interactive blurred color blobs for a modern, professional background */}
@@ -130,7 +91,7 @@ const Individual_Room = (res: any) => {
         />
       </div>
       <div
-        className="relative z-10 max-w-6xl mx-auto mb-10 p-4 sm:p-8 md:p-12 lg:p-16 rounded-3xl shadow-2xl bg-white/90 backdrop-blur-2xl border border-[color:var(--color-border)]"
+        className="relative z-10 max-w-6xl mx-auto mb-10 p-6 sm:p-10 md:p-14 lg:p-20 rounded-3xl shadow-xl bg-white/80 backdrop-blur-2xl border border-slate-200/50"
         style={{
           overflow: "visible",
           boxShadow: "0 8px 32px 0 rgba(2, 48, 71, 0.14)",
@@ -144,18 +105,18 @@ const Individual_Room = (res: any) => {
         </div>
         {/* Responsive, visually balanced slider container - ensure image always visible and no stacking */}
         <div className="w-full flex justify-center mb-10">
-          <div className="room-slider-img w-full max-w-2xl md:max-w-3xl min-h-[220px] md:min-h-[340px] bg-[#023047] border border-[#219EBC] rounded-2xl shadow-2xl overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-[1.01]">
+          <div className="room-slider-img w-full max-w-2xl md:max-w-3xl min-h-[220px] md:min-h-[340px] bg-slate-100 border border-slate-200 rounded-2xl shadow-lg overflow-hidden flex items-center justify-center transition-transform duration-300 hover:scale-[1.01]">
             <div className="w-full h-full flex items-center justify-center">
               <Individual_Room_Slider props={res.data.props.room.Room_Images} />
             </div>
           </div>
         </div>
         <div
-          className="flex flex-col-reverse md:flex-row items-center md:items-start gap-10 md:gap-14 mt-8"
+          className="flex flex-col-reverse md:flex-row items-center md:items-start gap-8 md:gap-12 mt-8"
           style={{ overflow: "visible" }}
         >
           <div
-            className="prose w-full max-w-lg text-[#023047] dark:text-[#D6D6D8] bg-white/95 rounded-2xl p-5 sm:p-8 md:p-10 shadow-md border border-[#219EBC] transition-shadow duration-300 hover:shadow-2xl"
+            className="prose w-full max-w-lg text-[#023047] dark:text-[#D6D6D8] bg-white/95 rounded-2xl p-5 sm:p-8 md:p-10 shadow-md border border-slate-200 transition-shadow duration-300 hover:shadow-xl"
             style={{ overflow: "visible" }}
           >
             <BlocksRenderer
@@ -202,14 +163,14 @@ const Individual_Room = (res: any) => {
             style={{ overflow: "visible" }}
           >
             <div
-              className="bg-gradient-to-br from-[#FFB703] to-[#FB8500] rounded-2xl p-2 sm:p-7 md:p-10 shadow-2xl border border-[#219EBC] flex flex-col items-center backdrop-blur-xl w-full"
+              className="bg-gradient-to-br from-[#219EBC] to-[#8ECAE6] rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl border border-white/20 flex flex-col items-center backdrop-blur-xl w-full"
               style={{
                 overflow: "visible",
                 boxShadow: "0 8px 32px 0 rgba(2, 48, 71, 0.14)",
               }}
             >
-              <h3 className="text-base sm:text-xl md:text-2xl font-bold text-[#023047] mb-2 sm:mb-6 tracking-wide font-serif text-center">
-                Contact &amp; Book Instantly
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6 tracking-wide font-serif text-center drop-shadow-lg">
+                Contact & Book Instantly
               </h3>
               <WhatsAppForm />
             </div>

@@ -62,29 +62,6 @@
   }
 }
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-} */
-
-/* @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=meeting_room");
-
-.material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 40;
-} */
 @utility h2 {
   @apply text-4xl;
 }
@@ -109,16 +86,6 @@ body {
   @apply rounded-lg;
 }
 @utility prose {
-  /* .customProse {
-    @apply max-w-xs text-[#4B3221]
-    sm:prose-sm
-    md:prose-sm
-    lg:prose-xl xl:prose-xl dark:text-[#D6D6D8]
-    sm:max-w-sm 
-    md:max-w-lg 
-    lg:max-w-3xl
-    xl:max-w-4xl;
-  } */
   & h2 {
     @apply text-4xl;
   }
@@ -147,25 +114,25 @@ body {
 
 @layer base {
   :root {
-    /* Hotel Brand Palette */
+    /* Light Theme Palette */
+    --background: 210 20% 98%;
+    --foreground: 197 100% 14%; /* #023047 */
+    --card: 0 0% 100%;
+    --card-foreground: 197 100% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 197 100% 14%;
     --primary: 33 100% 53%; /* #FB8500 */
-    --primary-foreground: 197 100% 14%; /* #023047 */
+    --primary-foreground: 0 0% 100%;
     --secondary: 199 77% 44%; /* #219EBC */
-    --secondary-foreground: 33 100% 53%; /* #FB8500 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 192 62% 75%; /* #8ECAE6 */
-    --accent-foreground: 197 100% 14%; /* #023047 */
-    --background: 197 100% 14%; /* #023047 */
-    --foreground: 33 100% 53%; /* #FB8500 */
-    --card: 0 0% 100%; /* #fff */
-    --card-foreground: 197 100% 14%; /* #023047 */
-    --popover: 33 100% 53%; /* #FB8500 */
-    --popover-foreground: 0 0% 100%; /* #fff */
-    --muted: 43 100% 51%; /* #FFB703 */
-    --muted-foreground: 197 100% 14%; /* #023047 */
-    --destructive: 0 84.2% 60.2%; /* default red */
-    --destructive-foreground: 0 0% 98%;
-    --border: 199 77% 44%; /* #219EBC */
-    --input: 192 62% 75%; /* #8ECAE6 */
+    --accent-foreground: 197 100% 14%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
     --ring: 33 100% 53%; /* #FB8500 */
     --radius: 0.5rem;
   }
