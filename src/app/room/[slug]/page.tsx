@@ -14,9 +14,9 @@ export async function generateStaticParams() {
 export default async function RoomPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
   const data = await getGraphQLOutput("getRoomByDocId", slug);
 
   return <Individual_Room data={data} />;
