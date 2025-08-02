@@ -61,10 +61,10 @@ export function BlurImage({ data }: { data: any }) {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute bottom-0 left-0 p-4">
             <h3 className="text-lg font-bold text-white drop-shadow-md">
-              {image.name || "Untitled"}
+              {image.caption || ""}
             </h3>
             <p className="text-sm text-white/80 drop-shadow-md">
-              {image.caption || ""}
+              {image.alternativeText || ""}
             </p>
           </div>
         </div>
