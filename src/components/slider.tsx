@@ -21,12 +21,7 @@ import Room from "@/app/room/[slug]/page";
 import Link from "next/link";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
-import {
-  FaArrowAltCircleLeft,
-  FaArrowAltCircleRight,
-  FaArrowCircleLeft,
-  FaArrowCircleRight,
-} from "react-icons/fa";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
 const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
 const URL = host + ":" + port;
@@ -140,21 +135,19 @@ const Slider = (rooms: any) => {
           </SwiperSlide>
         );
       })}
-
       <button
         ref={(node) => setPrevEl(node)}
-        className="absolute top-1/2 ml-10 -left-4 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-2 shadow-md hover:bg-opacity-100 transition-all duration-300"
+        className="absolute top-1/2 left-2 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md transition-all duration-300 hover:bg-slate-100 disabled:opacity-50 md:-left-4"
         aria-label="Previous slide"
       >
-        <FaArrowAltCircleLeft className="text-gray-800 text-4xl" />
+        <ChevronLeft className="h-6 w-6 text-slate-800" />
       </button>
-
       <button
         ref={(node) => setNextEl(node)}
-        className="absolute top-1/2 mr-10 -right-4 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-2 shadow-md hover:bg-opacity-100 transition-all duration-300"
+        className="absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md transition-all duration-300 hover:bg-slate-100 disabled:opacity-50 md:-right-4"
         aria-label="Next slide"
       >
-        <FaArrowAltCircleRight className="text-gray-800 text-4xl" />
+        <ChevronRight className="h-6 w-6 text-slate-800" />
       </button>
     </Swiper>
   );
@@ -488,17 +481,17 @@ export const Individual_Room_Slider = ({ props }: { props: any }) => {
         ))}{" "}
         <button
           ref={(node) => setPrevEl(node)}
-          className="absolute top-1/2 ml-10 -left-4 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-2 shadow-md hover:bg-opacity-100 transition-all duration-300"
+          className="absolute top-1/2 left-2 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md transition-all duration-300 hover:bg-slate-100 disabled:opacity-50 md:-left-4"
           aria-label="Previous slide"
         >
-          <FaArrowAltCircleLeft className="text-gray-800 text-4xl" />
+          <ChevronLeft className="h-6 w-6 text-slate-800" />
         </button>
         <button
           ref={(node) => setNextEl(node)}
-          className="absolute top-1/2 mr-10 -right-4 z-10 -translate-y-1/2 bg-white bg-opacity-80 rounded-full p-2 shadow-md hover:bg-opacity-100 transition-all duration-300"
+          className="absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md transition-all duration-300 hover:bg-slate-100 disabled:opacity-50 md:-right-4"
           aria-label="Next slide"
         >
-          <FaArrowAltCircleRight className="text-gray-800 text-4xl" />
+          <ChevronRight className="h-6 w-6 text-slate-800" />
         </button>
       </Swiper>
     </div>
@@ -509,14 +502,17 @@ export const About_Our_Team_Slider = ({ props }: { props: any }) => {
   // console.log(props);
   return (
     <>
-      <div className="w-full max-w-6xl mx-auto px-4">
+      <div className="relative w-full max-w-6xl mx-auto px-4 group">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           spaceBetween={30}
           slidesPerView={1.5} // Show 1 full and a bit of the next/prev
           centeredSlides={true}
           loop={true}
-          navigation
+          navigation={{
+            nextEl: ".swiper-button-next-team",
+            prevEl: ".swiper-button-prev-team",
+          }}
           slidesOffsetAfter={20}
           slidesOffsetBefore={20}
           pagination={{ clickable: true }}
@@ -540,7 +536,7 @@ export const About_Our_Team_Slider = ({ props }: { props: any }) => {
             },
           }}
           autoplay={{ delay: 3500, disableOnInteraction: false }}
-          className="myTeamSwiper " // Added padding for pagination/navigation
+          className="myTeamSwiper"
         >
           {props.map((picture: ProfileImage, index: number) => (
             <SwiperSlide
@@ -565,6 +561,12 @@ export const About_Our_Team_Slider = ({ props }: { props: any }) => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="swiper-button-prev-team absolute top-1/2 left-2 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md transition-all duration-300 hover:bg-slate-100 disabled:opacity-50">
+          <ChevronLeft className="h-6 w-6 text-slate-800" />
+        </div>
+        <div className="swiper-button-next-team absolute top-1/2 right-2 z-10 -translate-y-1/2 bg-white rounded-full p-2 shadow-md transition-all duration-300 hover:bg-slate-100 disabled:opacity-50">
+          <ChevronRight className="h-6 w-6 text-slate-800" />
+        </div>
       </div>
     </>
   );

@@ -1,13 +1,12 @@
 "use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import favicon from "../app/favicon.ico";
-import { useState } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { MdOutlineMenu, MdClose, MdFacebook } from "react-icons/md";
 import { AiOutlineInstagram, AiOutlineTwitter } from "react-icons/ai";
-// import ThemeModeToggler from "./ThemeModeToggler";
-import "./component.css";
-import { motion, AnimatePresence } from "framer-motion";
+import favicon from "../app/favicon.ico";
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -18,283 +17,130 @@ const navLinks = [
   { title: "Contact", href: "/contact" },
 ];
 
-const menuVars = {
-  initial: {
-    x: "100%", // Start completely off-screen to the right
-    opacity: 0,
-  },
-  animate: {
-    x: 0, // Slide into view
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-    },
-  },
-  exit: {
-    x: "100%", // Slide out to the right
-    opacity: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-};
-
-const containerVars = {
-  initial: {
-    transition: {
-      staggerChildren: 0.09,
-      staggerDirection: -1,
-    },
-  },
-  open: {
-    transition: {
-      delayChildren: 0.3,
-      staggerChildren: 0.09,
-      staggerDirection: 1,
-    },
-  },
-};
-
-const mobileLinkVars = {
-  initial: {
-    y: "30vh",
-    transition: {
-      duration: 0.5,
-      ease: [0.42, 0, 0.58, 1], // cubic-bezier for easeInOut
-    },
-  },
-  open: {
-    y: 0,
-    transition: {
-      ease: [0.42, 0, 0.58, 1], // cubic-bezier for easeInOut
-      duration: 0.7,
-    },
-  },
-};
-const mobileLinkIcon = {
-  initial: {
-    y: "30vh",
-    transition: {
-      duration: 0.5,
-      ease: [0.37, 0, 0.63, 1],
-      staggerChildren: 0.09,
-      staggerDirection: -1,
-    },
-  },
-  open: {
-    x: 0,
-    y: 0,
-    transition: {
-      ease: [0, 0.55, 0.45, 1],
-      duration: 0.7,
-      delayChildren: 0.3,
-      staggerChildren: 0.09,
-      staggerDirection: 1,
-    },
-  },
-};
-const mobileNavIcon = {
-  initial: {
-    y: "10vh",
-    transition: {
-      duration: 0.5,
-      ease: [0.37, 0, 0.63, 1],
-      staggerChildren: 0.09,
-      staggerDirection: 1,
-    },
-  },
-  open: {
-    y: 0,
-    transition: {
-      ease: [0, 0.55, 0.45, 1],
-      duration: 0.7,
-      delayChildren: 0.3,
-      staggerChildren: 0.09,
-      staggerDirection: -1,
-    },
-  },
-};
-const desktop = {
-  initial: {
-    y: "30vh",
-    transition: {
-      duration: 0.5,
-      ease: [0.37, 0, 0.63, 1],
-    },
-  },
-  open: {
-    y: 0,
-    transition: {
-      ease: [0, 0.55, 0.45, 1],
-      duration: 0.7,
-    },
-  },
-};
-
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+
   const handleNav = () => {
-    setMenuOpen((menuOpen) => !menuOpen);
+    setMenuOpen(!menuOpen);
   };
-  const MobileNavLink = ({ title, href }: any) => {
-    return (
-      <motion.div className="w-full text-center my-2" onClick={handleNav}>
-        <Link
-          className="navbar-link font-bold text-xl py-3 px-4 rounded-lg block bg-white/90 shadow-md border border-[#219EBC] hover:bg-[#219EBC] hover:text-white transition-all duration-200 mx-auto max-w-xs tracking-wide"
-          href={href}
-        >
-          {title}
-        </Link>
-      </motion.div>
-    );
-  };
-  const DesktopNav = ({ title, href }: any) => {
-    return (
-      <motion.div className="m-2 px-3 py-1 rounded-lg transition-all duration-200 hover:bg-[color:var(--color-accent)] hover:shadow-md">
-        <Link
-          className="nav navbar-link font-semibold tracking-wide text-lg"
-          href={href}
-        >
-          {title}
-        </Link>
-      </motion.div>
-    );
+
+  const menuVars: Variants = {
+    initial: { x: "100%" },
+    animate: { x: 0, transition: { duration: 0.3, ease: "easeInOut" } },
+    exit: { x: "100%", transition: { duration: 0.3, ease: "easeInOut" } },
   };
 
   return (
-    <div className="bg-white fixed top-0 z-20 h-16 sm:h-20 w-full shadow-xl border-b border-[color:var(--color-border)] backdrop-blur-xl">
-      {/* Tab Desktop Navbar */}
-      <div className="z-20 flex w-full h-16 items-center justify-between px-4 sm:h-full 2xl:px-16">
-        <Link href={"/"}>
-          <div
-            className="wrapper flex items-center justify-center bg-white rounded-full border-2 border-[#219EBC] shadow-lg"
-            style={{
-              width: 56,
-              height: 56,
-              position: "relative",
-              minWidth: 56,
-              minHeight: 56,
-            }}
-          >
+    <header className="fixed top-0 z-50 w-full bg-white/80 shadow-md backdrop-blur-lg border-b border-slate-200/50">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="relative h-12 w-12">
             <Image
-              className="cursor-pointer"
               src={favicon}
-              alt="Logo"
+              alt="Hotel Logo"
               fill
-              sizes="56px"
-              style={{ objectFit: "contain", padding: 8 }}
+              sizes="48px"
+              className="object-contain"
             />
           </div>
+          <span className="text-xl font-bold text-slate-800 hidden sm:block">
+            Sweet Home
+          </span>
         </Link>
-        <div className="hidden sm:flex items-center gap-2">
-          {navLinks.map((link, index) => {
-            return (
-              <DesktopNav key={index} title={link.title} href={link.href} />
-            );
-          })}
-          <div className="ml-5 self-center text-xl">
-            {/* <ThemeModeToggler /> */}
-          </div>
-        </div>
-        <div
-          onClick={handleNav}
-          className="cursor-pointer pl-4 pr-2 sm:hidden text-[color:var(--color-primary)]"
-        >
-          <MdOutlineMenu size={28} />
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.title}
+              href={link.href}
+              className="px-4 py-2 text-slate-600 font-medium rounded-md transition-colors hover:bg-slate-100 hover:text-slate-900"
+            >
+              {link.title}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden">
+          <button onClick={handleNav} aria-label="Open menu">
+            <MdOutlineMenu size={28} className="text-slate-800" />
+          </button>
         </div>
       </div>
-      {/* Mobile Navbar */}
-      <div className="visible sm:hidden">
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              variants={menuVars}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="fixed left-0 top-0 h-[100dvh] w-[100dvw] origin-top flex flex-col p-0 pt-0 border-b-4 border-[color:var(--color-primary)]"
-              style={{
-                background:
-                  "linear-gradient(120deg, rgba(33,158,188,0.96) 0%, rgba(251,133,0,0.96) 100%)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-                boxShadow:
-                  "0 8px 32px 0 rgba(33,158,188,0.10), 0 1.5px 8px 0 rgba(251,133,0,0.08)",
-              }}
-            >
-              <div className="flex flex-col items-center w-full pt-8 px-4">
-                <div className="flex w-full justify-center mb-8">
-                  <div
-                    className="text-md cursor-pointer text-[#219EBC] bg-white/80 rounded-full p-2 shadow-md border border-[#219EBC] hover:bg-[#219EBC] hover:text-white transition-colors duration-200"
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            variants={menuVars}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="fixed inset-0 z-50 h-screen w-screen bg-slate-800/50 backdrop-blur-lg md:hidden"
+          >
+            <div className="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white shadow-2xl">
+              <div className="flex justify-end p-4">
+                <button onClick={handleNav} aria-label="Close menu">
+                  <MdClose size={28} className="text-slate-800" />
+                </button>
+              </div>
+              <nav className="flex flex-col items-center gap-6 p-8">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.title}
+                    href={link.href}
                     onClick={handleNav}
+                    className="w-full text-center text-xl font-semibold text-slate-700 py-3 rounded-lg transition-colors hover:bg-slate-100"
                   >
-                    <MdClose size={28} />
-                  </div>
-                </div>
-                <nav className="w-full flex flex-col gap-6 items-center mt-2 mb-10">
-                  {navLinks.map((link, index) => (
-                    <Link
-                      key={index}
-                      href={link.href}
-                      onClick={handleNav}
-                      className="w-full max-w-xs py-4 px-8 rounded-3xl bg-white/90 border-2 border-[#219EBC] shadow-2xl text-xl font-bold text-[#023047] text-center tracking-wide transition-all duration-200 hover:bg-[#219EBC] hover:text-white focus:bg-[#219EBC] focus:text-white focus:outline-none flex items-center justify-center gap-3 group relative overflow-hidden"
-                    >
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-[#FB8500] via-[#FFB703] to-[#219EBC] animate-pulse shadow-md"></span>
-                      <span className="z-10">{link.title}</span>
-                      <span className="absolute right-4 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-[#219EBC] via-[#8ECAE6] to-[#FB8500] animate-pulse shadow-md"></span>
-                    </Link>
-                  ))}
-                </nav>
-                <div className="flex justify-center gap-8 mt-2 mb-4 w-full">
-                  <a
-                    href="https://facebook.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#FB8500] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
-                  >
-                    <MdFacebook
-                      className="text-white group-hover:text-[#FB8500] transition-colors duration-200"
-                      size={28}
-                    />
-                  </a>
-                  <a
+                    {link.title}
+                  </Link>
+                ))}
+              </nav>
+              <div className="absolute bottom-8 left-0 w-full">
+                <div className="flex justify-center gap-6">
+                  <SocialIcon href="https://facebook.com" aria-label="Facebook">
+                    <MdFacebook size={24} />
+                  </SocialIcon>
+                  <SocialIcon
                     href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     aria-label="Instagram"
-                    className="rounded-full bg-gradient-to-br from-[#FB8500] to-[#219EBC] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
                   >
-                    <AiOutlineInstagram
-                      className="text-white group-hover:text-[#219EBC] transition-colors duration-200"
-                      size={28}
-                    />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Twitter"
-                    className="rounded-full bg-gradient-to-br from-[#219EBC] to-[#FB8500] border-2 border-[#023047] hover:scale-110 hover:shadow-xl p-3 transition-all duration-200 shadow-lg flex items-center justify-center group"
-                  >
-                    <AiOutlineTwitter
-                      className="text-white group-hover:text-[#FB8500] transition-colors duration-200"
-                      size={28}
-                    />
-                  </a>
+                    <AiOutlineInstagram size={24} />
+                  </SocialIcon>
+                  <SocialIcon href="https://twitter.com" aria-label="Twitter">
+                    <AiOutlineTwitter size={24} />
+                  </SocialIcon>
                 </div>
-                <div className="w-full flex justify-center mt-8">
-                  <span className="block w-20 h-1 rounded-full bg-gradient-to-r from-[#FB8500] via-[#219EBC] to-[#FB8500] opacity-80 animate-pulse"></span>
-                </div>
-                <div className="w-full text-center text-xs text-white mt-6 opacity-90 font-semibold tracking-wide">
+                <p className="mt-6 text-center text-xs text-slate-500">
                   &copy; {new Date().getFullYear()} Hotel Sweet Home
                   International
-                </div>
+                </p>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 }
+
+const SocialIcon = ({
+  href,
+  "aria-label": ariaLabel,
+  children,
+}: {
+  href: string;
+  "aria-label": string;
+  children: React.ReactNode;
+}) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={ariaLabel}
+    className="text-slate-500 transition-colors hover:text-amber-500"
+  >
+    {children}
+  </a>
+);

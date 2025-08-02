@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useId } from "react";
 
 import "photoswipe/style.css";
 const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
@@ -17,9 +17,8 @@ export function BlurImage({ data }: { data: any }) {
   const image = data.image || data;
 
   const imgURL = image?.url ? `${URL}${image.url}` : "";
-  const galleryId = `gallery-${
-    image?.id || Math.random().toString(36).substr(2, 9)
-  }`;
+  const reactId = useId();
+  const galleryId = `gallery-${image?.id || reactId}`;
 
   useEffect(() => {
     if (!imgURL) return;
@@ -57,7 +56,7 @@ export function BlurImage({ data }: { data: any }) {
                 ? "scale-110 blur-2xl grayscale"
                 : "scale-100 blur-0 grayscale-0"
             )}
-            onLoadingComplete={() => setLoading(false)}
+            onLoad={() => setLoading(false)}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute bottom-0 left-0 p-4">
