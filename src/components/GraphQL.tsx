@@ -152,6 +152,12 @@ const getQuery = (params: string, queryTerm: string) => {
                   caption
                   alternativeText
                 }
+                Testimonials_Title
+                Testimonial {
+                  Author_Name
+                  Content
+                  Rating
+                }
               }
           }`,
         }),

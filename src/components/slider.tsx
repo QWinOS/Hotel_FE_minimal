@@ -416,7 +416,7 @@ const SliderMobile = (rooms: any) => {
 // };
 //  how to integrate
 export const Individual_Room_Slider = ({ props }: { props: any }) => {
-  // console.log(props);
+  // console.log("D3f4ult -> " + props);
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
   const swiperRef = useRef<any>(null);

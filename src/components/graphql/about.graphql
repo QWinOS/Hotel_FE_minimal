@@ -21,5 +21,11 @@ query about {
       caption
       alternativeText
     }
+    Testimonials_Title
+    Testimonials {
+      Author_Name
+      Content
+      Rating
+    }
   }
 }
