@@ -74,16 +74,13 @@ export default async function GalleryContent({
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
           {blogDataArray.map((blog, i) => (
             <Load index={i} key={i}>
-              <BlurImage props={blog} key={i} />
+              <BlurImage data={blog} key={i} />
             </Load>
           ))}
         </div>
 
         <div className={totalPage === 1 ? "opacity-0" : "opacity-100"}>
-          <PaginationControls
-            hasNextPage={pageNumber < totalPage}
-            hasPrevPage={pageNumber > 1}
-          />
+          <PaginationControls currentPage={pageNumber} totalPage={totalPage} />
         </div>
       </div>
     );

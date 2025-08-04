@@ -1,4 +1,5 @@
 import PaginationControls from "@/components/PaginationControls";
+import { Suspense } from "react";
 import { BlurImage } from "../gallery/[page]/ImageCard";
 import { Load } from "@/components/Framer";
 
@@ -81,12 +82,9 @@ export default async function Menu() {
           </div>
           <div>
             <div className="opacity-0">
-              <PaginationControls
-                currentPage={1}
-                totalPage={1}
-                // hasNextPage={Number(page) < totalPage}
-                // hasPrevPage={Number(page) > 1}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <PaginationControls currentPage={1} totalPage={1} />
+              </Suspense>
             </div>
           </div>
         </div>
