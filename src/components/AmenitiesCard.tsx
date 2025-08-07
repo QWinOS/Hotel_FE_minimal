@@ -1,15 +1,15 @@
 import Image from "next/image";
 
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
 
 export default function AmenitiesCard({ amenity }: { amenity: any }) {
   const { Title, Description, Thumbnail } = amenity;
-  const thumbnailUrl = Thumbnail?.url
-    ? `${URL}${Thumbnail.url}`
-    : "/placeholder.svg";
-
+  const thumbnailUrl = Thumbnail?.url;
   return (
     <div className="flex items-center gap-4 rounded-lg border bg-white p-4 shadow-sm transition-all hover:shadow-md">
       <div className="relative h-16 w-16 flex-shrink-0">

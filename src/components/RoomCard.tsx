@@ -2,15 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
 
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+// const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
 
 export default function RoomCard({ room }: { room: any }) {
   const { Room_Type, Description, Price, Room_Images, documentId } = room;
-  const imageUrl = Room_Images?.[0]?.url
-    ? `${URL}${Room_Images[0].url}`
-    : "/placeholder.svg";
+  const imageUrl = Room_Images?.[0]?.url;
   const descriptionText =
     Description?.[0]?.children?.[0]?.text || "No description available.";
 

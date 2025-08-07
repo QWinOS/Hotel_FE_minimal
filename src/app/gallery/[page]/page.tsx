@@ -3,9 +3,17 @@ import { getGraphQLOutput } from "@/components/GraphQL";
 import PaginationControls from "@/components/PaginationControls";
 import Individual_Room from "@/components/Room";
 import { BlurImage } from "./ImageCard";
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+// const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+// const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+// const URL = host + ":" + port;
+
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
+
 async function getImageListFromStrapi(page: number) {
   try {
     const fetchParams = {
@@ -40,7 +48,7 @@ async function getImageListFromStrapi(page: number) {
         variables: { page },
       }),
     };
-    const res = await fetch(`${URL}/graphql`, fetchParams);
+    const res = await fetch(`${BASE_API_URL}/graphql`, fetchParams);
     const { data } = await res.json();
     return {
       props: data,

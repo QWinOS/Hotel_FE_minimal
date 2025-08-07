@@ -22,9 +22,12 @@ import Link from "next/link";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import "photoswipe/style.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
 
 interface ProfileImage {
   url: string;
@@ -95,11 +98,14 @@ const Slider = (rooms: any) => {
       {Object.keys(rooms.props).map((room: unknown, id: number) => {
         let room_Type = rooms.props[id].Room_Type;
         let description = rooms.props[id].Description[0].children[0].text;
-        let room_img = rooms.props[id].Room_Images[0].url;
+        let room_img = rooms?.props[id]?.Room_Images[0]?.url;
         let price = rooms.props[id].Price;
         let docId = rooms.props[id].documentId;
 
-        room_img = URL + room_img;
+        // room_img =
+        //   room_img.startsWith("https") || room_img.startsWith("http")
+        //     ? room_img
+        //     : `${BASE_API_URL}${room_img}`;
         // console.log(rooms.props[id] + " " + id);
         return (
           <SwiperSlide key={id}>
@@ -177,7 +183,7 @@ const SliderMobile = (rooms: any) => {
             <Link href={`/room/${roomData.documentId}`} className="block">
               <div className="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden shadow-lg">
                 <Image
-                  src={URL + roomData.Room_Images[0]?.url}
+                  src={roomData.Room_Images[0]?.url}
                   alt={roomData.Room_Type || "Room"}
                   fill
                   className="object-cover"
@@ -461,14 +467,14 @@ export const Individual_Room_Slider = ({ props }: { props: any }) => {
         {props.map((img: any, idx: number) => (
           <SwiperSlide key={idx}>
             <a
-              href={URL + img.url}
+              href={img.url}
               data-pswp-width={img.width || 1200}
               data-pswp-height={img.height || 800}
               // No target="_blank" or rel
             >
               <div className="relative h-[300px] sm:h-[600px]">
                 <Image
-                  src={URL + img.url}
+                  src={img.url}
                   alt={`Room image ${idx + 1}`}
                   fill
                   className="object-cover sm:rounded-2xl"
@@ -545,7 +551,7 @@ export const About_Our_Team_Slider = ({ props }: { props: any }) => {
             >
               <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg mb-4">
                 <Image
-                  src={URL + picture.url}
+                  src={picture.url}
                   alt={picture.alternativeText || `Team member ${index + 1}`}
                   fill
                   style={{ objectFit: "cover" }}

@@ -3,9 +3,13 @@ import { Suspense } from "react";
 import { BlurImage } from "../gallery/[page]/ImageCard";
 import { Load } from "@/components/Framer";
 
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
+
 async function getMenuImageListFromStrapi() {
   // console.log("Page Inside -> " + page);
   // let p: number | Number = page;
@@ -29,8 +33,16 @@ async function getMenuImageListFromStrapi() {
       }),
     };
     // console.log("Body => " + fetchParams.body);
-    const res = await fetch(`${URL}/graphql`, fetchParams);
+    const res = await fetch(`${BASE_API_URL}/graphql`, fetchParams);
     const { data } = await res.json();
+
+    if (data?.dinning?.menu) {
+      data.dinning.menu = data.dinning.menu.map((item: any) => ({
+        ...item,
+        url: item.url,
+      }));
+    }
+
     // console.log({ data });
     return {
       props: data,

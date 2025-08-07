@@ -5,9 +5,13 @@ import FeaturedRooms from "@/components/FeaturedRooms";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+// const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
 
 export default async function HomePage() {
   const { props: bannerData, error: bannerError } = await getGraphQLOutput(
@@ -36,7 +40,7 @@ export default async function HomePage() {
     Left_Aligned_Text: leader,
     Pics,
   } = bannerData?.banner || {};
-  const imgURL = Pics?.[0]?.url ? `${URL}${Pics[0].url}` : "/placeholder.svg";
+  const imgURL = Pics?.[0]?.url;
   const rooms = roomData?.rooms || [];
   const amenities = amenityData?.amenities || [];
 

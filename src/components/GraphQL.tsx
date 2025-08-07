@@ -1,8 +1,11 @@
 import { headers } from "next/headers";
 
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
 
 const getQuery = (params: string, queryTerm: string) => {
   switch (params) {
@@ -304,7 +307,7 @@ async function getGraphQLOutput(
     ) {
       delete fetchOptions.cache;
     }
-    const res = await fetch(`${URL}/graphql`, fetchOptions);
+    const res = await fetch(`${BASE_API_URL}/graphql`, fetchOptions);
     const { data } = await res.json();
     // fetchPosts(params, queryTerm);
     return {

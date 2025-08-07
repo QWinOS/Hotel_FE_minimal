@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
       "141.148.215.119",
       "155.248.254.64",
       "192.168.1.198",
+      "141.148.215.119", // Add the new Strapi host
+      "*.anik3t.dev", // Add the new Strapi host
+      "res.cloudinary.com",
     ],
     remotePatterns: [
       {

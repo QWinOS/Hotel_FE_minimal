@@ -4,9 +4,12 @@ import PhotoSwipeLightbox from "photoswipe/lightbox";
 import React, { useEffect, useState, useId } from "react";
 
 import "photoswipe/style.css";
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -16,7 +19,7 @@ export function BlurImage({ data }: { data: any }) {
   const [isLoading, setLoading] = useState(true);
   const image = data.image || data;
 
-  const imgURL = image?.url ? `${URL}${image.url}` : "";
+  const imgURL = image?.url;
   const reactId = useId();
   const galleryId = `gallery-${image?.id || reactId}`;
 

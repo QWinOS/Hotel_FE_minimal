@@ -1,5 +1,5 @@
 // app/gallery/GalleryContent.tsx
-import React from "react";
+import React, { Suspense } from "react";
 import { BlurImage } from "./ImageCard";
 import PaginationControls from "@/components/PaginationControls";
 import { Load } from "@/components/Framer";
@@ -24,12 +24,21 @@ interface GalleryResponse {
   };
 }
 
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = `${host}:${port}`;
+// const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+// const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+// const URL = `${host}:${port}`;
+// const URL =
+//   process.env.NEXT_PUBLIC_STRAPI_API_URL ||
+//   `${process.env.NEXT_PUBLIC_STRAPI_API_HOST}:${process.env.NEXT_PUBLIC_STRAPI_API_PORT}`;
 
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
 async function getImageListFromStrapi(page: number): Promise<GalleryResponse> {
-  const res = await fetch(`${URL}/graphql`, {
+  const res = await fetch(`${BASE_API_URL}/graphql`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

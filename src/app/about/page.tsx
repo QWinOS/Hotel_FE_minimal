@@ -10,9 +10,13 @@ interface CenterImage {
   url: string;
 }
 
-const host = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
-const port = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
-const URL = host + ":" + port;
+const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+const STRAPI_API_HOST = process.env.NEXT_PUBLIC_STRAPI_API_HOST;
+const STRAPI_API_PORT = process.env.NEXT_PUBLIC_STRAPI_API_PORT;
+
+// Determine the base URL for API requests
+const BASE_API_URL = STRAPI_API_URL || `${STRAPI_API_HOST}:${STRAPI_API_PORT}`;
+
 export default function About() {
   const about = use(getGraphQLOutput("about", "")).props?.about;
   // console.log(about);
@@ -22,7 +26,13 @@ export default function About() {
       {/* Hero Section */}
       <section className="relative h-[50vh] min-h-[300px] w-full">
         <Image
-          src={`${URL}${about?.Title_Background?.url}`}
+          src={
+            about?.Title_Background?.url
+              ? BASE_API_URL.includes("localhost")
+                ? `${BASE_API_URL}${about.Title_Background.url}`
+                : about.Title_Background.url
+              : ""
+          }
           alt={about?.About_Title || "About Us"}
           fill
           className="object-cover"
