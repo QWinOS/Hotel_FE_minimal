@@ -65,7 +65,7 @@ export default async function HomePage() {
               .map((word: string, index: number, array: string[]) => (
                 <span
                   key={index}
-                  className={index >= array.length - 3 ? "text-[#E67E22]" : ""}
+                  className={index >= array.length - 4 ? "text-[#E67E22]" : ""}
                 >
                   {word}{" "}
                 </span>
