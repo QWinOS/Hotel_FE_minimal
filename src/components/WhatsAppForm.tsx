@@ -30,7 +30,7 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number must be at least 10 characters"),
   members: z.string(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string().min(2, "Message must be at least 2 characters"),
   selectedDate: z
     .object({
       from: z.string().min(1, "Please select a starting date"),
@@ -83,7 +83,13 @@ export function WhatsAppForm() {
     }
 
     const whatsapp_No = process.env.NEXT_PUBLIC_WHATSAPP_NO;
-    const whatsappMessage = `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *No. of Members:* ${members}\n *Message:* ${message}${dateString}`;
+    // Escape WhatsApp markdown characters in the message content
+    const escapedMessage = message
+      .replace(/\*/g, "\\*") // Escape asterisks for bold
+      .replace(/_/g, "\\_") // Escape underscores for italics
+      .replace(/~/g, "\\~"); // Escape tildes for strikethrough
+
+    const whatsappMessage = `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *No. of Members:* ${members}\n *Message:* ${escapedMessage}${dateString}`;
     const whatsappURL = `https://wa.me/91${whatsapp_No}?text=${encodeURIComponent(
       whatsappMessage
     )}`;
