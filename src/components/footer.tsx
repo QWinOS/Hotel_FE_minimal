@@ -9,8 +9,8 @@ const Footer = () => {
     "
     >
       <div className="">
-        <p className="">
-          &copy; {new Date().getFullYear()} Your Company Name. All rights
+        <p className="text-xs">
+          &copy; {new Date().getFullYear()} Sweet Home International. All rights
           reserved.
         </p>
         {/* <div className="">
