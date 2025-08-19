@@ -30,10 +30,10 @@ export default function RoomCard({ room }: { room: any }) {
         />
       </div>
       <div className="p-4">
-        <h3 className="text-lg font-semibold tracking-tight">{Room_Type}</h3>
-        <p className="mt-2 text-sm text-slate-600 line-clamp-2">
-          {descriptionText}
-        </p>
+        <h3 className="text-lg font-semibold tracking-tight mb-2">
+          {Room_Type}
+        </h3>
+        <p className="text-sm text-slate-600 line-clamp-2">{descriptionText}</p>
         <div className="mt-4 flex items-center justify-between">
           <p className="text-lg font-bold text-slate-900">
             &#8377;{Price}
