@@ -99,22 +99,22 @@ export default function Navbar() {
               </nav>
               <div className="absolute bottom-8 left-0 w-full">
                 <div className="flex justify-center gap-6">
-                  <SocialIcon href="https://facebook.com" aria-label="Facebook">
+                  <SocialIcon
+                    href="https://www.facebook.com/hotelsweethomeinternational"
+                    aria-label="Facebook"
+                  >
                     <MdFacebook size={24} />
                   </SocialIcon>
                   <SocialIcon
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/hotelsweethomeinternational"
                     aria-label="Instagram"
                   >
                     <AiOutlineInstagram size={24} />
                   </SocialIcon>
-                  <SocialIcon href="https://twitter.com" aria-label="Twitter">
-                    <AiOutlineTwitter size={24} />
-                  </SocialIcon>
                 </div>
                 <p className="mt-6 text-center text-xs text-slate-500">
-                  &copy; {new Date().getFullYear()} Hotel Sweet Home
-                  International
+                  &copy; {new Date().getFullYear()} Sweet Home International.
+                  All rights reserved.
                 </p>
               </div>
             </div>

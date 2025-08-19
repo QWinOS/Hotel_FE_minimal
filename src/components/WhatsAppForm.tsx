@@ -82,8 +82,9 @@ export function WhatsAppForm() {
       ).toLocaleDateString()}`;
     }
 
+    const whatsapp_No = process.env.NEXT_PUBLIC_WHATSAPP_NO;
     const whatsappMessage = `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *No. of Members:* ${members}\n *Message:* ${message}${dateString}`;
-    const whatsappURL = `https://wa.me/916291222796?text=${encodeURIComponent(
+    const whatsappURL = `https://wa.me/91${whatsapp_No}?text=${encodeURIComponent(
       whatsappMessage
     )}`;
 
@@ -141,7 +142,7 @@ export function WhatsAppForm() {
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="+91-12345678"
+                  placeholder="9444211333"
                   className="w-full px-4 py-3 rounded-md border border-slate-300/70 bg-white/70 shadow-sm focus:outline-none focus:ring-2 focus:ring-ring/80 focus:border-ring transition-all duration-200 text-slate-900"
                   {...field}
                 />
