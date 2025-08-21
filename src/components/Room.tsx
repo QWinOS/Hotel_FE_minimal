@@ -61,7 +61,7 @@ const Individual_Room = ({ data }: { data: any }) => {
                 <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">
                   Book Your Stay
                 </h2>
-                <WhatsAppForm />
+                <WhatsAppForm roomType={room.Room_Type} />
               </div>
             </div>
           </div>

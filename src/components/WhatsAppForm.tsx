@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { handleSubmitAction } from "./actions/handle-submit.action";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -42,7 +43,7 @@ const formSchema = z.object({
     }),
 });
 
-export function WhatsAppForm() {
+export function WhatsAppForm({ roomType }: { roomType: string }) {
   const [selectedDate, setSelectedDate] = useState<{
     from: string | undefined;
     to: string | undefined;
@@ -89,11 +90,20 @@ export function WhatsAppForm() {
       .replace(/_/g, "\\_") // Escape underscores for italics
       .replace(/~/g, "\\~"); // Escape tildes for strikethrough
 
-    const whatsappMessage = `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *No. of Members:* ${members}\n *Message:* ${escapedMessage}${dateString}`;
+    const whatsappMessage = `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *Room Type:* ${roomType}\n *No. of Members:* ${members}\n *Message:* ${escapedMessage}${dateString}`;
     const whatsappURL = `https://wa.me/91${whatsapp_No}?text=${encodeURIComponent(
       whatsappMessage
     )}`;
 
+    handleSubmitAction(
+      name,
+      email,
+      phone,
+      members,
+      roomType,
+      escapedMessage,
+      selectedDate
+    );
     window.open(whatsappURL, "_blank");
   }
 
