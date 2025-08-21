@@ -25,6 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { handleSubmitAction } from "./actions/handle-submit.action";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -94,7 +95,6 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
     const whatsappURL = `https://wa.me/91${whatsapp_No}?text=${encodeURIComponent(
       whatsappMessage
     )}`;
-
     handleSubmitAction(
       name,
       email,

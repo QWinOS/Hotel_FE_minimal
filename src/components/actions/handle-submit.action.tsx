@@ -3,6 +3,7 @@
 import { z } from "zod";
 // import { formSchema } from "../WhatsAppForm"; // Import formSchema
 import brevo from "@getbrevo/brevo";
+import { toast } from "sonner";
 
 export async function handleSubmitAction(
   name: string,
@@ -104,14 +105,17 @@ export async function handleSubmitAction(
           <p>Here's a summary of your inquiry:</p>
           ${htmlContent}
           <p>Best regards,</p>
-          <p>Hotel Sweet Home Team</p>
+          <p>Hotel Sweet Home International Team</p>
         </body>
       </html>
     `;
 
     await apiInstance.sendTransacEmail(thankYouEmail);
-    console.log("Thank you email sent successfully!");
+    toast.success(
+      "Thank you email sent successfully! We will get back to you soon."
+    );
   } catch (error) {
+    toast.error("Failed to send inquiry. Please try via WhatsApp.");
     console.error("Error in handleSubmitAction: ", error);
     throw error; // Re-throw the error so the client-side can catch it
   }
