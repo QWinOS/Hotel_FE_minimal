@@ -1,7 +1,6 @@
 "use server";
 
 import { z } from "zod";
-// import { formSchema } from "../WhatsAppForm"; // Import formSchema
 import brevo from "@getbrevo/brevo";
 import { toast } from "sonner";
 
@@ -27,6 +26,11 @@ export async function handleSubmitAction(
     if (!sender_Email) {
       console.error("NEXT_PUBLIC_EMAIL is not set in environment variables.");
       throw new Error("Sender email is not configured.");
+    }
+
+    if (!brevo || !brevo.TransactionalEmailsApi) {
+      console.error("Brevo library is not properly initialized.");
+      throw new Error("Brevo library is not properly initialized.");
     }
 
     let apiInstance = new brevo.TransactionalEmailsApi();
@@ -114,11 +118,17 @@ export async function handleSubmitAction(
     // toast.success(
     //   "Thank you email sent successfully! We will get back to you soon."
     // );
+    // return `https://wa.me/91${
+    //   process.env.NEXT_PUBLIC_WHATSAPP_NO
+    // }?text=${encodeURIComponent(
+    //   `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *Room Type:* ${roomType}\n *No. of Members:* ${members}\n *Message:* ${message
+    //     .replace(/\*/g, "\\*")
+    //     .replace(/_/g, "\\_")
+    //     .replace(/~/g, "\\~")}${dateString}`
+    // )}`;
     return true;
   } catch (error) {
-    // toast.error("Failed to send inquiry. Please try via WhatsApp.");
     console.error("Error in handleSubmitAction: ", error);
-    // throw error; // Re-throw the error so the client-side can catch it
-    return false;
+    return false; // Return an empty string in case of error
   }
 }

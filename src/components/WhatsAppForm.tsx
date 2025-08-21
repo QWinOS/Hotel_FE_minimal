@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { handleSubmitAction } from "./actions/handle-submit.action";
+import { handleSubmitAction } from "@/actions/handle-submit.action";
 import { toast } from "sonner";
 
 const formSchema = z.object({
