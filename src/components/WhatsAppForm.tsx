@@ -36,7 +36,6 @@ const formSchema = z.object({
   selectedDate: z
     .object({
       from: z.string().min(1, "Please select a starting date"),
-
       to: z.string().min(1, "Please select an ending date"),
     })
     .refine((data) => data.from || data.to, {
@@ -52,6 +51,7 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
     from: "",
     to: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -68,6 +68,7 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     const { name, email, phone, members, message, selectedDate } = values;
     let dateString = "";
     if (selectedDate.from && selectedDate.to) {
@@ -95,27 +96,34 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
     const whatsappURL = `https://wa.me/91${whatsapp_No}?text=${encodeURIComponent(
       whatsappMessage
     )}`;
-    const returnedUrl = await handleSubmitAction(
-      name,
-      email,
-      phone,
-      members,
-      roomType,
-      escapedMessage,
-      selectedDate
-    );
-    if (returnedUrl === true) {
-      toast.success(
-        "Thank you email sent successfully! We will get back to you soon."
+    try {
+      const returnedUrl = await handleSubmitAction(
+        name,
+        email,
+        phone,
+        members,
+        roomType,
+        escapedMessage,
+        selectedDate
       );
-      setTimeout(() => {
-        window.open(whatsappURL, "_blank");
-      }, 1500);
-    } else {
-      toast.error("Failed to send email. Please try via WhatsApp.");
-      setTimeout(() => {
-        window.open(whatsappURL, "_blank");
-      }, 1000);
+      if (returnedUrl === true) {
+        toast.success(
+          "Thank you email sent successfully! We will get back to you soon."
+        );
+        setTimeout(() => {
+          window.open(whatsappURL, "_blank");
+        }, 1500);
+      } else {
+        toast.error("Failed to send email. Please try via WhatsApp.");
+        setTimeout(() => {
+          window.open(whatsappURL, "_blank");
+        }, 1000);
+      }
+    } catch (error) {
+      console.error("Error in onSubmit: ", error);
+      toast.error("Failed to send inquiry. Please try via WhatsApp.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -252,8 +260,9 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
         <Button
           type="submit"
           className="w-full bg-[#023047] hover:bg-[#023e5a] text-white font-semibold py-3 rounded-md shadow-sm hover:shadow-md transform hover:-translate-y-px transition-all duration-300 text-base tracking-wide"
+          disabled={isLoading}
         >
-          Send via WhatsApp
+          {isLoading ? "Sending..." : "Send via WhatsApp"}
         </Button>
       </form>
     </Form>
