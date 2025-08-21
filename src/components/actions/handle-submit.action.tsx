@@ -13,7 +13,7 @@ export async function handleSubmitAction(
   roomType: string,
   message: string,
   selectedDate: { from: string; to: string }
-) {
+): Promise<Boolean> {
   try {
     console.log("ANI");
     console.log(name, email, phone, members, roomType, message, selectedDate);
@@ -111,12 +111,14 @@ export async function handleSubmitAction(
     `;
 
     await apiInstance.sendTransacEmail(thankYouEmail);
-    toast.success(
-      "Thank you email sent successfully! We will get back to you soon."
-    );
+    // toast.success(
+    //   "Thank you email sent successfully! We will get back to you soon."
+    // );
+    return true;
   } catch (error) {
-    toast.error("Failed to send inquiry. Please try via WhatsApp.");
+    // toast.error("Failed to send inquiry. Please try via WhatsApp.");
     console.error("Error in handleSubmitAction: ", error);
-    throw error; // Re-throw the error so the client-side can catch it
+    // throw error; // Re-throw the error so the client-side can catch it
+    return false;
   }
 }

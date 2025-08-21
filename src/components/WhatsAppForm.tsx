@@ -67,7 +67,7 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const { name, email, phone, members, message, selectedDate } = values;
     let dateString = "";
     if (selectedDate.from && selectedDate.to) {
@@ -95,7 +95,7 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
     const whatsappURL = `https://wa.me/91${whatsapp_No}?text=${encodeURIComponent(
       whatsappMessage
     )}`;
-    handleSubmitAction(
+    const returnedUrl = await handleSubmitAction(
       name,
       email,
       phone,
@@ -104,7 +104,19 @@ export function WhatsAppForm({ roomType }: { roomType: string }) {
       escapedMessage,
       selectedDate
     );
-    window.open(whatsappURL, "_blank");
+    if (returnedUrl === true) {
+      toast.success(
+        "Thank you email sent successfully! We will get back to you soon."
+      );
+      setTimeout(() => {
+        window.open(whatsappURL, "_blank");
+      }, 1500);
+    } else {
+      toast.error("Failed to send email. Please try via WhatsApp.");
+      setTimeout(() => {
+        window.open(whatsappURL, "_blank");
+      }, 1000);
+    }
   }
 
   return (
