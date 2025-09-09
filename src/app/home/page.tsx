@@ -65,7 +65,7 @@ export default async function HomePage() {
               .map((word: string, index: number, array: string[]) => (
                 <span
                   key={index}
-                  className={index >= array.length - 4 ? "text-[#E67E22]" : ""}
+                  className={index >= array.length - 4 ? "text-[#FF9800]" : ""}
                 >
                   {word}{" "}
                 </span>
@@ -78,7 +78,7 @@ export default async function HomePage() {
             <Button
               asChild
               size="lg"
-              className="px-8 py-3 text-lg bg-[#2D7A7A] text-white hover:bg-[#236060] transition-colors duration-300 shadow-lg"
+              className="px-8 py-3 text-lg bg-[#2D7A7A] text-[#ff9800] hover:bg-[#236060] transition-colors duration-300 shadow-lg font-semibold"
             >
               <Link href="/room">Explore Rooms</Link>
             </Button>
@@ -86,7 +86,7 @@ export default async function HomePage() {
               asChild
               size="lg"
               variant="outline"
-              className="px-8 py-3 text-lg border-2 border-[#E67E22] text-[#E67E22] hover:bg-[#E67E22] hover:text-white transition-colors duration-300 shadow-lg"
+              className="px-8 py-3 text-lg border-2 border-[#FF9800] text-[#FF9800] hover:bg-[#FF9800] hover:text-white transition-colors duration-300 shadow-lg"
             >
               <Link href="/about">About Us</Link>
             </Button>
