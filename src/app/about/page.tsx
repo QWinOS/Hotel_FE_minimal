@@ -50,7 +50,7 @@ export default function About() {
       <main className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Our Story Section */}
         <section className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-6">
+          <h2 className="text-3xl font-bold tracking-tight text-[#009688] sm:text-4xl mb-6">
             {about?.Our_Story_Title}
           </h2>
           <p className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed">
@@ -65,7 +65,7 @@ export default function About() {
 
         {/* Second Paragraph Section */}
         <section className="mb-16 text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-6">
+          <h2 className="text-3xl font-bold tracking-tight text-[#009688] sm:text-4xl mb-6">
             {about?.Second_Paragraph_Title}
           </h2>
           <p className="max-w-3xl mx-auto text-lg text-slate-600 leading-relaxed">
@@ -83,7 +83,7 @@ export default function About() {
 
         {/* Testimonials Section */}
         <section className="mt-16">
-          <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl mb-12 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-[#009688] sm:text-4xl mb-12 text-center">
             {about?.Testimonials_Title || "What Our Guests Say"}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -78,7 +78,7 @@ export default async function HomePage() {
             <Button
               asChild
               size="lg"
-              className="px-8 py-3 text-lg bg-[#2D7A7A] text-[#ff9800] hover:bg-[#236060] transition-colors duration-300 shadow-lg font-semibold"
+              className="px-8 py-3 text-lg bg-[#009688] text-[#ff9800] hover:bg-[#236060] transition-colors duration-300 shadow-lg font-semibold"
             >
               <Link href="/room">Explore Rooms</Link>
             </Button>
@@ -98,7 +98,7 @@ export default async function HomePage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-[#009688] sm:text-4xl">
               Featured Rooms
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
@@ -113,7 +113,7 @@ export default async function HomePage() {
       <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-[#009688] sm:text-4xl">
               Our Amenities
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">

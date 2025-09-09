@@ -30,7 +30,7 @@ export default function RoomCard({ room }: { room: any }) {
         />
       </div>
       <div className="p-4">
-        <h3 className="text-lg font-semibold tracking-tight mb-2">
+        <h3 className="text-lg font-semibold tracking-tight mb-2 text-[#009688]">
           {Room_Type}
         </h3>
         <p className="text-sm text-slate-600 line-clamp-2">{descriptionText}</p>

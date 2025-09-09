@@ -33,7 +33,7 @@ const Individual_Room = ({ data }: { data: any }) => {
       <main className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-[#009688] sm:text-5xl md:text-6xl">
             {room.Room_Type}
           </h1>
           <div className="mt-6 h-1 w-24 bg-gradient-to-r from-[#FB8500] via-[#FFB703] to-[#219EBC] mx-auto rounded-full" />
@@ -58,7 +58,7 @@ const Individual_Room = ({ data }: { data: any }) => {
 
               {/* Booking Section */}
               <div className="rounded-lg bg-white p-8 shadow-lg border">
-                <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">
+                <h2 className="text-2xl font-bold text-[#009688] mb-6 text-center">
                   Book Your Stay
                 </h2>
                 <WhatsAppForm roomType={room.Room_Type} />
