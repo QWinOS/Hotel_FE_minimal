@@ -52,7 +52,7 @@ export default function Navbar() {
             <Link
               key={link.title}
               href={link.href}
-              className="px-4 py-2 text-slate-600 font-medium rounded-md transition-colors hover:bg-[#ff9800] hover:text-white"
+              className="px-4 py-2 text-[#009688] font-medium rounded-md transition-colors hover:bg-[#ff9800] hover:text-white"
             >
               {link.title}
             </Link>
@@ -62,7 +62,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button onClick={handleNav} aria-label="Open menu">
-            <MdOutlineMenu size={28} className="text-slate-800" />
+            <MdOutlineMenu size={28} className="text-[#009688]" />
           </button>
         </div>
       </div>
@@ -80,7 +80,7 @@ export default function Navbar() {
             <div className="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-white shadow-2xl">
               <div className="flex justify-end p-4">
                 <button onClick={handleNav} aria-label="Close menu">
-                  <MdClose size={28} className="text-slate-800" />
+                  <MdClose size={28} className="text-[#009688]" />
                 </button>
               </div>
               <nav className="flex flex-col items-center gap-6 p-8">
@@ -89,7 +89,7 @@ export default function Navbar() {
                     key={link.title}
                     href={link.href}
                     onClick={handleNav}
-                    className="w-full text-center text-xl font-semibold text-slate-700 py-3 rounded-lg transition-colors hover:bg-[#ff9800] hover:text-white"
+                    className="w-full text-center text-xl font-semibold text-[#009688] py-3 rounded-lg transition-colors hover:bg-[#ff9800] hover:text-white"
                   >
                     {link.title}
                   </Link>
