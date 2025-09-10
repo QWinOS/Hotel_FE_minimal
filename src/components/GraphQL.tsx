@@ -18,7 +18,8 @@ const getQuery = (params: string, queryTerm: string) => {
         body: JSON.stringify({
           query: `{
                         banner {
-                            Left_Aligned_Text
+                            Line1
+                            Line2
                             Description
                             Pics {
                             url

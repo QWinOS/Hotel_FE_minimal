@@ -36,8 +36,9 @@ export default async function HomePage() {
   }
 
   const {
+    Line1: leader,
+    Line2: subLeader,
     Description: description,
-    Left_Aligned_Text: leader,
     Pics,
   } = bannerData?.banner || {};
   const imgURL = Pics?.[0]?.url;
@@ -60,16 +61,9 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-amber-50/10" />
         <div className="relative z-10 p-4 max-w-4xl mx-auto text-white">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl leading-tight drop-shadow-2xl text-white">
-            {leader
-              .split(" ")
-              .map((word: string, index: number, array: string[]) => (
-                <span
-                  key={index}
-                  className={index >= array.length - 4 ? "text-[#FF9800]" : ""}
-                >
-                  {word}{" "}
-                </span>
-              ))}
+            <span className="text-white">{leader}</span>
+            <br />
+            <span className="text-[#FF9800]">{subLeader}</span>
           </h1>
           <p className="mt-6 text-xl sm:text-2xl font-light leading-relaxed drop-shadow-lg">
             {description}
