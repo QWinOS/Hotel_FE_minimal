@@ -20,6 +20,7 @@ const getQuery = (params: string, queryTerm: string) => {
                         banner {
                             Line1
                             Line2
+                            Line3
                             Description
                             Pics {
                             url

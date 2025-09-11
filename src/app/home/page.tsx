@@ -38,6 +38,7 @@ export default async function HomePage() {
   const {
     Line1: leader,
     Line2: subLeader,
+    Line3: subSubLeader,
     Description: description,
     Pics,
   } = bannerData?.banner || {};
@@ -59,11 +60,17 @@ export default async function HomePage() {
           priority
         />
         <div className="absolute inset-0 bg-amber-50/10" />
-        <div className="relative z-10 p-4 max-w-4xl mx-auto text-white">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl leading-tight drop-shadow-2xl text-white">
+        <div className="relative z-10 p-4 max-w-8xl mx-auto text-white">
+          <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-6xl leading-tight drop-shadow-2xl text-white">
             <span className="text-white">{leader}</span>
             <br />
-            <span className="text-[#FF9800]">{subLeader}</span>
+            <span className="text-[#FF9800] text-5xl sm:text-6xl">
+              {subLeader}
+            </span>
+            <br />
+            <span className="text-[#FF9800] text-3xl sm:text-3xl">
+              {subSubLeader}
+            </span>
           </h1>
           <p className="mt-6 text-xl sm:text-2xl font-light leading-relaxed drop-shadow-lg">
             {description}
