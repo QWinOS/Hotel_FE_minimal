@@ -68,7 +68,7 @@ export default async function HomePage() {
               {subLeader}
             </span>
             <br />
-            <div className="mt-6 h-1 bg-gradient-to-r from-[#FB8500] via-[#FFB703] to-[#219EBC] mx-auto rounded-full w-sm sm:w-3xl" />
+            <div className="mt-6 h-1 bg-gradient-to-r from-[#FB8500] via-[#FFB703] to-[#219EBC] mx-auto rounded-full w-3/4 sm:w-3xl" />
             <span className="text-white text-3xl sm:text-5xl">
               {subSubLeader}
             </span>
