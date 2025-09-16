@@ -68,7 +68,8 @@ export default async function HomePage() {
               {subLeader}
             </span>
             <br />
-            <span className="text-[#FF9800] text-3xl sm:text-3xl">
+            <div className="mt-6 h-1 bg-gradient-to-r from-[#FB8500] via-[#FFB703] to-[#219EBC] mx-auto rounded-full w-sm sm:w-3xl" />
+            <span className="text-white text-3xl sm:text-5xl">
               {subSubLeader}
             </span>
           </h1>
@@ -79,7 +80,7 @@ export default async function HomePage() {
             <Button
               asChild
               size="lg"
-              className="px-8 py-3 text-lg bg-[#009688] text-[#ff9800] hover:bg-[#236060] transition-colors duration-300 shadow-lg font-semibold"
+              className="px-8 py-3 text-lg bg-[#009688] text-white hover:bg-[#236060] transition-colors duration-300 shadow-lg font-semibold"
             >
               <Link href="/room">Explore Rooms</Link>
             </Button>
@@ -118,7 +119,7 @@ export default async function HomePage() {
               Our Amenities
             </h2>
             <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">
-              Discover the features that make our hotel a premier destination.
+              Enjoy comfort, convenience and care with every stay.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
