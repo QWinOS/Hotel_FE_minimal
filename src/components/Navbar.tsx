@@ -47,17 +47,17 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <Link
               key={link.title}
               href={link.href}
-              className="px-4 py-2 text-[#009688] font-medium rounded-md transition-colors hover:bg-[#ff9800] hover:text-white"
+              className="px-4 py-2 text-[#009688] font-semibold text-lg rounded-md transition-colors hover:bg-[#ff9800] hover:text-white"
             >
               {link.title}
             </Link>
           ))}
-        </nav>
+        </div>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
