@@ -7,6 +7,7 @@ import { motion, AnimatePresence, Variants } from "framer-motion";
 import { MdOutlineMenu, MdClose, MdFacebook } from "react-icons/md";
 import { AiOutlineInstagram, AiOutlineTwitter } from "react-icons/ai";
 import favicon from "../app/favicon.ico";
+import logo from "../app/logo.svg";
 
 const navLinks = [
   { title: "Home", href: "/" },
@@ -36,10 +37,10 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2 relative h-12 w-12">
           {/* <div className="relative h-12 w-12"> */}
           <Image
-            src={favicon}
+            src={logo}
             alt="Hotel Logo"
             fill
-            sizes="48px"
+            sizes="100px"
             className="object-contain"
           />
           {/* </div>
