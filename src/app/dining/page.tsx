@@ -57,7 +57,7 @@ async function getMenuImageListFromStrapi() {
 export default async function Menu() {
   const menuList = await getMenuImageListFromStrapi();
   return (
-    <div className="min-h-screen py-8 px-2 sm:px-6 md:px-12 lg:px-24 xl:px-40 font-sans bg-gradient-to-br from-[#F8FAFC] via-[#E5EDF1] to-[#8ECAE6]">
+    <div className="min-h-screen py-8 px-2 sm:px-6 md:px-12 lg:px-24 xl:px-40 bg-slate-50">
       <div className="relative z-10">
         <Load index={1}>
           <h1
@@ -68,7 +68,7 @@ export default async function Menu() {
         uppercase
         leading-loose
         tracking-wide
-        text-[#4B3221]
+        text-[#009688]
         subpixel-antialiased
         dark:text-[#D6D6D8]
         sm:pb-6

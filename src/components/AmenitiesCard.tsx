@@ -21,7 +21,7 @@ export default function AmenitiesCard({ amenity }: { amenity: any }) {
         />
       </div>
       <div>
-        <h3 className="text-lg font-semibold">{Title}</h3>
+        <h3 className="text-lg font-semibold text-[#009688]">{Title}</h3>
         <p className="text-sm text-slate-600">{Description}</p>
       </div>
     </div>

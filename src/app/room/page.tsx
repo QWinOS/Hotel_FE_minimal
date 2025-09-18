@@ -19,7 +19,7 @@ export default async function RoomsPage() {
     <div className="bg-[#F8FAFC]">
       <main className="container mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-[#009688] sm:text-5xl md:text-6xl">
             Our Rooms
           </h1>
           <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-600">

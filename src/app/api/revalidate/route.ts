@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
           revalidatePath("/about");
           break;
         case "dinning":
-          revalidatePath("/dinning");
+          revalidatePath("/dining");
           break;
         case "gallery":
           // Revalidate the main gallery page and paginated pages

@@ -18,7 +18,9 @@ const getQuery = (params: string, queryTerm: string) => {
         body: JSON.stringify({
           query: `{
                         banner {
-                            Left_Aligned_Text
+                            Line1
+                            Line2
+                            Line3
                             Description
                             Pics {
                             url
@@ -291,22 +293,41 @@ async function getGraphQLOutput(
   try {
     // Remove 'next' and ensure 'cache' is a valid RequestCache value or omit it if not needed
     const rawOptions = getQuery(params, queryTerm);
-    // Remove 'next' property if present
-    const { next, ...fetchOptions } = rawOptions as any;
-    // Only include 'cache' if it's a valid RequestCache value
-    if (
-      fetchOptions.cache &&
-      ![
-        "default",
-        "no-store",
-        "reload",
-        "no-cache",
-        "force-cache",
-        "only-if-cached",
-      ].includes(fetchOptions.cache)
-    ) {
-      delete fetchOptions.cache;
+    // Remove 'next' property if present, as it conflicts with 'revalidate' at the top level
+    const { next, cache, ...restOfFetchOptions } = rawOptions as any;
+
+    // Default revalidate to 60 seconds (1 minute) for fresh content,
+    // or use a custom cache value if explicitly provided and valid.
+    const fetchOptions: RequestInit = {
+      ...restOfFetchOptions,
+      next: { revalidate: 60 }, // Default revalidation time
+    };
+
+    // If a specific cache strategy was set (e.g., no-store), apply it.
+    // However, 'revalidate' takes precedence over 'cache' property for ISR.
+    if (cache) {
+      if (
+        [
+          "default",
+          "no-store",
+          "reload",
+          "no-cache",
+          "force-cache",
+          "only-if-cached",
+        ].includes(cache)
+      ) {
+        // If cache is "no-store", we still want to apply the revalidate for ISR.
+        // For other cache values, Next.js 'revalidate' config in 'next' property is usually preferred.
+        // We'll keep the default revalidate behavior and let it be overridden by tags if used.
+        // For 'no-store', we'd typically not want revalidate, but that defeats the purpose of ISR here.
+        // So, 'no-store' should really be handled by omitting 'revalidate' or setting it to 0.
+        // For this task, a blanket revalidate helps ensure freshness after inactivity.
+        if (cache === "no-store") {
+          fetchOptions.cache = "no-store"; // For cases where immediate no-cache is desired for specific queries
+        }
+      }
     }
+
     const res = await fetch(`${BASE_API_URL}/graphql`, fetchOptions);
     const { data } = await res.json();
     // fetchPosts(params, queryTerm);

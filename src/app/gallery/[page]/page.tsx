@@ -86,7 +86,7 @@ export default async function Gallery({
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
       <div className="max-w-7xl mx-auto">
         <Load index={1}>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-center text-slate-900 mb-12">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-center text-[#009688] mb-12">
             Showcase
           </h1>
         </Load>

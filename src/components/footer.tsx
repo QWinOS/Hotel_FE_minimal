@@ -9,8 +9,8 @@ const Footer = () => {
     "
     >
       <div className="">
-        <p className="">
-          &copy; {new Date().getFullYear()} Your Company Name. All rights
+        <p className="text-xs">
+          &copy; {new Date().getFullYear()} Sweet Home International. All rights
           reserved.
         </p>
         {/* <div className="">
@@ -19,33 +19,33 @@ const Footer = () => {
         </div> */}
         <div className="flex items-center justify-center space-x-4 mt-4">
           <a
-            href="https://www.facebook.com"
+            href="https://www.facebook.com/hotelsweethomeinternational"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaFacebook />
           </a>
-          <a
+          {/* <a
             href="https://www.twitter.com"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaTwitter />
-          </a>
+          </a> */}
           <a
-            href="https://www.instagram.com"
+            href="https://www.instagram.com/hotelsweethomeinternational"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaInstagram />
           </a>
-          <a
+          {/* <a
             href="https://www.linkedin.com"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaLinkedin />
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>

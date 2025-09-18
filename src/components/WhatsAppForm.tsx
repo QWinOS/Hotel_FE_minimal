@@ -24,17 +24,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { handleSubmitAction } from "@/actions/handle-submit.action";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   phone: z.string().min(10, "Phone number must be at least 10 characters"),
   members: z.string(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  message: z.string().min(2, "Message must be at least 2 characters"),
   selectedDate: z
     .object({
       from: z.string().min(1, "Please select a starting date"),
-
       to: z.string().min(1, "Please select an ending date"),
     })
     .refine((data) => data.from || data.to, {
@@ -42,7 +43,7 @@ const formSchema = z.object({
     }),
 });
 
-export function WhatsAppForm() {
+export function WhatsAppForm({ roomType }: { roomType: string }) {
   const [selectedDate, setSelectedDate] = useState<{
     from: string | undefined;
     to: string | undefined;
@@ -50,6 +51,7 @@ export function WhatsAppForm() {
     from: "",
     to: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -65,7 +67,8 @@ export function WhatsAppForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     const { name, email, phone, members, message, selectedDate } = values;
     let dateString = "";
     if (selectedDate.from && selectedDate.to) {
@@ -82,12 +85,46 @@ export function WhatsAppForm() {
       ).toLocaleDateString()}`;
     }
 
-    const whatsappMessage = `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *No. of Members:* ${members}\n *Message:* ${message}${dateString}`;
-    const whatsappURL = `https://wa.me/916291222796?text=${encodeURIComponent(
+    const whatsapp_No = process.env.NEXT_PUBLIC_WHATSAPP_NO;
+    // Escape WhatsApp markdown characters in the message content
+    const escapedMessage = message
+      .replace(/\*/g, "\\*") // Escape asterisks for bold
+      .replace(/_/g, "\\_") // Escape underscores for italics
+      .replace(/~/g, "\\~"); // Escape tildes for strikethrough
+
+    const whatsappMessage = `*Name:* ${name}\n *Email:* ${email}\n *Phone:* ${phone}\n *Room Type:* ${roomType}\n *No. of Members:* ${members}\n *Message:* ${escapedMessage}${dateString}`;
+    const whatsappURL = `https://wa.me/91${whatsapp_No}?text=${encodeURIComponent(
       whatsappMessage
     )}`;
-
-    window.open(whatsappURL, "_blank");
+    try {
+      const returnedUrl = await handleSubmitAction(
+        name,
+        email,
+        phone,
+        members,
+        roomType,
+        escapedMessage,
+        selectedDate
+      );
+      if (returnedUrl === true) {
+        toast.success(
+          "Thank you email sent successfully! We will get back to you soon."
+        );
+        setTimeout(() => {
+          window.open(whatsappURL, "_blank");
+        }, 1500);
+      } else {
+        toast.error("Failed to send email. Please try via WhatsApp.");
+        setTimeout(() => {
+          window.open(whatsappURL, "_blank");
+        }, 1000);
+      }
+    } catch (error) {
+      console.error("Error in onSubmit: ", error);
+      toast.error("Failed to send inquiry. Please try via WhatsApp.");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -141,7 +178,7 @@ export function WhatsAppForm() {
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="+91-12345678"
+                  placeholder="9444211333"
                   className="w-full px-4 py-3 rounded-md border border-slate-300/70 bg-white/70 shadow-sm focus:outline-none focus:ring-2 focus:ring-ring/80 focus:border-ring transition-all duration-200 text-slate-900"
                   {...field}
                 />
@@ -164,11 +201,27 @@ export function WhatsAppForm() {
                     <SelectValue placeholder="Select the number of members" />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className="max-h-60 overflow-y-auto">
                   <SelectItem value="1">1</SelectItem>
                   <SelectItem value="2">2</SelectItem>
                   <SelectItem value="3">3</SelectItem>
                   <SelectItem value="4">4</SelectItem>
+                  <SelectItem value="5">5</SelectItem>
+                  <SelectItem value="6">6</SelectItem>
+                  <SelectItem value="7">7</SelectItem>
+                  <SelectItem value="8">8</SelectItem>
+                  <SelectItem value="9">9</SelectItem>
+                  <SelectItem value="10">10</SelectItem>
+                  <SelectItem value="11">11</SelectItem>
+                  <SelectItem value="12">12</SelectItem>
+                  <SelectItem value="13">13</SelectItem>
+                  <SelectItem value="14">14</SelectItem>
+                  <SelectItem value="15">15</SelectItem>
+                  <SelectItem value="16">16</SelectItem>
+                  <SelectItem value="17">17</SelectItem>
+                  <SelectItem value="18">18</SelectItem>
+                  <SelectItem value="19">19</SelectItem>
+                  <SelectItem value="20">20</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -223,8 +276,9 @@ export function WhatsAppForm() {
         <Button
           type="submit"
           className="w-full bg-[#023047] hover:bg-[#023e5a] text-white font-semibold py-3 rounded-md shadow-sm hover:shadow-md transform hover:-translate-y-px transition-all duration-300 text-base tracking-wide"
+          disabled={isLoading}
         >
-          Send via WhatsApp
+          {isLoading ? "Sending..." : "Send via WhatsApp"}
         </Button>
       </form>
     </Form>
