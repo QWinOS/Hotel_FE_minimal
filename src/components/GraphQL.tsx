@@ -268,7 +268,8 @@ const getQuery = (params: string, queryTerm: string) => {
             contact {
               Description
               Email
-              Map_URL
+              Map_URL_Embed
+              Map_URL_Share
               Phone
               Address
             }

@@ -1,4 +1,5 @@
 import { getGraphQLOutput } from "@/components/GraphQL";
+import Link from "next/link";
 import React, { use } from "react";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 
@@ -39,43 +40,35 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Details */}
-          <div className="bg-white rounded-lg shadow-lg p-8 space-y-8">
-            <ContactInfo
-              icon={<FaPhoneAlt className="text-xl text-amber-500" />}
-              title="Phone"
-              content={
-                <a
-                  href={`tel:+91${contact?.Phone}`}
-                  className="text-slate-800 hover:text-amber-600 transition-colors"
-                >
-                  +91-{contact?.Phone}
-                </a>
-              }
-            />
-            <ContactInfo
-              icon={<FaEnvelope className="text-xl text-amber-500" />}
-              title="Email"
-              content={
-                <a
-                  href={`mailto:${contact?.Email}`}
-                  className="text-slate-800 hover:text-amber-600 transition-colors"
-                >
-                  {contact?.Email}
-                </a>
-              }
-            />
-            <ContactInfo
-              icon={<FaMapMarkerAlt className="text-xl text-amber-500" />}
-              title="Address"
-              content={<p className="text-slate-800">{contact?.Address}</p>}
-            />
+          <div className="bg-white rounded-lg shadow-lg p-8 space-y-8 flex flex-col justify-center">
+            <Link href={`tel:+91${contact?.Phone}`} passHref>
+              <ContactInfo
+                icon={<FaPhoneAlt className="text-xl text-amber-500" />}
+                title="Phone"
+                content={<span>+91 - {contact?.Phone}</span>}
+              />
+            </Link>
+            <Link href={`tel:+91${contact?.Alternate_Phone}`} passHref>
+              <ContactInfo
+                icon={<FaEnvelope className="text-xl text-amber-500" />}
+                title="Email"
+                content={contact?.Email}
+              />
+            </Link>
+            <Link href={contact?.Map_URL_Share} target="_blank" passHref>
+              <ContactInfo
+                icon={<FaMapMarkerAlt className="text-xl text-amber-500" />}
+                title="Address"
+                content={<p className="text-slate-800">{contact?.Address}</p>}
+              />
+            </Link>
           </div>
 
           {/* Google Map */}
           <div className="overflow-hidden rounded-lg shadow-lg">
             <iframe
               title="Google Map"
-              src={contact?.Map_URL}
+              src={contact?.Map_URL_Embed}
               width="100%"
               height="100%"
               className="min-h-[400px]"
