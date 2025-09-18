@@ -40,7 +40,7 @@ export default function ContactPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Contact Details */}
-          <div className="bg-white rounded-lg shadow-lg p-8 space-y-8 flex flex-col">
+          <div className="bg-white rounded-lg shadow-lg p-8 space-y-8 flex flex-col justify-center">
             <Link href={`tel:+91${contact?.Phone}`} passHref>
               <ContactInfo
                 icon={<FaPhoneAlt className="text-xl text-amber-500" />}
