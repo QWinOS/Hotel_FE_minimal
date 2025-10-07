@@ -8,15 +8,16 @@ const Footer = () => {
         flex items-center justify-center bg-gray-800 text-white py-6
     "
     >
-      <div className="">
+      <div className="text-center">
         <p className="text-xs">
           &copy; {new Date().getFullYear()} Sweet Home International. All rights
           reserved.
         </p>
-        {/* <div className="">
-          <Link href="/privacy-policy">Privacy Policy</Link>
-          <Link href="/terms-of-service">Terms of Service</Link>
-        </div> */}
+        <div className="mt-2 text-xs space-x-4">
+          <Link href="/terms-and-conditions" className="hover:text-gray-300">
+            Privacy Policy & Terms
+          </Link>
+        </div>
         <div className="flex items-center justify-center space-x-4 mt-4">
           <a
             href="https://www.facebook.com/hotelsweethomeinternational"
