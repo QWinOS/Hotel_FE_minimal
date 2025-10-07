@@ -43,7 +43,7 @@ export function BlurImage({ data }: { data: any }) {
       <a
         href={imgURL}
         data-pswp-width={image.width || 1200}
-        data-pswp-height={image.height || 800}
+        data-pswp-height={image.height || 1200}
         target="_blank"
         rel="noreferrer"
       >
