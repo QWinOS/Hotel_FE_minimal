@@ -6,16 +6,13 @@ const nextConfig: NextConfig = {
   crossOrigin: "anonymous",
   trailingSlash: false,
   images: {
-    domains: [
-      "127.0.0.1",
-      "141.148.215.119",
-      "155.248.254.64",
-      "192.168.1.198",
-      "141.148.215.119", // Add the new Strapi host
-      "*.anik3t.dev", // Add the new Strapi host
-      "res.cloudinary.com",
-    ],
     remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/dojit2sp3/**",
+      },
       {
         protocol: "http",
         hostname: "*",
