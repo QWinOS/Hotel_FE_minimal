@@ -1,5 +1,5 @@
 import { getGraphQLOutput } from "@/components/GraphQL";
-import Image from "next/image";
+import HeroImage from "@/components/HeroImage";
 import AmenitiesCard from "@/components/AmenitiesCard";
 import FeaturedRooms from "@/components/FeaturedRooms";
 import { Button } from "@/components/ui/button";
@@ -42,7 +42,7 @@ export default async function HomePage() {
     Description: description,
     Pics,
   } = bannerData?.banner || {};
-  const imgURL = Pics?.[0]?.url;
+  const imgURL = Pics?.[0]?.url || "/default-banner.jpg";
   // const imgURL = BASE_API_URL + Pics?.[0]?.url;
 
   const rooms = roomData?.rooms || [];
@@ -52,13 +52,7 @@ export default async function HomePage() {
     <div className="bg-[#F8FAFC]">
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center text-center overflow-hidden">
-        <Image
-          src={imgURL}
-          alt="Hotel Banner"
-          fill
-          className="object-cover brightness-50 contrast-125 saturate-150 blur-sm transform scale-110"
-          priority
-        />
+        <HeroImage imgURL={imgURL} />
         <div className="absolute inset-0 bg-amber-50/10" />
         <div className="relative z-10 p-4 max-w-8xl mx-auto text-white">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-6xl leading-tight drop-shadow-2xl text-white">
