@@ -21,7 +21,8 @@ export default function HeroImage({ imgURL }: { imgURL?: string }) {
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
         priority
-        unoptimized={process.env.NODE_ENV !== "production"}
+        // unoptimized={process.env.NODE_ENV !== "production"}
+        // unoptimized={true}
         onLoad={() => setIsLoaded(true)}
         style={{
           transition: "opacity 0.5s ease-in-out",
