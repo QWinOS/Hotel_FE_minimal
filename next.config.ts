@@ -20,8 +20,8 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        port: "",
-        pathname: "/dojit2sp3/**",
+        // port: "",
+        // pathname: "/dojit2sp3/**",
       },
       {
         protocol: "http",
