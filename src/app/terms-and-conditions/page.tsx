@@ -120,7 +120,7 @@ export default function TermsAndConditions() {
                 The hotel reserves the right to refuse service or evict guests
                 for:
               </li>
-              <li className="ml-4 pl-2">• Inappropriate behaviour</li>
+              <li className="ml-4">Inappropriate behaviour</li>
               <li className="ml-4">Causing disturbances</li>
               <li className="ml-4">Violating hotel rules</li>
               <li>
@@ -139,7 +139,7 @@ export default function TermsAndConditions() {
                 Hotel Sweet Home International shall not be liable for any
                 disruptions due to:
               </li>
-              <li className="ml-4 pl-2">• Natural disasters</li>
+              <li className="ml-4">Natural disasters</li>
               <li className="ml-4">Government orders</li>
               <li className="ml-4">
                 War, riots, strikes, fire, flood, or other unforeseeable events
@@ -185,9 +185,9 @@ export default function TermsAndConditions() {
                 within 7 working days from the date of the cancellation email.
               </li>
               <li>The hotel does not accept liability for:</li>
-              <li className="ml-4 pl-2">
-                • Loss, injury, illness, or death resulting from unforeseeable
-                or uncontrollable circumstances.
+              <li className="ml-4">
+                Loss, injury, illness, or death resulting from unforeseeable or
+                uncontrollable circumstances.
               </li>
               <li className="ml-4">
                 Events including but not limited to: Acts of God, war, civil
@@ -215,7 +215,7 @@ export default function TermsAndConditions() {
                 business or when legally required.
               </li>
               <li>For privacy-related queries, please contact us at:</li>
-              <li className="ml-4 pl-2">📧 hotelsweethomedjl@gmail.com</li>
+              <li className="ml-4 ">📧 hotelsweethomedjl@gmail.com</li>
               <li className="ml-4">📞 +91 98320 63417</li>
             </ul>
           </section>
@@ -226,8 +226,8 @@ export default function TermsAndConditions() {
             </h2>
             <ul className="space-y-2 text-gray-700">
               <li>Standard Cancellation Policy</li>
-              <li className="ml-4 pl-2">
-                • 100% refund for cancellations 48 hours before check-in.
+              <li className="ml-4">
+                100% refund for cancellations 48 hours before check-in.
               </li>
               <li className="ml-4">
                 50% refund if cancelled 24-48 hours before check-in.
@@ -240,14 +240,19 @@ export default function TermsAndConditions() {
                 For group bookings (3 rooms or more), a 5-day notice is required
                 for a full refund.
               </li>
-              <li>Weather-Related Cancellations</li>
-              <li className="ml-4 pl-2">
-                • If guests are unable to reach the hotel due to verified
-                natural disruptions (e.g. landslides, roadblocks, extreme
-                weather):
+            </ul>
+          </section>
+          <section>
+            <h2 className="text-2xl font-semibold text-[#009688] mb-4">
+              15. Weather-Related Cancellations
+            </h2>
+            <ul>
+              <li className="ml-4">
+                If guests are unable to reach the hotel due to verified natural
+                disruptions (e.g. landslides, roadblocks, extreme weather):
               </li>
-              <li className="ml-8 pl-2">
-                • Full refund is provided with proper documentation (e.g.
+              <li className="ml-8">
+                Full refund is provided with proper documentation (e.g.
                 government advisory, transport cancellation).
               </li>
               <li className="ml-8">
